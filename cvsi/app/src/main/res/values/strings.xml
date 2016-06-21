@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">cvsi</string>
+    <string name="name_text_view">Name</string>
+    <string name="surname_text_view">Surname</string>
+    <string name="email_text_view">Email</string>
+    <string name="password_text">Password</string>
+    <string name="password_repeat_edit_text">Confirm Password</string>
+</resources>
