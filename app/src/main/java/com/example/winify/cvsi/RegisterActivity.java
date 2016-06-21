@@ -2,7 +2,9 @@ package com.example.winify.cvsi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,11 +28,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent activityThatCalled = getIntent();
 
-        initialize();
+        initializeClassComponents();
+        initializeToolbar();
     }
 
 
-    public void initialize() {
+    public void initializeClassComponents() {
         nameEditText = (EditText) findViewById(R.id.name_edit_text);
         surnameEditText = (EditText) findViewById(R.id.surname_edit_text);
         emailEditText = (EditText) findViewById(R.id.email_edit_text);
@@ -42,5 +45,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void onRegisterButtonClicked() {
         Toast.makeText(getApplicationContext(), "#totNormal", Toast.LENGTH_SHORT).show();
+    }
+
+    public void initializeToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 }

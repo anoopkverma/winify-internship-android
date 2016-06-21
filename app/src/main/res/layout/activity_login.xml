@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fillViewport="true">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" android:background="#ffffff">
 
-        <!--  Header  Starts-->
         <LinearLayout android:id="@+id/header"
             android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dip"
-            android:paddingBottom="5dip">
+            android:layout_height="wrap_content">
+
+            <include layout="@layout/toolbar"/>
+
 
         </LinearLayout>
         <!--  Header Ends -->
+
         <!-- Footer Start -->
         <LinearLayout android:id="@+id/footer"
             android:orientation="vertical"
@@ -72,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
                 android:layout_marginBottom="20dip"
-                android:text="New to Thallium Backup? Register here"
+                android:text="New to BSCB? Register here"
                 android:gravity="center"
                 android:textSize="20dip"
                 android:textColor="#0b84aa"/>

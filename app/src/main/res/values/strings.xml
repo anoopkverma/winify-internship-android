@@ -5,4 +5,7 @@
     <string name="email_text_view">Email</string>
     <string name="password_text">Password</string>
     <string name="password_repeat_edit_text">Confirm Password</string>
+    <string name="settings" />
+    <string name="action_favorite">Favourite</string>
+    <string name="action_settings">Settings</string>
 </resources>
