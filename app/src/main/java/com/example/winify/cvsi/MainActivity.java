@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     // Added by Cristi
     TabLayout tabLayout;
     ViewPager viewPager;
-    ViewPagerAdapter viewPagerAdapter;
+    PagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragments(new BuyFragment(),"Bay");
         viewPagerAdapter.addFragments(new SellFragment(),"Sell");
         viewPagerAdapter.addFragments(new XchangeFragment(),"Exch");
