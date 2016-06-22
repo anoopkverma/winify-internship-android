@@ -1,5 +1,7 @@
 package com.example.winify.cvsi;
 
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -16,10 +18,13 @@ import android.widget.Toast;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText mEmail;
-    private EditText mPassword;
-    private Button mLoginButton;
-    private TextView mRegisterLink;
+    private static EditText mEmail;
+    private static EditText sPassword;
+    private static Button sLoginButton;
+    private static TextView sRegisterLink;
+    private static Button sForgotPassButton;
+
+    static final int FORGOT_PASSWORD_DIALOG = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,32 +35,45 @@ public class LoginActivity extends AppCompatActivity {
 
         intitializeClassComponents();
         initializeToolBar();
+        showForgotPasswordDialog();
     }
 
     public void intitializeClassComponents() {
         mEmail = (EditText) findViewById(R.id.txtLoginEmail) ;
-        mPassword = (EditText) findViewById(R.id.txtLoginPassword);
-        mLoginButton = (Button) findViewById(R.id.btnLogin);
-        mRegisterLink = (TextView) findViewById(R.id.link_to_register);
+        sPassword = (EditText) findViewById(R.id.txtLoginPassword);
+        sLoginButton = (Button) findViewById(R.id.btnLogin);
+        sRegisterLink = (TextView) findViewById(R.id.link_to_register);
 
-        mLoginButton.setOnClickListener(new View.OnClickListener() {
+
+        sLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onLoginButtonClicked();
             }
         });
-        mRegisterLink.setOnClickListener(new View.OnClickListener() {
+        sRegisterLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onRegisterLinkClicked();
             }
         });
+    }
 
+    public void onForgotPasswordButtonClicked() {
+
+    }
+
+    public void onForgotPasswordTextViewClicked() {
+        Intent getLoginIntent = new Intent(this, RegisterActivity.class) ;
+        final int result = 1;
+
+        getLoginIntent.putExtra("callingActivity", "LoginActivity");
+        startActivityForResult(getLoginIntent, result);
     }
 
     public void onLoginButtonClicked() {
         String emailString = mEmail.getText().toString();
-        String passString = mPassword.getText().toString();
+        String passString = sPassword.getText().toString();
 
         if(emailString.equals("admin") && passString.equals("pass")) {
             Toast.makeText(getApplicationContext(), "#totNormal", Toast.LENGTH_SHORT).show();
@@ -83,6 +101,18 @@ public class LoginActivity extends AppCompatActivity {
         if(actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    public void  showForgotPasswordDialog() {
+        sForgotPassButton = (Button) findViewById(R.id.forgot_password_button);
+
+        sForgotPassButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment forgotPassFrag = new ForgotPasswordDialogFragment();
+                forgotPassFrag.show(getFragmentManager(), "missiles");
+            }
+        });
     }
 
 }
