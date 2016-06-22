@@ -39,12 +39,14 @@
 
                 <include layout="@layout/toolbar" />
                 <android.support.design.widget.TabLayout
+                    app:tabSelectedTextColor="@color/colorAccent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/tabLayout"
                     android:layout_below="@+id/toolbar"
                     android:background="@color/colorPrimary"
                     app:tabGravity="fill"
+                    app:tabTextColor="@color/White"
                     app:tabTextAppearance="@style/MyTabStyle" />
 
             </LinearLayout>
