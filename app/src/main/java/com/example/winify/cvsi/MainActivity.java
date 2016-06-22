@@ -26,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        sLoginButton = (Button) findViewById(R.id.button_login_screen);
-        initToolBar();
 
+        sLoginButton = (Button) findViewById(R.id.button_login_screen);
+
+        initToolBar();
+        init();
     }
 
     public void init() {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onOpenLoginActivityButtonClicked(View view) {
-        Intent getLoginIntent = new Intent(this, LoginActivity.class) ;
+        Intent getLoginIntent = new Intent(this, ListItemsActivity.class) ;
         final int result = 1;
 
         getLoginIntent.putExtra("callingActivity", "MainActivity");
