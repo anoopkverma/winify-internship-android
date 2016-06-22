@@ -30,17 +30,17 @@ public class MainActivity extends AppCompatActivity {
         sLoginButton = (Button) findViewById(R.id.button_login_screen);
 
         initToolBar();
-        init();
+//        init();
     }
 
     public void init() {
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
         viewPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragments(new BuyFragment(),"Bay");
+        viewPagerAdapter.addFragments(new BuyFragment(),"Buy");
         viewPagerAdapter.addFragments(new SellFragment(),"Sell");
         viewPagerAdapter.addFragments(new XchangeFragment(),"Exch");
-        viewPagerAdapter.addFragments(new LoanFragment(),"Loan");
+        viewPagerAdapter.addFragments(new LoanFragment(),"Borrow");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
