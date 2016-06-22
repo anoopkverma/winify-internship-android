@@ -1,6 +1,7 @@
 package com.example.winify.cvsi;
 
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,11 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private static Button sLoginButton;
+
+    // Added by Cristi
+    TabLayout tabLayout;
+    ViewPager viewPager;
+    ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +29,18 @@ public class MainActivity extends AppCompatActivity {
         sLoginButton = (Button) findViewById(R.id.button_login_screen);
         initToolBar();
 
+    }
+
+    public void init() {
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        viewPager = (ViewPager)findViewById(R.id.viewPager);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragments(new BuyFragment(),"Bay");
+        viewPagerAdapter.addFragments(new SellFragment(),"Sell");
+        viewPagerAdapter.addFragments(new XchangeFragment(),"Exch");
+        viewPagerAdapter.addFragments(new LoanFragment(),"Loan");
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     public void initToolBar() {
