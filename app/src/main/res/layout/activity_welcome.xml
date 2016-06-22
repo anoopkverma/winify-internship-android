@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".WelcomeActivity"
+    android:fillViewport="true">
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" android:background="#ffffff">
+
+    <LinearLayout android:id="@+id/header"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+    </LinearLayout>
+    <!--  Header Ends -->
+    <Button
+        android:id="@+id/go_to_login_button"
+        android:layout_centerVertical="true"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_login"
+        android:onClick="onSLoginButtonClicked" />
+
+    <Button
+        android:layout_below="@id/go_to_login_button"
+        android:id="@+id/go_to_list_view_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/go_to_list"
+        android:onClick="onSItemsListButtonClicked" />
+
+    <!-- Footer Start -->
+    <LinearLayout android:id="@+id/footer"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+    </LinearLayout>
+    <!-- Footer Ends -->
+
+</RelativeLayout>
+</ScrollView>
