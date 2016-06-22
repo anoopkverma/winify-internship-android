@@ -12,4 +12,7 @@
     <string name="confirm_okay">Okay</string>
     <string name="cancel">Cancel</string>
     <string name="informative_forgot_password">To reset your password, enter the email you used to register to BSCB.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
