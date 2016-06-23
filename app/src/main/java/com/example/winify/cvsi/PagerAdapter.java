@@ -22,6 +22,13 @@ public class PagerAdapter extends FragmentPagerAdapter {
         this.fragments.add(fragments);
         this.tabTitles.add(titles);
     }
+
+//    public void setItemSize(int position, int size) {
+//        TextView x = (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(android.R.id.title);
+//        x.setTextSize(25);
+//
+//        tabTitles[position].setTe
+//    }
     public PagerAdapter(FragmentManager fm) {
         super(fm);
     }
