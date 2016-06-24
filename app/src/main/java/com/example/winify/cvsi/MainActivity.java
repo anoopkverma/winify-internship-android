@@ -10,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         viewPagerAdapter = new PagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragments(new BuyFragment(),"Buy");
         viewPagerAdapter.addFragments(new SellFragment(),"Sell");
-        viewPagerAdapter.addFragments(new XchangeFragment(),"Exch");
-        viewPagerAdapter.addFragments(new LoanFragment(),"Borrow");
+        viewPagerAdapter.addFragments(new BorrowFragment(),"Borrow");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }

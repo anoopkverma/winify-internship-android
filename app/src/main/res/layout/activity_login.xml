@@ -32,8 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:text="@string/forgot_pass_text"
-                android:background="#ffffff"
-                android:color="#372c24" />
+                android:background="#372c24" />
         </LinearLayout>
         <!-- Footer Ends -->
 

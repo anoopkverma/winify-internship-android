@@ -39,10 +39,9 @@ public class ListItemsActivity extends AppCompatActivity {
         tabLayout = (TabLayout)findViewById(R.id.tabLayout);
         viewPager = (ViewPager)findViewById(R.id.viewPager);
         viewPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragments(new BuyFragment(),"Buy");
-        viewPagerAdapter.addFragments(new SellFragment(),"Sell");
-        viewPagerAdapter.addFragments(new XchangeFragment(),"Exchange");
-        viewPagerAdapter.addFragments(new LoanFragment(),"Borrow");
+        viewPagerAdapter.addFragments(new BuyFragment(),"BUY");
+        viewPagerAdapter.addFragments(new SellFragment(),"SELL");
+        viewPagerAdapter.addFragments(new BorrowFragment(),"BORROW");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
     }
