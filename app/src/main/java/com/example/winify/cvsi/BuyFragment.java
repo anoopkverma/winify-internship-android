@@ -1,6 +1,5 @@
 package com.example.winify.cvsi;
 
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,52 +8,53 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class BuyFragment extends Fragment {
 
+    private static final int DATASET_COUNT = 60;
     protected RecyclerView mRecyclerView;
-    protected LinearLayoutManager mLinearLayoutManager;
-    protected List<BuyPost> mDataset;
-    protected BuyListAdapter mBuyListAdapter;
+    protected BuyAdapter mAdapter;
+    protected LinearLayoutManager mLayoutManager;
+    protected String[] mDataset;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
-    }
-
-    public BuyFragment() {
-        // Required empty public constructor
+        initDataset();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        /* Inflate the layout for this fragment */
+        View rootView = inflater.inflate(R.layout.fragment_buy, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_buy, container, false);
 
-        mBuyListAdapter = new BuyListAdapter(mDataset);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.cardList);
-        mLinearLayoutManager = new LinearLayoutManager(getActivity());
-        mLinearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(mLinearLayoutManager);
-        return view;
+        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+        mAdapter = new BuyAdapter(mDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
+        setmRecyclerViewLayoutManager();
+
+        return rootView;
     }
 
-    public void initData() {
-        mDataset = new ArrayList<BuyPost>();
-        for (int i = 0; i < 2; i++) {
-            mDataset.add(new BuyPost());
-            mDataset.get(i).setTitle("New title");
-            mDataset.get(i).setDescription("New descrition");
-            mDataset.get(i).setPrice((float) 12.00);
+    public void setmRecyclerViewLayoutManager() {
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        int scrollPosition = 0;
+
+        if (mRecyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+                    .findFirstCompletelyVisibleItemPosition();
+        }
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.scrollToPosition(scrollPosition);
+    }
+
+
+    private void initDataset() {
+        mDataset = new String[DATASET_COUNT];
+        for (int i = 0; i < DATASET_COUNT; i++) {
+            mDataset[i] = "This is element #" + i;
         }
     }
 }
