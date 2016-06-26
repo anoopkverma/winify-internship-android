@@ -11,7 +11,6 @@ import android.widget.TextView;
  * Created by diana on 6/26/16.
  */
 public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ViewHolder> {
-    private static final String TAG = "BuyAdapter";
 
     private String[] mDataSet;
 
@@ -20,13 +19,6 @@ public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ViewHolder> {
 
         public ViewHolder(View v) {
             super(v);
-            // Define click listener for the ViewHolder's View.
-            v.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.d(TAG, "Element " + getAdapterPosition() + " clicked.");
-                }
-            });
             textView = (TextView) v.findViewById(R.id.title_tv);
         }
 
@@ -50,7 +42,6 @@ public class SellAdapter extends RecyclerView.Adapter<SellAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        Log.d(TAG, "Element " + position + " set.");
         viewHolder.getTextView().setText(mDataSet[position]);
     }
 

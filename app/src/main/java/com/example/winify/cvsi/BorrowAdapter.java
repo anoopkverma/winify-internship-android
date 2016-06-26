@@ -8,13 +8,14 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 /**
- * Provide views to RecyclerView with data from mDataSet.
+ * Created by diana on 6/26/16.
  */
-public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
+public class BorrowAdapter extends RecyclerView.Adapter<BorrowAdapter.ViewHolder> {
 
     private String[] mDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+
         private final TextView textView;
 
         public ViewHolder(View v) {
@@ -28,14 +29,14 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
     }
 
 
-    public BuyAdapter(String[] dataSet) {
+    public BorrowAdapter(String[] dataSet) {
         mDataSet = dataSet;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.buy_preview, viewGroup, false);
+                .inflate(R.layout.borrow_preview, viewGroup, false);
 
         return new ViewHolder(v);
     }
