@@ -1,14 +1,13 @@
 package com.example.winify.cvsi;
 
+import java.io.Serializable;
+
 /**
  * Created by diana on 6/25/16.
  */
-public class BuyPost {
+public class BuyPost implements Serializable {
 
     protected float price;
-    protected static final  String NAME_PREFIX = "Tilte_";
-    protected static final String DESCRIPTION_PREFIX = "Descripiton_";
-    protected static final String PRICE_PREFIX = "Price_";
 
     public void setTitle(String title) {
         this.title = title;

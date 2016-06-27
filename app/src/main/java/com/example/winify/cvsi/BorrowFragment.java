@@ -38,7 +38,7 @@ public class BorrowFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_borrow, container, false);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        mBorrowAdapter = new BorrowAdapter(mDataSet);
+        mBorrowAdapter = new BorrowAdapter(getActivity(), mDataSet);
         mRecyclerView.setAdapter(mBorrowAdapter);
 
         setmRecyclerViewLayoutManager();

@@ -38,7 +38,7 @@ public class SellFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_sell, container, false);
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        mSellAdapter = new SellAdapter(mDataSet);
+        mSellAdapter = new SellAdapter(getActivity(), mDataSet);
         mRecyclerView.setAdapter(mSellAdapter);
 
         setmRecyclerViewLayoutManager();

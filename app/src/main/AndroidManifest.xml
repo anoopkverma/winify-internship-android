@@ -15,10 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".LoginActivity"
             android:parentActivityName=".WelcomeActivity">
+
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -28,7 +28,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity">
@@ -42,7 +41,6 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ListItemsActivity">
             android:parentActivityName=".LoginActivity">
 
@@ -55,6 +53,9 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity android:name=".BuyItemPreviewActivity" />
+        <activity android:name=".SellItemPreviewActivity" />
+        <activity android:name=".BorrowItemPreviewActivity"></activity>
     </application>
 
 </manifest>

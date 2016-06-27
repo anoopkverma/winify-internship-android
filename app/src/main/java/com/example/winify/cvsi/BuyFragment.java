@@ -29,7 +29,7 @@ public class BuyFragment extends Fragment {
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        mAdapter = new BuyAdapter(mDataset);
+        mAdapter = new BuyAdapter(getActivity(), mDataset);
         mRecyclerView.setAdapter(mAdapter);
 
         setmRecyclerViewLayoutManager();
