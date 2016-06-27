@@ -1,8 +1,8 @@
 package com.example.winify.cvsi;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class BuyItemPreviewActivity extends AppCompatActivity {
@@ -13,8 +13,17 @@ public class BuyItemPreviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_preview);
 
         if (getIntent().hasExtra(BuyAdapter.BUY_POST)) {
-            String temp = getIntent().getExtras().getString(BuyAdapter.BUY_POST);
-            Toast.makeText(BuyItemPreviewActivity.this, temp, Toast.LENGTH_SHORT).show();
+            BuyPost buyPost = (BuyPost)getIntent().getSerializableExtra(BuyAdapter.BUY_POST);
+
+            TextView titleTextView = (TextView) findViewById(R.id.object_title);
+            TextView descriptionTextView = (TextView) findViewById(R.id.object_description);
+
+            if (titleTextView != null && descriptionTextView != null ) {
+                titleTextView.setText(buyPost.title);
+                descriptionTextView.setText(buyPost.description);
+            }
+
+            Toast.makeText(BuyItemPreviewActivity.this, buyPost.title, Toast.LENGTH_SHORT).show();
         }
     }
 }

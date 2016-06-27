@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Provide views to RecyclerView with data from mDataSet.
  */
@@ -20,8 +23,8 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
 
 
     private final Context context;
+    private List<BuyPost> allPosts;
 
-    private String[] mDataSet;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
         private final CardView cardView;
@@ -34,9 +37,9 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
     }
 
 
-    public BuyAdapter(Context context, String[] dataSet) {
+    public BuyAdapter(Context context, List<BuyPost> allPosts) {
         this.context = context;
-        mDataSet = dataSet;
+        this.allPosts = allPosts;
     }
 
     @Override
@@ -49,12 +52,11 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        viewHolder.textView.setText(mDataSet[position]);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BuyItemPreviewActivity.class);
-                intent.putExtra(BUY_POST,mDataSet[position]);
+                intent.putExtra(BUY_POST,allPosts.get(position));
                 context.startActivity(intent);
             }
         });
@@ -62,6 +64,6 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mDataSet.length;
+        return allPosts.size();
     }
 }

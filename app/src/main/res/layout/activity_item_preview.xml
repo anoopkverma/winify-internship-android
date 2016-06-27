@@ -10,8 +10,19 @@
     tools:context=".BuyItemPreviewActivity">
 
     <TextView
-        android:text="comes form Buy Item"
-        android:id="@+id/show_class_name"
+        android:id="@+id/object_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_below="@+id/object_title"
+        android:id="@+id/object_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_below="@+id/object_description"
+        android:id="@+id/object_bitmap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

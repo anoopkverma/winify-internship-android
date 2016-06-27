@@ -8,13 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BuyFragment extends Fragment {
 
     private static final int DATASET_COUNT = 60;
     protected RecyclerView mRecyclerView;
     protected BuyAdapter mAdapter;
     protected LinearLayoutManager mLayoutManager;
-    protected String[] mDataset;
+
+    protected List<BuyPost> allPosts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,7 +33,7 @@ public class BuyFragment extends Fragment {
 
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-        mAdapter = new BuyAdapter(getActivity(), mDataset);
+        mAdapter = new BuyAdapter(getActivity(), allPosts);
         mRecyclerView.setAdapter(mAdapter);
 
         setmRecyclerViewLayoutManager();
@@ -52,9 +56,12 @@ public class BuyFragment extends Fragment {
 
 
     private void initDataset() {
-        mDataset = new String[DATASET_COUNT];
+        allPosts = new ArrayList<BuyPost>();
         for (int i = 0; i < DATASET_COUNT; i++) {
-            mDataset[i] = "This is element #" + i;
+            BuyPost post = new BuyPost();
+            post.setTitle("This is element obj #" + i);
+            post.setDescription("some description to be inserted here.");
+            allPosts.add(post);
         }
     }
 }
