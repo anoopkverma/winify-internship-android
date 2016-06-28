@@ -28,6 +28,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".LoginActivity">
@@ -41,8 +42,9 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListItemsActivity">
-            android:parentActivityName=".LoginActivity">
+
+        <activity android:name=".ListItemsActivity"
+            android:parentActivityName=".LoginActivity" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
