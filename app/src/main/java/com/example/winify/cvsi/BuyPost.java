@@ -15,6 +15,7 @@ public class BuyPost implements Serializable {
 
 
     private static final long serialVersionUID = 465489764;
+
     public void setTitle(String title) {
         this.title = title;
     }
