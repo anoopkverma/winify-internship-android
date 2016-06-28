@@ -11,7 +11,6 @@ public class BuyPost implements Serializable {
 
     protected String title;
     protected String description;
-    protected Bitmap bitmap;
 
 
     private static final long serialVersionUID = 465489764;

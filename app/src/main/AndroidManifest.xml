@@ -53,9 +53,7 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".BuyItemPreviewActivity" />
-        <activity android:name=".SellItemPreviewActivity" />
-        <activity android:name=".BorrowItemPreviewActivity"></activity>
+        <activity android:name=".ItemPreviewActivity"></activity>
     </application>
 
 </manifest>

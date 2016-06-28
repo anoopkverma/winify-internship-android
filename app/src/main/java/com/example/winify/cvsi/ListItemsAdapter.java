@@ -4,22 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Provide views to RecyclerView with data from mDataSet.
  */
-public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
+public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.ViewHolder> {
 
-    private static final String TAG = "BuyAdapter";
-    public static String BUY_POST = "BUY_POST";
+    private static final String TAG = "ListItemsAdapter";
+    public static String ITEM_POST = "ITEM_POST";
 
 
     private final Context context;
@@ -37,7 +35,7 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
     }
 
 
-    public BuyAdapter(Context context, List<BuyPost> allPosts) {
+    public ListItemsAdapter(Context context, List<BuyPost> allPosts) {
         this.context = context;
         this.allPosts = allPosts;
     }
@@ -45,7 +43,7 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.buy_preview, viewGroup, false);
+                .inflate(R.layout.activity_item_preview, viewGroup, false);
 
         return new ViewHolder(v);
     }
@@ -55,8 +53,8 @@ public class BuyAdapter extends RecyclerView.Adapter<BuyAdapter.ViewHolder> {
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, BuyItemPreviewActivity.class);
-                intent.putExtra(BUY_POST,allPosts.get(position));
+                Intent intent = new Intent(context, ItemPreviewActivity.class);
+                intent.putExtra(ITEM_POST,allPosts.get(position));
                 context.startActivity(intent);
             }
         });

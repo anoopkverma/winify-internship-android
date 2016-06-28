@@ -16,11 +16,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static Button sLoginButton;
 
-    // Added by Cristi
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    PagerAdapter viewPagerAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,19 +24,8 @@ public class MainActivity extends AppCompatActivity {
         sLoginButton = (Button) findViewById(R.id.button_login_screen);
 
         initToolBar();
-//        init();
     }
 
-    public void init() {
-        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        viewPager = (ViewPager)findViewById(R.id.viewPager);
-        viewPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragments(new BuyFragment(),"Buy");
-        viewPagerAdapter.addFragments(new SellFragment(),"Sell");
-        viewPagerAdapter.addFragments(new BorrowFragment(),"Borrow");
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
-    }
 
     public void initToolBar() {
         Toolbar topToolBar = (Toolbar)findViewById(R.id.toolbar);

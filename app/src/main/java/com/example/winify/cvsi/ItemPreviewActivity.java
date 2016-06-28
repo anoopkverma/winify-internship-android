@@ -5,25 +5,25 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class BuyItemPreviewActivity extends AppCompatActivity {
+public class ItemPreviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_preview);
 
-        if (getIntent().hasExtra(BuyAdapter.BUY_POST)) {
-            BuyPost buyPost = (BuyPost)getIntent().getSerializableExtra(BuyAdapter.BUY_POST);
+        if (getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
+            BuyPost buyPost = (BuyPost)getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
-            TextView titleTextView = (TextView) findViewById(R.id.object_title);
-            TextView descriptionTextView = (TextView) findViewById(R.id.object_description);
+            TextView titleTextView = (TextView) findViewById(R.id.title_tv);
+            TextView descriptionTextView = (TextView) findViewById(R.id.description_tv);
 
             if (titleTextView != null && descriptionTextView != null ) {
                 titleTextView.setText(buyPost.title);
                 descriptionTextView.setText(buyPost.description);
             }
 
-            Toast.makeText(BuyItemPreviewActivity.this, buyPost.title, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ItemPreviewActivity.this, buyPost.title, Toast.LENGTH_SHORT).show();
         }
     }
 }

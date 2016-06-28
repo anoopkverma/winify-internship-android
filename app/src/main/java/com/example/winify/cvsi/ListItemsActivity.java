@@ -10,42 +10,52 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListItemsActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
-    // Added by Cristi
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    PagerAdapter viewPagerAdapter;
+
+    /*********************************/
+    private static final int DATASET_COUNT = 60;
+    protected RecyclerView mRecyclerView;
+    protected ListItemsAdapter mAdapter;
+    protected LinearLayoutManager mLayoutManager;
+
+    protected List<BuyPost> allPosts;
+    /***********************************/
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
+        initDataset();
+
+
+        /***********************************/
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mAdapter = new ListItemsAdapter(this, allPosts);
+        mRecyclerView.setAdapter(mAdapter);
+
+        setmRecyclerViewLayoutManager();
+        /******************************/
+
+
 
         Intent activityThatCalled = getIntent();
-        initializeToolbar();
-        init();
-
-    }
-
-    public void init() {
-        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
-        viewPager = (ViewPager)findViewById(R.id.viewPager);
-        viewPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragments(new BuyFragment(),"BUY");
-        viewPagerAdapter.addFragments(new SellFragment(),"SELL");
-        viewPagerAdapter.addFragments(new BorrowFragment(),"BORROW");
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout.setupWithViewPager(viewPager);
     }
 
     public void initNavigationDrawer() {
@@ -104,14 +114,29 @@ public class ListItemsActivity extends AppCompatActivity {
         }
     }
 
-    //TODO - Delete this function
 
-    public void initializeToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
+
+    /**********************************/
+    public void setmRecyclerViewLayoutManager() {
+        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        int scrollPosition = 0;
+
+        if (mRecyclerView.getLayoutManager() != null) {
+            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+                    .findFirstCompletelyVisibleItemPosition();
+        }
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.scrollToPosition(scrollPosition);
+    }
+
+    private void initDataset() {
+        allPosts = new ArrayList<BuyPost>();
+        for (int i = 0; i < DATASET_COUNT; i++) {
+            BuyPost post = new BuyPost();
+            post.setTitle("This is element obj #" + i);
+            post.setDescription("some description to be inserted here.");
+            allPosts.add(post);
         }
     }
 }
