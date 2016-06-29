@@ -3,9 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:theme="@style/toolbarTheme">
 
     <RelativeLayout
+        android:theme="@style/toolbarTheme"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,6 +16,7 @@
         <LinearLayout android:id="@+id/header"
             android:orientation="vertical"
             android:layout_width="fill_parent"
+            android:theme="@style/toolbarTheme"
             android:layout_height="wrap_content">
 
             <include layout="@layout/toolbar" />
@@ -28,6 +31,8 @@
             android:layout_height="match_parent" />
 
         <android.support.v7.widget.RecyclerView
+            android:background="@color/White"
+            android:theme="@style/toolbarTheme"
             android:layout_below="@+id/header"
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"

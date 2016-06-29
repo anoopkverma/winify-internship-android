@@ -11,8 +11,7 @@ public class BuyPost implements Serializable {
 
     protected String title;
     protected String description;
-    protected int image;
-
+    protected String image_url;
 
     private static final long serialVersionUID = 465489764;
 
@@ -24,7 +23,7 @@ public class BuyPost implements Serializable {
         this.description = description;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImage(String image) {
+        this.image_url = image;
     }
 }

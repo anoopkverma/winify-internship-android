@@ -10,7 +10,7 @@ public class ItemPreviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_preview);
+        setContentView(R.layout.item_details);
 
         if (getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
             BuyPost buyPost = (BuyPost)getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);

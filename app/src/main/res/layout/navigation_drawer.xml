@@ -54,7 +54,7 @@
 
     <!-- List of Actions (pages) -->
     <ListView
-        android:background="#303036"
+        android:background="#001f33"
         android:id="@+id/navList"
         android:layout_width="280dp"
         android:layout_height="match_parent"
