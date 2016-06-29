@@ -12,6 +12,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,6 +26,8 @@ public class ListItemsActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+
+    protected String TAG = "ListItemsActivity";
 
 
     private static final int DATASET_COUNT = 60;
@@ -53,7 +58,23 @@ public class ListItemsActivity extends AppCompatActivity {
         mRecyclerView.setAdapter(mAdapter);
 
         setmRecyclerViewLayoutManager();
+        initNavigationDrawer();
+
+        checkDrawerEvent();
+
+        initToolbar();
+
         Intent activityThatCalled = getIntent();
+    }
+
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // Hamburger
+
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void initNavigationDrawer() {
@@ -77,7 +98,21 @@ public class ListItemsActivity extends AppCompatActivity {
                 selectItemFromDrawer(position);
             }
         });
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
     }
 
     public void selectItemFromDrawer(int position) {
@@ -116,4 +151,25 @@ public class ListItemsActivity extends AppCompatActivity {
             allPosts.add(post);
         }
     }
+    public void checkDrawerEvent() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+
+                invalidateOptionsMenu();
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                Log.d(TAG, "onDrawerClosed: " + getTitle());
+
+                invalidateOptionsMenu();
+            }
+        };
+
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
 }
