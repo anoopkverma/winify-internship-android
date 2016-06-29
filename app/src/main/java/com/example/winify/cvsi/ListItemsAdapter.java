@@ -64,7 +64,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
 
 
         viewHolder.mTitleTextView.setText(allPosts.get(position).title);
-        Picasso.with(context).load(allPosts.get(position).image_url).resize(240, 320).into(viewHolder.mImageView);
+        Picasso.with(context).load(allPosts.get(position).image_url).into(viewHolder.mImageView);
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

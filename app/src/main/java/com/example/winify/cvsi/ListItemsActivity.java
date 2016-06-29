@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -35,6 +36,29 @@ public class ListItemsActivity extends AppCompatActivity {
             "http://slimages.macys.com/is/image/MCY/products/2/optimized/2099762_fpx.tif?op_sharpen=1",
             "http://cdn.terranovastyle.com/media/catalog/product/S/A/SAB0020821001S120_det_3.jpg",
             "http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=64821014",
+            "http://kingofwallpapers.com/landscape/landscape-007.jpg",
+            "https://s-media-cache-ak0.pinimg.com/236x/f9/00/9f/f9009f49df2bd9d76c4693185501bc12.jpg",
+            "http://cdn.terranovastyle.com/media/catalog/product/S/A/SAB0020832001S189_list.jpg",
+            "https://floridesalcam.files.wordpress.com/2012/06/forever-21-floral-skater-dress-with-belt.jpg",
+            "http://picture-cdn.wheretoget.it/pw7o89-i.jpg",
+            "https://s-media-cache-ak0.pinimg.com/236x/36/5e/16/365e16f3d5970b8829ea777702bbe704.jpg",
+            "https://s-media-cache-ak0.pinimg.com/236x/41/29/f6/4129f6cba00ebf8210714d5dfed9f1f2.jpg",
+            "http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=66718352",
+            "http://slimages.macys.com/is/image/MCY/products/2/optimized/2099762_fpx.tif?op_sharpen=1",
+            "http://cdn.terranovastyle.com/media/catalog/product/S/A/SAB0020821001S120_det_3.jpg",
+            "http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=64821014",
+            "http://kingofwallpapers.com/landscape/landscape-007.jpg",
+            "https://s-media-cache-ak0.pinimg.com/236x/f9/00/9f/f9009f49df2bd9d76c4693185501bc12.jpg",
+            "http://cdn.terranovastyle.com/media/catalog/product/S/A/SAB0020832001S189_list.jpg",
+            "https://floridesalcam.files.wordpress.com/2012/06/forever-21-floral-skater-dress-with-belt.jpg",
+            "http://picture-cdn.wheretoget.it/pw7o89-i.jpg",
+            "https://s-media-cache-ak0.pinimg.com/236x/36/5e/16/365e16f3d5970b8829ea777702bbe704.jpg",
+            "https://s-media-cache-ak0.pinimg.com/236x/41/29/f6/4129f6cba00ebf8210714d5dfed9f1f2.jpg",
+            "http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=66718352",
+            "http://slimages.macys.com/is/image/MCY/products/2/optimized/2099762_fpx.tif?op_sharpen=1",
+            "http://cdn.terranovastyle.com/media/catalog/product/S/A/SAB0020821001S120_det_3.jpg",
+            "http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=64821014",
+            "http://kingofwallpapers.com/landscape/landscape-007.jpg",
             "https://s-media-cache-ak0.pinimg.com/236x/f9/00/9f/f9009f49df2bd9d76c4693185501bc12.jpg"
     };
 
@@ -42,14 +66,12 @@ public class ListItemsActivity extends AppCompatActivity {
     private Toolbar toolbar;
 
     protected String TAG = "ListItemsActivity";
-
-
-    private static final int DATASET_COUNT = 10;
+    private static final int DATASET_COUNT = 30;
     private static int SPAN_COUNT;
 
     protected RecyclerView mRecyclerView;
     protected ListItemsAdapter mAdapter;
-    protected GridLayoutManager mLayoutManager;
+    protected StaggeredGridLayoutManager mLayoutManager;
 
     protected List<BuyPost> allPosts;
 
@@ -76,18 +98,10 @@ public class ListItemsActivity extends AppCompatActivity {
         }
 
         initDataset();
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mAdapter = new ListItemsAdapter(this, allPosts);
-        mRecyclerView.setAdapter(mAdapter);
-
         setmRecyclerViewLayoutManager();
         initNavigationDrawer();
-
         checkDrawerEvent();
-
         initToolbar();
-
         Intent activityThatCalled = getIntent();
     }
 
@@ -145,20 +159,28 @@ public class ListItemsActivity extends AppCompatActivity {
                 .commit();
         mDrawerList.setItemChecked(position, true);
         setTitle(mNavItems.get(position).mTitle);
-
-        // Close the drawer
         mDrawerLayout.closeDrawer(mDrawerPane);
     }
 
     public void setmRecyclerViewLayoutManager() {
-        mLayoutManager = new GridLayoutManager(this, SPAN_COUNT);
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
+        SpacesItemDecoration decoration = new SpacesItemDecoration(1);
+        mRecyclerView.addItemDecoration(decoration);
+
+        mAdapter = new ListItemsAdapter(this, allPosts);
+        mRecyclerView.setAdapter(mAdapter);
+
+        mLayoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         int scrollPosition = 0;
 
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
-                    .findFirstCompletelyVisibleItemPosition();
-        }
+//        if (mRecyclerView.getLayoutManager() != null) {
+//            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+//                    .findFirstCompletelyVisibleItemPosition();
+//        }
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(scrollPosition);
     }
@@ -186,9 +208,7 @@ public class ListItemsActivity extends AppCompatActivity {
 
     public void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
-
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
