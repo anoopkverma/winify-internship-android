@@ -21,4 +21,9 @@
     <string name="drawer_close">Close</string>
     <string name="go_to_login">Login</string>
     <string name="go_to_list">Go to product lists</string>
+    <string name="action_share">Share</string>
+    <string name="action_search">Search</string>
+    <string name="action_buy">Buy</string>
+    <string name="action_sell">Sell</string>
+    <string name="action_borrow">Borrow</string>
 </resources>

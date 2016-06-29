@@ -3,15 +3,17 @@
     android:layout_height="match_parent"
     android:id="@+id/drawerPane"
     android:layout_gravity="start"
+
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Profile Box -->
 
     <RelativeLayout
+        android:clickable="true"
         android:id="@+id/profileBox"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@color/material_blue_grey_800"
+        android:background="@color/colorPrimaryDark"
         android:padding="8dp" >
 
         <ImageView
@@ -52,11 +54,11 @@
 
     <!-- List of Actions (pages) -->
     <ListView
+        android:background="#303036"
         android:id="@+id/navList"
         android:layout_width="280dp"
         android:layout_height="match_parent"
         android:layout_below="@+id/profileBox"
-        android:choiceMode="singleChoice"
-        android:background="#ffffffff" />
+        android:choiceMode="singleChoice" />
 
 </RelativeLayout>

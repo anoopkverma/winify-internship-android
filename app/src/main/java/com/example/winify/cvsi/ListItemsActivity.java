@@ -1,7 +1,6 @@
 package com.example.winify.cvsi;
 
 import android.content.Intent;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +18,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,21 +68,30 @@ public class ListItemsActivity extends AppCompatActivity {
         Intent activityThatCalled = getIntent();
     }
 
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
+            return true;
+        }
 
-        // Hamburger
+        return super.onOptionsItemSelected(menuItem);
+    }
 
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDrawerToggle.syncState();
     }
 
     public void initNavigationDrawer() {
-        mNavItems.add(new NavItem("Home", "Meetup Destination", R.drawable.ic_home_black_24dp));
-        mNavItems.add(new NavItem("Settings", "Change your preferences", R.drawable.ic_settings_black_24dp));
-        mNavItems.add(new NavItem("About", "Learn more about us", R.drawable.ic_info_outline_black_24dp));
 
+        addItemsToNavList();
         // DrawerLayout
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
 
@@ -98,21 +108,6 @@ public class ListItemsActivity extends AppCompatActivity {
                 selectItemFromDrawer(position);
             }
         });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(menuItem);
-    }
-
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
     }
 
     public void selectItemFromDrawer(int position) {
@@ -142,15 +137,6 @@ public class ListItemsActivity extends AppCompatActivity {
         mRecyclerView.scrollToPosition(scrollPosition);
     }
 
-    private void initDataset() {
-        allPosts = new ArrayList<BuyPost>();
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            BuyPost post = new BuyPost();
-            post.setTitle("This is element obj #" + i);
-            post.setDescription("some description to be inserted here.");
-            allPosts.add(post);
-        }
-    }
     public void checkDrawerEvent() {
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
             @Override
@@ -170,6 +156,49 @@ public class ListItemsActivity extends AppCompatActivity {
         };
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        assert toolbar != null;
+        toolbar.inflateMenu(R.menu.toolbar_menu);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+
+                switch (menuItem.getItemId()){
+                    case R.id.action_search:
+                        Toast.makeText(ListItemsActivity.this,"Search",Toast.LENGTH_SHORT).show();
+                        return true;
+                }
+
+                return false;
+            }
+        });
+
+        setSupportActionBar(toolbar);
+
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void addItemsToNavList() {
+        mNavItems.add(new NavItem("Home", "Meetup Destination", R.drawable.ic_home_variant));
+        mNavItems.add(new NavItem("Settings", "Change your preferences", R.drawable.ic_settings));
+        mNavItems.add(new NavItem("About", "Learn more about us", R.drawable.ic_information_outline));
+    }
+
+    private void initDataset() {
+        allPosts = new ArrayList<BuyPost>();
+        for (int i = 0; i < DATASET_COUNT; i++) {
+            BuyPost post = new BuyPost();
+            post.setTitle("This is element obj #" + i);
+            post.setDescription("some description to be inserted here.");
+            post.setImage(R.drawable.image);
+            allPosts.add(post);
+        }
     }
 
 }
