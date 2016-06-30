@@ -1,37 +1,89 @@
-<RelativeLayout
-    android:background="@color/White"
-
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <TextView
-        android:textColor="#ff0000"
-        android:id="@+id/title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:text="contact det"
-        android:gravity="center_vertical"
-        android:textSize="14dp"/>
+    <!--  Header  Starts-->
+    <LinearLayout
+        android:id="@+id/header"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:theme="@style/toolbarTheme"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:textColor="#ff0000"
-        android:id="@+id/description_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:gravity="center_vertical"
-        android:textSize="10dp"
-        android:layout_below="@id/title_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"/>
+        <include layout="@layout/toolbar" />
 
-    <ImageView
+    </LinearLayout>
+    <!--  Header Ends -->
+
+    <ScrollView
+        android:layout_below="@id/header"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/image_view"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:scaleType="fitCenter" />
+        android:background="@color/White"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:theme="@style/toolbarTheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/image_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:adjustViewBounds="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:id="@+id/image_view" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/title_place"
+                android:layout_below="@+id/image_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="7">
+
+                <TextView
+                    android:layout_weight="4"
+                    android:id="@+id/title_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="contact det"
+                    android:gravity="center_vertical"
+                    android:textSize="14dp"/>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/space_between"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:layout_weight="2"
+                    android:text="date"
+                    android:id="@+id/date"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_below="@+id/title_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/description_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textSize="10dp"
+                    android:layout_marginTop="10dp" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

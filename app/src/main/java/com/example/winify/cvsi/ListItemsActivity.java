@@ -223,7 +223,7 @@ public class ListItemsActivity extends AppCompatActivity {
         allPosts = new ArrayList<BuyPost>();
         for (int i = 0; i < DATASET_COUNT; i++) {
             BuyPost post = new BuyPost();
-            post.setTitle("Dress #" + i);
+            post.setTitle("Dressrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr #" + i);
             post.setDescription("some description to be inserted here.");
             post.setImage(android_image_urls[i]);
             allPosts.add(post);
