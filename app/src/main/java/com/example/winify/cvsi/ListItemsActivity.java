@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,6 +77,16 @@ public class ListItemsActivity extends AppCompatActivity {
     protected ListItemsAdapter mAdapter;
     protected StaggeredGridLayoutManager mLayoutManager;
 
+
+
+    private FloatingActionMenu menu;
+    private FloatingActionButton fab1;
+    private FloatingActionButton fab2;
+    private FloatingActionButton fab3;
+
+
+
+
     protected List<BuyPost> allPosts;
 
     // Data for the Drawer
@@ -102,7 +116,31 @@ public class ListItemsActivity extends AppCompatActivity {
         initNavigationDrawer();
         checkDrawerEvent();
         initToolbar();
+        initMenu();
         Intent activityThatCalled = getIntent();
+    }
+
+    public void initMenu() {
+        menu = (FloatingActionMenu) findViewById(R.id.menu);
+
+        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
+        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
+        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
+
+        final FloatingActionButton programFab1 = new FloatingActionButton(this);
+        programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);
+        programFab1.setLabelText(getString(R.string.lorem_ipsum));
+        programFab1.setImageResource(R.drawable.ic_star_rate_white_18dp);
+        menu.addMenuButton(programFab1);
+        programFab1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                programFab1.setLabelColors(ContextCompat.getColor(getApplicationContext(), R.color.grey),
+                        ContextCompat.getColor(getApplicationContext(), R.color.light_grey),
+                        ContextCompat.getColor(getApplicationContext(), R.color.white_transparent));
+                programFab1.setLabelTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+            }
+        });
     }
 
     @Override
@@ -223,7 +261,7 @@ public class ListItemsActivity extends AppCompatActivity {
         allPosts = new ArrayList<BuyPost>();
         for (int i = 0; i < DATASET_COUNT; i++) {
             BuyPost post = new BuyPost();
-            post.setTitle("Dressrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr #" + i);
+            post.setTitle("Dress #" + i);
             post.setDescription("some description to be inserted here.");
             post.setImage(android_image_urls[i]);
             allPosts.add(post);
