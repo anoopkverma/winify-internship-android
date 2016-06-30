@@ -2,14 +2,13 @@ package com.example.winify.cvsi;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -78,13 +77,10 @@ public class ListItemsActivity extends AppCompatActivity {
     protected StaggeredGridLayoutManager mLayoutManager;
 
 
-
     private FloatingActionMenu menu;
-    private FloatingActionButton fab1;
-    private FloatingActionButton fab2;
-    private FloatingActionButton fab3;
-
-
+    private FloatingActionButton fab_borrow;
+    private FloatingActionButton fab_buy;
+    private FloatingActionButton fab_sell;
 
 
     protected List<BuyPost> allPosts;
@@ -96,6 +92,7 @@ public class ListItemsActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
 
     ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+    private FloatingActionButton programFab1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,22 +120,36 @@ public class ListItemsActivity extends AppCompatActivity {
     public void initMenu() {
         menu = (FloatingActionMenu) findViewById(R.id.menu);
 
-        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
-        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
 
-        final FloatingActionButton programFab1 = new FloatingActionButton(this);
-        programFab1.setButtonSize(FloatingActionButton.SIZE_MINI);
-        programFab1.setLabelText(getString(R.string.lorem_ipsum));
-        programFab1.setImageResource(R.drawable.ic_star_rate_white_18dp);
-        menu.addMenuButton(programFab1);
-        programFab1.setOnClickListener(new View.OnClickListener() {
+        initFabs();
+    }
+
+    public void initFabs() {
+        fab_borrow = (FloatingActionButton) findViewById(R.id.fab1);
+        fab_buy = (FloatingActionButton) findViewById(R.id.fab2);
+        fab_sell = (FloatingActionButton) findViewById(R.id.fab3);
+
+        fab_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                programFab1.setLabelColors(ContextCompat.getColor(getApplicationContext(), R.color.grey),
+                fab_borrow.setLabelColors(ContextCompat.getColor(getApplicationContext(), R.color.grey),
                         ContextCompat.getColor(getApplicationContext(), R.color.light_grey),
                         ContextCompat.getColor(getApplicationContext(), R.color.white_transparent));
-                programFab1.setLabelTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+                fab_borrow.setLabelTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+            }
+        });
+
+        fab_buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO : open new activity
+            }
+        });
+
+        fab_sell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO - do
             }
         });
     }
@@ -150,6 +161,15 @@ public class ListItemsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(menuItem);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (menu.isOpened()) {
+            menu.close(true);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

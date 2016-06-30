@@ -58,25 +58,25 @@
                 android:id="@+id/fab1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star_rate_white_18dp"
+                android:src="@drawable/ic_add_white_18dp"
                 fab:fab_size="mini"
-                fab:fab_label="Disabled" />
+                fab:fab_label="@string/borrow_product" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star_rate_white_18dp"
+                android:src="@drawable/ic_add_white_18dp"
                 fab:fab_size="mini"
-                fab:fab_label="Remove button" />
+                fab:fab_label="@string/buy_product" />
 
             <com.github.clans.fab.FloatingActionButton
                 android:id="@+id/fab3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_star_rate_white_18dp"
+                android:src="@drawable/ic_add_white_18dp"
                 fab:fab_size="mini"
-                fab:fab_label="Restore Button" />
+                fab:fab_label="@string/sell_product" />
 
         </com.github.clans.fab.FloatingActionMenu>
 

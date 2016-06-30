@@ -27,4 +27,7 @@
     <string name="action_sell">Sell</string>
     <string name="action_borrow">Borrow</string>
     <string name="lorem_ipsum">Lorepsum Ipsum</string>
+    <string name="buy_product">BUY</string>
+    <string name="sell_product">SELL</string>
+    <string name="borrow_product">BORROW</string>
 </resources>
