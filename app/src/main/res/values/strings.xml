@@ -30,4 +30,7 @@
     <string name="buy_product">BUY</string>
     <string name="sell_product">SELL</string>
     <string name="borrow_product">BORROW</string>
+    <string name="product_title">Product Title</string>
+    <string name="prod_description">Description</string>
+    <string name="prod_price">Price</string>
 </resources>
