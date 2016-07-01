@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -78,9 +78,9 @@ public class ListItemsActivity extends AppCompatActivity {
 
 
     private FloatingActionMenu menu;
-    private FloatingActionButton fab_borrow;
-    private FloatingActionButton fab_buy;
-    private FloatingActionButton fab_sell;
+    protected FloatingActionButton fab_borrow;
+    protected FloatingActionButton fab_buy;
+    protected FloatingActionButton fab_sell;
 
 
     protected List<BuyPost> allPosts;
@@ -120,11 +120,6 @@ public class ListItemsActivity extends AppCompatActivity {
     public void initMenu() {
         menu = (FloatingActionMenu) findViewById(R.id.menu);
 
-
-        initFabs();
-    }
-
-    public void initFabs() {
         fab_borrow = (FloatingActionButton) findViewById(R.id.fab1);
         fab_buy = (FloatingActionButton) findViewById(R.id.fab2);
         fab_sell = (FloatingActionButton) findViewById(R.id.fab3);
@@ -132,24 +127,33 @@ public class ListItemsActivity extends AppCompatActivity {
         fab_borrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fab_borrow.setLabelColors(ContextCompat.getColor(getApplicationContext(), R.color.grey),
-                        ContextCompat.getColor(getApplicationContext(), R.color.light_grey),
-                        ContextCompat.getColor(getApplicationContext(), R.color.white_transparent));
-                fab_borrow.setLabelTextColor(ContextCompat.getColor(getApplicationContext(), R.color.black));
+                startActivity(new Intent(getApplicationContext(), CreateBorrowProductActivity.class));
             }
         });
 
         fab_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO : open new activity
+                startActivity(new Intent(getApplicationContext(), CreateBuyProductActivity.class));
             }
         });
 
         fab_sell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO - do
+                startActivity(new Intent(getApplicationContext(), CreateSellProductActivity.class));
+            }
+        });
+    }
+
+    public void checkMenuExpanded(View layout, final FloatingActionMenu menu) {
+        layout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(menu.isOpened()) {
+                    menu.hideMenu(true);
+                }
+                return true;
             }
         });
     }
@@ -162,6 +166,7 @@ public class ListItemsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(menuItem);
     }
+
 
     @Override
     public void onBackPressed() {
