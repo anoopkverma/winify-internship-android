@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 public class CreateBuyProductActivity extends AppCompatActivity {
 
@@ -13,6 +15,7 @@ public class CreateBuyProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_buy_product);
 
         initToolbar();
+        initSpinner();
 
         Intent activityThatCalled = getIntent();
         if (getSupportActionBar() != null) {
@@ -26,5 +29,14 @@ public class CreateBuyProductActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    public void initSpinner() {
+        Spinner spinner = (Spinner) findViewById(R.id.currency_spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.currency_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        assert spinner != null;
+        spinner.setAdapter(adapter);
     }
 }

@@ -47,6 +47,8 @@
             </LinearLayout>
 
             <LinearLayout
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -55,63 +57,46 @@
                     android:hint="@string/product_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/prod_description_editText"
-                    android:hint="@string/prod_description"
+
+                <LinearLayout
+                    android:weightSum="7"
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <EditText
-                    android:id="@+id/prod_price_editText"
-                    android:hint="@string/prod_price"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:background="@color/roseRed"
+                        android:id="@+id/currency_spinner"
+                        android:minWidth="100dp"
+                        android:theme="@style/spinnerTheme"
+                        android:layout_weight="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+
+                    <EditText
+                        android:backgroundTint="@color/roseRed"
+                        android:paddingRight="0dp"
+                        android:layout_weight="6"
+                        android:id="@+id/prod_price_editText"
+                        android:hint="@string/prod_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/prod_description_editText"
+                        android:hint="@string/prod_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </ScrollView>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/title_place"
-                android:layout_below="@+id/image_place"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:weightSum="7">
-
-                <TextView
-                    android:layout_weight="4"
-                    android:id="@+id/title_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="contact det"
-                    android:gravity="center_vertical"
-                    android:textSize="14dp"/>
-
-                <TextView
-                    android:layout_weight="1"
-                    android:id="@+id/space_between"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_weight="2"
-                    android:text="date"
-                    android:id="@+id/date"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_below="@+id/title_place"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/description_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textSize="10dp"
-                    android:layout_marginTop="10dp" />
-            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:id="@+id/footer"

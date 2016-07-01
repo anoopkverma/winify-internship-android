@@ -19,5 +19,6 @@
     <color name="black">#000</color>
     <color name="blackOrange">#372c24</color>
     <color name="roseRed">#D32F2F</color>
+    <color name="blueFaded">#94B5B5</color>
 
 </resources>

@@ -20,4 +20,13 @@
         <item name="android:color">@color/White</item>
     </style>
 
+    <string-array name="currency_array">
+        <item>MDL</item>
+        <item>EUR</item>
+        <item>USD</item>
+    </string-array>
+
+    <style name="spinnerTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:background">@color/roseRed</item>
+    </style>
 </resources>
