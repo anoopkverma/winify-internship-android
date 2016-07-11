@@ -21,11 +21,20 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.example.winify.cvsi.dto.ListDto;
+import com.example.winify.cvsi.dto.templates.ProductTemplate;
+import com.example.winify.cvsi.interfaces.IRetrofitTest;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ListItemsActivity extends AppCompatActivity {
 
@@ -99,197 +108,199 @@ public class ListItemsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
 
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            SPAN_COUNT = 3;
-        } else {
-            SPAN_COUNT = 2;
-        }
-        if (getResources().getConfiguration().isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)) {
-            SPAN_COUNT++;
-        }
-
-        initDataset();
-        setmRecyclerViewLayoutManager();
-        initNavigationDrawer();
-        checkDrawerEvent();
-        initToolbar();
-        initMenu();
-        Intent activityThatCalled = getIntent();
-    }
-
-    public void initMenu() {
-        menu = (FloatingActionMenu) findViewById(R.id.menu);
-
-        fab_borrow = (FloatingActionButton) findViewById(R.id.fab1);
-        fab_buy = (FloatingActionButton) findViewById(R.id.fab2);
-        fab_sell = (FloatingActionButton) findViewById(R.id.fab3);
-
-        fab_borrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CreateBorrowProductActivity.class));
-            }
-        });
-
-        fab_buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CreateBuyProductActivity.class));
-            }
-        });
-
-        fab_sell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), CreateSellProductActivity.class));
-            }
-        });
-    }
-
-    public void checkMenuExpanded(View layout, final FloatingActionMenu menu) {
-        layout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if(menu.isOpened()) {
-                    menu.hideMenu(true);
-                }
-                return true;
-            }
-        });
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(menuItem);
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (menu.isOpened()) {
-            menu.close(true);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
-        MenuItem menuItem = menu.findItem(R.id.action_menu);
-        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
-        return true;
-    }
-
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
-    }
-
-    public void initNavigationDrawer() {
-
-        addItemsToNavList();
-        // DrawerLayout
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-
-        // populate NavigationDrawer vith options
-        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
-        mDrawerList = (ListView) findViewById(R.id.navList);
-        DrawerListAdapter mDrawerListAdapter = new DrawerListAdapter(this, mNavItems);
-        mDrawerList.setAdapter(mDrawerListAdapter);
-
-        // Drawer Item Click listerners
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItemFromDrawer(position);
-            }
-        });
-    }
-
-    public void selectItemFromDrawer(int position) {
-        Fragment fragment = new PreferencesFragment();
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.mainContent, fragment)
-                .commit();
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mNavItems.get(position).mTitle);
-        mDrawerLayout.closeDrawer(mDrawerPane);
-    }
-
-    public void setmRecyclerViewLayoutManager() {
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
-        SpacesItemDecoration decoration = new SpacesItemDecoration(1);
-        mRecyclerView.addItemDecoration(decoration);
-
-        mAdapter = new ListItemsAdapter(this, allPosts);
-        mRecyclerView.setAdapter(mAdapter);
-
-        mLayoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        int scrollPosition = 0;
-
-//        if (mRecyclerView.getLayoutManager() != null) {
-//            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
-//                    .findFirstCompletelyVisibleItemPosition();
+//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//            SPAN_COUNT = 3;
+//        } else {
+//            SPAN_COUNT = 2;
 //        }
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
+//        if (getResources().getConfiguration().isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_LARGE)) {
+//            SPAN_COUNT++;
+//        }
+
+
+//        initDataset();
+//        setmRecyclerViewLayoutManager();
+//        initNavigationDrawer();
+//        checkDrawerEvent();
+//        initToolbar();
+//        initMenu();
+//        Intent activityThatCalled = getIntent();
     }
 
-    public void checkDrawerEvent() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-
-                invalidateOptionsMenu();
-            }
-
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                Log.d(TAG, "onDrawerClosed: " + getTitle());
-
-                invalidateOptionsMenu();
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-    }
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    public void addItemsToNavList() {
-        mNavItems.add(new NavItem("Home", "Meetup Destination", R.drawable.ic_home_white_24dp));
-        mNavItems.add(new NavItem("Settings", "Change your preferences", R.drawable.ic_settings_white_24dp));
-        mNavItems.add(new NavItem("About", "Learn more about us", R.drawable.ic_info_outline_white_24dp));
-    }
-
-    private void initDataset() {
-        allPosts = new ArrayList<BuyPost>();
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            BuyPost post = new BuyPost();
-            post.setTitle("Dress #" + i + " title");
-            post.setDescription("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, ");
-            post.setImage(android_image_urls[i]);
-            allPosts.add(post);
-        }
-    }
+    ////////////////////////////////////////
+//    public void initMenu() {
+//        menu = (FloatingActionMenu) findViewById(R.id.menu);
+//
+//        fab_borrow = (FloatingActionButton) findViewById(R.id.fab1);
+//        fab_buy = (FloatingActionButton) findViewById(R.id.fab2);
+//        fab_sell = (FloatingActionButton) findViewById(R.id.fab3);
+//
+//        fab_borrow.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), CreateBorrowProductActivity.class));
+//            }
+//        });
+//
+//        fab_buy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), CreateBuyProductActivity.class));
+//            }
+//        });
+//
+//        fab_sell.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getApplicationContext(), CreateSellProductActivity.class));
+//            }
+//        });
+//    }
+//
+//    public void checkMenuExpanded(View layout, final FloatingActionMenu menu) {
+//        layout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (menu.isOpened()) {
+//                    menu.hideMenu(true);
+//                }
+//                return true;
+//            }
+//        });
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem menuItem) {
+//        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(menuItem);
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        if (menu.isOpened()) {
+//            menu.close(true);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+//
+//        MenuItem menuItem = menu.findItem(R.id.action_menu);
+//        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
+//        return true;
+//    }
+//
+//    @Override
+//    public void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        mDrawerToggle.syncState();
+//    }
+//
+//    public void initNavigationDrawer() {
+//
+//        addItemsToNavList();
+//        // DrawerLayout
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+//
+//        // populate NavigationDrawer vith options
+//        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
+//        mDrawerList = (ListView) findViewById(R.id.navList);
+//        DrawerListAdapter mDrawerListAdapter = new DrawerListAdapter(this, mNavItems);
+//        mDrawerList.setAdapter(mDrawerListAdapter);
+//
+//        // Drawer Item Click listerners
+//        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selectItemFromDrawer(position);
+//            }
+//        });
+//    }
+//
+//    public void selectItemFromDrawer(int position) {
+//        Fragment fragment = new PreferencesFragment();
+//
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.mainContent, fragment)
+//                .commit();
+//        mDrawerList.setItemChecked(position, true);
+//        setTitle(mNavItems.get(position).mTitle);
+//        mDrawerLayout.closeDrawer(mDrawerPane);
+//    }
+//
+//    public void setmRecyclerViewLayoutManager() {
+//
+//        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+//
+//        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
+//        SpacesItemDecoration decoration = new SpacesItemDecoration(1);
+//        mRecyclerView.addItemDecoration(decoration);
+//
+//        mAdapter = new ListItemsAdapter(this, allPosts);
+//        mRecyclerView.setAdapter(mAdapter);
+//
+//        mLayoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
+//        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        int scrollPosition = 0;
+//
+////        if (mRecyclerView.getLayoutManager() != null) {
+////            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+////                    .findFirstCompletelyVisibleItemPosition();
+////        }
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mRecyclerView.scrollToPosition(scrollPosition);
+//    }
+//
+//    public void checkDrawerEvent() {
+//        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                super.onDrawerOpened(drawerView);
+//
+//                invalidateOptionsMenu();
+//            }
+//
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+//                super.onDrawerClosed(drawerView);
+//                Log.d(TAG, "onDrawerClosed: " + getTitle());
+//
+//                invalidateOptionsMenu();
+//            }
+//        };
+//
+//        mDrawerLayout.setDrawerListener(mDrawerToggle);
+//    }
+//
+//    public void initToolbar() {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        assert getSupportActionBar() != null;
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//    }
+//
+//    public void addItemsToNavList() {
+//        mNavItems.add(new NavItem("Home", "Meetup Destination", R.drawable.ic_home_white_24dp));
+//        mNavItems.add(new NavItem("Settings", "Change your preferences", R.drawable.ic_settings_white_24dp));
+//        mNavItems.add(new NavItem("About", "Learn more about us", R.drawable.ic_info_outline_white_24dp));
+//    }
+//
+//    private void initDataset() {
+//        allPosts = new ArrayList<BuyPost>();
+//        for (int i = 0; i < DATASET_COUNT; i++) {
+//            BuyPost post = new BuyPost();
+//            post.setTitle("Dress #" + i + " title");
+//            post.setDescription("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, ");
+//            post.setImage(android_image_urls[i]);
+//            allPosts.add(post);
+//        }
+//    }
 
 }

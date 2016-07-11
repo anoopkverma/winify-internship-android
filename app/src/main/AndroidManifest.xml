@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity">
+        <activity android:name=".Maniak">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -67,7 +67,8 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateBuyProductActivity"
+        <activity
+            android:name=".CreateBuyProductActivity"
             android:parentActivityName=".ListItemsActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -79,7 +80,8 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateSellProductActivity"
+        <activity
+            android:name=".CreateSellProductActivity"
             android:parentActivityName=".ListItemsActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -91,7 +93,8 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
-        <activity android:name=".CreateBorrowProductActivity"
+        <activity
+            android:name=".CreateBorrowProductActivity"
             android:parentActivityName=".ListItemsActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -103,6 +106,10 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".WelcomeActivity"
+            android:label="@string/title_activity_maniak"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
