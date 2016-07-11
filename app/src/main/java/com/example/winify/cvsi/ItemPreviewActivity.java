@@ -32,8 +32,6 @@ public class ItemPreviewActivity extends AppCompatActivity {
 
                 Picasso.with(this).load(buyPost.image_url).into(imageView);
             }
-
-            Toast.makeText(ItemPreviewActivity.this, buyPost.title, Toast.LENGTH_SHORT).show();
         }
     }
 

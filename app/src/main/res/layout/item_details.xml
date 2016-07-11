@@ -25,6 +25,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android">
 
         <LinearLayout
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
             android:theme="@style/toolbarTheme"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,8 +47,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
                 android:id="@id/title_place"
                 android:layout_below="@+id/image_place"
                 android:layout_width="match_parent"
@@ -54,13 +54,14 @@
                 android:weightSum="7">
 
                 <TextView
+                    android:textColor="@color/roseRed"
                     android:layout_weight="4"
                     android:id="@+id/title_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="contact det"
+                    android:text="article title"
                     android:gravity="center_vertical"
-                    android:textSize="14dp"/>
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:layout_weight="1"
@@ -84,10 +85,52 @@
                     android:id="@+id/description_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Name"
-                    android:textSize="10dp"
+                    android:text="@string/description_text_view"
+                    android:textSize="16sp"
                     android:layout_marginTop="10dp" />
             </RelativeLayout>
+
+            <LinearLayout
+                android:paddingTop="8dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:id="@id/title_place"
+                android:layout_below="@+id/image_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="7">
+
+                <TextView
+                    android:textColor="@color/darkerBlue"
+                    android:text="\@username"
+                    android:layout_weight="4"
+                    android:id="@+id/username_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"/>
+
+                <Button
+                    android:textColor="@color/White"
+                    android:background="@color/roseRed"
+                    android:minWidth="35dp"
+                    android:maxHeight="25dp"
+                    android:text="@string/default_currency"
+                    android:layout_weight="1"
+                    android:id="@+id/currency"
+                    android:layout_width="15dp"
+                    android:layout_height="30dp" />
+
+                <TextView
+                    android:paddingLeft="5dp"
+                    android:textColor="@color/darkerBlue"
+                    android:layout_weight="2"
+                    android:text="price"
+                    android:id="@+id/price_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

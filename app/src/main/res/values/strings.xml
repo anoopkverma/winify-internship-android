@@ -33,4 +33,6 @@
     <string name="product_title">Product Title</string>
     <string name="prod_description">Description</string>
     <string name="prod_price">Price</string>
+    <string name="default_currency">MDL</string>
+    <string name="description_text_view"> </string>
 </resources>

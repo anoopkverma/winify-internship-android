@@ -167,7 +167,6 @@ public class ListItemsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
-
     @Override
     public void onBackPressed() {
         if (menu.isOpened()) {
@@ -286,8 +285,8 @@ public class ListItemsActivity extends AppCompatActivity {
         allPosts = new ArrayList<BuyPost>();
         for (int i = 0; i < DATASET_COUNT; i++) {
             BuyPost post = new BuyPost();
-            post.setTitle("Dress #" + i);
-            post.setDescription("some description to be inserted here.");
+            post.setTitle("Dress #" + i + " title");
+            post.setDescription("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, ");
             post.setImage(android_image_urls[i]);
             allPosts.add(post);
         }
