@@ -29,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     public void onSItemsListButtonClicked(View view) {
-        Intent getLoginIntent = new Intent(this, ListItemsActivity.class) ;
+        Intent getLoginIntent = new Intent(this, BaseActivity.class) ;
         final int result = 1;
 
         getLoginIntent.putExtra("callingActivity", "ListItemsActivity");
