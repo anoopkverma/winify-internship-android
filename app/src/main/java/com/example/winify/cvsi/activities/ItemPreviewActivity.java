@@ -1,13 +1,14 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.winify.cvsi.BuyPost;
+import com.example.winify.cvsi.adapters.ListItemsAdapter;
+import com.example.winify.cvsi.R;
 import com.squareup.picasso.Picasso;
 
 

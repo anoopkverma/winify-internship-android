@@ -1,10 +1,14 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.activities.BaseActivity;
+import com.example.winify.cvsi.activities.LoginActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 

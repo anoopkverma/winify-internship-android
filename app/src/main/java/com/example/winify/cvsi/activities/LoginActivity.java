@@ -1,6 +1,5 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.fragments.ForgotPasswordDialogFragment;
+import com.example.winify.cvsi.fragments.ListItemsFragment;
 
 /**
  * Created by diana on 6/21/16.

@@ -1,4 +1,4 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.winify.cvsi.BuyPost;
+import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.activities.ItemPreviewActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

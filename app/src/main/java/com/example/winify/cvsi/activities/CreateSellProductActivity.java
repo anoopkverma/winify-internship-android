@@ -1,4 +1,4 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 
 public class CreateSellProductActivity extends AppCompatActivity {

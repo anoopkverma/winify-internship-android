@@ -1,4 +1,4 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -16,6 +16,11 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+import com.example.winify.cvsi.adapters.DrawerListAdapter;
+import com.example.winify.cvsi.fragments.ListItemsFragment;
+import com.example.winify.cvsi.NavItem;
+import com.example.winify.cvsi.fragments.PreferencesFragment;
+import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;

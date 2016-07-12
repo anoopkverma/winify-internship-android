@@ -1,4 +1,4 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,9 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.winify.cvsi.NavItem;
+import com.example.winify.cvsi.R;
 
 import java.util.ArrayList;
 

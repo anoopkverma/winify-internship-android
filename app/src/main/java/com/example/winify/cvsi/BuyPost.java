@@ -9,9 +9,9 @@ import java.io.Serializable;
  */
 public class BuyPost implements Serializable {
 
-    protected String title;
-    protected String description;
-    protected String image_url;
+    public String title;
+    public String description;
+    public String image_url;
 
     private static final long serialVersionUID = 465489764;
 

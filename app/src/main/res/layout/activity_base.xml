@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:id="@+id/drawerLayout"
     android:layout_height="match_parent"
-    tools:context="com.example.winify.cvsi.BaseActivity">
+    tools:context=".activities.BaseActivity">
 
 
     <RelativeLayout
@@ -31,7 +31,7 @@
             android:layout_height="match_parent">
 
             <fragment
-                android:name="com.example.winify.cvsi.ListItemsFragment"
+                android:name="com.example.winify.cvsi.fragments.ListItemsFragment"
                 android:id="@+id/fragment_place"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

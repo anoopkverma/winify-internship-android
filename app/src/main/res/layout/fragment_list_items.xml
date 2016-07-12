@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:background="@color/White"
-    tools:context="com.example.winify.cvsi.ListItemsFragment">
+    tools:context=".fragments.ListItemsFragment">
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@id/header"

@@ -1,4 +1,4 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 
-public class CreateBuyProductActivity extends AppCompatActivity {
+public class CreateBorrowProductActivity extends AppCompatActivity {
+
     ImageView imageView;
     FloatingActionButton addImageFAB;
     private static final int PICK_IMAGE = 100;
@@ -22,14 +25,14 @@ public class CreateBuyProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_buy_product);
+        setContentView(R.layout.activity_create_borrow_product);
         imageView = (ImageView) findViewById(R.id.image_view);
 
 
         initToolbar();
         initSpinner();
-
-        Intent activityThatCalled = getIntent();
+        
+        Intent getCallingActivity = getIntent();
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -64,7 +67,7 @@ public class CreateBuyProductActivity extends AppCompatActivity {
 
     public void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Create a Buy product");
+        toolbar.setTitle("Create a Borrow product");
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

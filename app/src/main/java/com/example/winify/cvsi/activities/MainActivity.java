@@ -1,15 +1,15 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.activities;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.support.design.widget.TabLayout;
+
+import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.activities.BaseActivity;
 
 
 public class MainActivity extends AppCompatActivity {

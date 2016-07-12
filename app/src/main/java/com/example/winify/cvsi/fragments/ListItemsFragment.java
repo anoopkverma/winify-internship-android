@@ -1,10 +1,14 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.fragments;
 
 
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -13,6 +17,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.winify.cvsi.BuyPost;
+import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.SpacesItemDecoration;
+import com.example.winify.cvsi.activities.CreateBorrowProductActivity;
+import com.example.winify.cvsi.activities.CreateBuyProductActivity;
+import com.example.winify.cvsi.activities.CreateSellProductActivity;
+import com.example.winify.cvsi.adapters.ListItemsAdapter;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -177,5 +188,4 @@ public class ListItemsFragment extends Fragment {
             "http://kingofwallpapers.com/landscape/landscape-007.jpg",
             "https://s-media-cache-ak0.pinimg.com/236x/f9/00/9f/f9009f49df2bd9d76c4693185501bc12.jpg"
     };
-
 }
