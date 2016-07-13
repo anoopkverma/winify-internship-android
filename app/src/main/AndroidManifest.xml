@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.BaseActivity">
+        <activity android:name=".Maniak">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Maniak"
+            android:name=".activities.BaseActivity"
             android:parentActivityName=".activities.LoginActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->

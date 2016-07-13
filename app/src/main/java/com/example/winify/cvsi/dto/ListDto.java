@@ -16,7 +16,8 @@ public class ListDto<T> extends ServerResponseStatus implements Serializable {
     private List<T> list;
 
     public ListDto(){
-        list = new ArrayList<T>();}
+        list = new ArrayList<T>();
+    }
 
     public ListDto(List<T> list) {
         this.list = list;

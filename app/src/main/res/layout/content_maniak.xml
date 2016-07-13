@@ -12,4 +12,12 @@
     tools:context="com.example.winify.cvsi.Maniak"
     tools:showIn="@layout/activity_maniak">
 
+    <TextView
+        android:text="sdklfj"
+        android:textColor="#ff0000"
+        android:id="@+id/hz_tv"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
