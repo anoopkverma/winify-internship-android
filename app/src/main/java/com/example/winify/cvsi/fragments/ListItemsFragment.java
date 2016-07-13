@@ -16,19 +16,27 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.winify.cvsi.BuyPost;
+import com.example.winify.cvsi.Maniak;
+import com.example.winify.cvsi.ProductController;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.SpacesItemDecoration;
 import com.example.winify.cvsi.activities.CreateBorrowProductActivity;
 import com.example.winify.cvsi.activities.CreateBuyProductActivity;
 import com.example.winify.cvsi.activities.CreateSellProductActivity;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
+import com.example.winify.cvsi.dto.ListDto;
+import com.example.winify.cvsi.dto.templates.ProductTemplate;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 
 /**
@@ -45,10 +53,13 @@ public class ListItemsFragment extends Fragment {
     protected ListItemsAdapter mAdapter;
     protected StaggeredGridLayoutManager mLayoutManager;
 
-    private static final int DATASET_COUNT = 30;
+    private static final int DATASET_COUNT = 20;
     private static int SPAN_COUNT;
 
     protected List<BuyPost> allPosts;
+
+    private ProductController productController;
+
 
     public ListItemsFragment() {
         // Required empty public constructor
@@ -60,9 +71,26 @@ public class ListItemsFragment extends Fragment {
         initDataset();
         SPAN_COUNT = getSpanNr();
         final View view =  inflater.inflate(R.layout.fragment_list_items, container, false);
-        setmRecyclerViewLayoutManager(view);
+
         initMenu(view);
+
+        productController = new ProductController();
+        EventBus.getDefault().register(this);
+        productController.getProductDTO();
+
+        setmRecyclerViewLayoutManager(view);
         return view;
+    }
+
+    @Subscribe
+    public void onGetProductDTOEvent(ListDto<ProductTemplate> event) {
+//        Toast.makeText(this, "ceva" + event.getList().get(0).getTitle(), Toast.LENGTH_SHORT).show();
+//        event;
+        for (int i = 0; i < allPosts.size(); i++) {
+            allPosts.get(i).setTitle(event.getList().get(i).getTitle());
+        }
+
+        System.out.println();
     }
 
     public void initMenu(View view) {

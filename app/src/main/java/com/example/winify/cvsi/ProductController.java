@@ -16,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by diana on 7/13/16.
  */
-public class ServiceManager {
+public class ProductController {
 
     public void getProductDTO() {
 

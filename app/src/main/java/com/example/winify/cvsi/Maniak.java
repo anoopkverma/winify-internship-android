@@ -1,8 +1,10 @@
 package com.example.winify.cvsi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +18,10 @@ import de.greenrobot.event.Subscribe;
 
 public class Maniak extends AppCompatActivity {
 
-    private ListDto<ProductTemplate> listdto = new ListDto<ProductTemplate>();
-    private ServiceManager serviceManager;
+    public static ListDto<ProductTemplate> listdto = new ListDto<ProductTemplate>();
+    private ProductController productController;
     TextView textView;
+    Button button;
     boolean i = true;
 
     @Override
@@ -29,10 +32,17 @@ public class Maniak extends AppCompatActivity {
 
         assert textView != null;
 
-        serviceManager = new ServiceManager();
+        productController = new ProductController();
         EventBus.getDefault().register(this);
-        serviceManager.getProductDTO();
+        productController.getProductDTO();
 
+        button = (Button) findViewById(R.id.button_test);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), TestBaseActivity.class));
+//            }
+//        });
 
 //        textView.setText(listdto.getList().get(0).getTitle());
 
@@ -44,12 +54,6 @@ public class Maniak extends AppCompatActivity {
         listdto = event;
 
         System.out.println();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        textView.setText(listdto.getList().get(0).getTitle());
     }
 
 }
