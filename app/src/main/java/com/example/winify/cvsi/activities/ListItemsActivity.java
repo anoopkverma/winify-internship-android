@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.example.winify.cvsi.fragments.ListItemsFragment;
-import com.example.winify.cvsi.NavItem;
 import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -26,8 +25,6 @@ public class ListItemsActivity extends BaseActivity {
     private static ViewGroup viewGroup;
     protected static Fragment fragment;
     private FloatingActionMenu menu;
-
-    ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
