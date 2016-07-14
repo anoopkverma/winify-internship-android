@@ -3,19 +3,17 @@ package com.example.winify.cvsi.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 
-public class CreateBorrowProductActivity extends AppCompatActivity {
+public class CreateBorrowProductActivity extends BaseActivity {
 
     ImageView imageView;
     FloatingActionButton addImageFAB;
@@ -28,9 +26,13 @@ public class CreateBorrowProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_borrow_product);
         imageView = (ImageView) findViewById(R.id.image_view);
 
+        this.initBuilder();
+//        this.setDrawerSelection(1);
 
         initToolbar();
         initSpinner();
+
+
         
         Intent getCallingActivity = getIntent();
         if (getSupportActionBar() != null) {

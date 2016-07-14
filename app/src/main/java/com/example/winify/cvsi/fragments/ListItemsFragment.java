@@ -1,14 +1,10 @@
 package com.example.winify.cvsi.fragments;
 
 
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -16,10 +12,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.winify.cvsi.BuyPost;
-import com.example.winify.cvsi.Maniak;
 import com.example.winify.cvsi.ProductController;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.SpacesItemDecoration;
@@ -38,16 +32,13 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ListItemsFragment extends Fragment {
 
     private FloatingActionMenu menu;
-    protected FloatingActionButton fab_borrow;
-    protected FloatingActionButton fab_buy;
-    protected FloatingActionButton fab_sell;
+
 
     protected RecyclerView mRecyclerView;
     protected ListItemsAdapter mAdapter;
@@ -71,8 +62,9 @@ public class ListItemsFragment extends Fragment {
         initDataset();
         SPAN_COUNT = getSpanNr();
         final View view =  inflater.inflate(R.layout.fragment_list_items, container, false);
+        menu = (FloatingActionMenu) view.findViewById(R.id.menu);
 
-        initMenu(view);
+
 
         productController = new ProductController();
         EventBus.getDefault().register(this);
@@ -93,34 +85,8 @@ public class ListItemsFragment extends Fragment {
         System.out.println();
     }
 
-    public void initMenu(View view) {
-        menu = (FloatingActionMenu) view.findViewById(R.id.menu);
 
-        fab_borrow = (FloatingActionButton) view.findViewById(R.id.fab1);
-        fab_buy = (FloatingActionButton) view.findViewById(R.id.fab2);
-        fab_sell = (FloatingActionButton) view.findViewById(R.id.fab3);
 
-        fab_borrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CreateBorrowProductActivity.class));
-            }
-        });
-
-        fab_buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CreateBuyProductActivity.class));
-            }
-        });
-
-        fab_sell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), CreateSellProductActivity.class));
-            }
-        });
-    }
 
     public void setmRecyclerViewLayoutManager(View view) {
 

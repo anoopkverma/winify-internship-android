@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.winify.cvsi.R;
-import com.example.winify.cvsi.activities.BaseActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onOpenLoginActivityButtonClicked(View view) {
-        Intent getLoginIntent = new Intent(this, BaseActivity.class) ;
+        Intent getLoginIntent = new Intent(this, ListItemsActivity.class) ;
         final int result = 1;
 
         getLoginIntent.putExtra("callingActivity", "MainActivity");

@@ -1,159 +1,90 @@
 package com.example.winify.cvsi.activities;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.example.winify.cvsi.adapters.DrawerListAdapter;
-import com.example.winify.cvsi.fragments.ListItemsFragment;
-import com.example.winify.cvsi.NavItem;
-import com.example.winify.cvsi.fragments.PreferencesFragment;
 import com.example.winify.cvsi.R;
-import com.github.clans.fab.FloatingActionMenu;
-
-import java.util.ArrayList;
-
-/**
- * This class stands as a base class, containing the Navigation Drawer and the Toolbar, with general elements
- */
+import com.mikepenz.google_material_typeface_library.GoogleMaterial;
+import com.mikepenz.materialdrawer.AccountHeader;
+import com.mikepenz.materialdrawer.AccountHeaderBuilder;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private static ViewGroup viewGroup;
-    protected static Fragment fragment;
-    private FloatingActionMenu menu;
-
-    private ListView mDrawerList;
-    private RelativeLayout mDrawerPane;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
-
-    ArrayList<NavItem> mNavItems = new ArrayList<NavItem>();
+    private static Drawer drawer;
+    private IProfile profile;
+    private Bundle savendInstanceState1;
+    private AccountHeader headerResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.savendInstanceState1 = savedInstanceState;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
-        menu = (FloatingActionMenu) findViewById(R.id.menu);
-        showListItemsFragment();
-
-        initNavigationDrawer();
-        initToolbar();
-        checkDrawerEvent();
-
+        setContentView(R.layout.activity_super_base);
     }
 
     @Override
     public void onBackPressed() {
-        if (menu.isOpened()) {
-            menu.close(true);
+        if (drawer.isDrawerOpen()) {
+            drawer.closeDrawer();
+
         } else {
             super.onBackPressed();
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+    public void initBuilder() {
 
-        MenuItem menuItem = menu.findItem(R.id.action_menu);
-        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
-        return true;
+        headerResult = new AccountHeaderBuilder()
+                .withActivity(this)
+                .withCompactStyle(false)
+                .withHeaderBackground(R.drawable.header1)
+                .addProfiles(
+                        new ProfileDrawerItem().withName("Mike Penz").withEmail("mikepenz@gmail.com").withIcon(getResources().getDrawable(R.drawable.nina))
+                )
+                .withSavedInstance(savendInstanceState1)
+                .build();
+
+        PrimaryDrawerItem home = new PrimaryDrawerItem().withIcon(GoogleMaterial.Icon.gmd_home).withIdentifier(1).withName(R.string.drawer_item_home);
+        PrimaryDrawerItem settings = new PrimaryDrawerItem().withIcon(GoogleMaterial.Icon.gmd_settings).withIdentifier(1).withName(R.string.drawer_item_settings);
+        PrimaryDrawerItem about = new PrimaryDrawerItem().withIcon(GoogleMaterial.Icon.gmd_info).withIdentifier(1).withName(R.string.drawer_item_info);
+        PrimaryDrawerItem logout = new PrimaryDrawerItem().withIcon(GoogleMaterial.Icon.gmd_exit_to_app).withIdentifier(1).withName(R.string.drawer_item_logout);
+
+        SecondaryDrawerItem item2 = (SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(2).withName(R.string.drawer_item_settings);
+
+        drawer = new DrawerBuilder()
+                .withActivity(this)
+                .withAccountHeader(headerResult)
+//                .withToolbar(toolbar)
+                .addDrawerItems(
+                        home,
+                        new DividerDrawerItem(),
+                        settings,
+                        new DividerDrawerItem(),
+                        about,
+                        new DividerDrawerItem(),
+                        logout,
+                        new DividerDrawerItem(),
+                        item2,
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        // do something with the clicked item :D
+                        Toast.makeText(BaseActivity.this, "oand" + String.valueOf(position), Toast.LENGTH_SHORT).show();
+                        return true;
+                    }
+                })
+                .build();
     }
-
-    public void showListItemsFragment() {
-        viewGroup = (ViewGroup) findViewById(R.id.fragment_place);
-        fragment = new ListItemsFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_place, fragment);
-        fragmentTransaction.commit();
-    }
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
-
-    /*  Navigation Drawer implementation related starts */
-
-    public void initNavigationDrawer() {
-        addItemsToNavList();
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        mDrawerPane = (RelativeLayout) findViewById(R.id.drawerPane);
-        mDrawerList = (ListView) findViewById(R.id.navList);
-        DrawerListAdapter mDrawerListAdapter = new DrawerListAdapter(this, mNavItems);
-        mDrawerList.setAdapter(mDrawerListAdapter);
-
-        mDrawerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItemFromDrawer(position);
-            }
-        });
-    }
-
-    public void selectItemFromDrawer(int position) {
-        android.support.v4.app.Fragment fragment = new PreferencesFragment();
-
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_place, fragment)
-                .commit();
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mNavItems.get(position).mTitle);
-        mDrawerLayout.closeDrawer(mDrawerPane);
-    }
-
-    public void checkDrawerEvent() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.drawer_open, R.string.drawer_close) {
-            @Override
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-            }
-            @Override
-            public void onDrawerClosed(View drawerView) {
-                super.onDrawerClosed(drawerView);
-                invalidateOptionsMenu();
-            }
-        };
-        mDrawerLayout.addDrawerListener(mDrawerToggle);
-    }
-
-    public void addItemsToNavList() {
-        mNavItems.add(new NavItem("Home", "Meetup Destination", R.drawable.ic_home_white_24dp));
-        mNavItems.add(new NavItem("Settings", "Change your preferences", R.drawable.ic_settings_white_24dp));
-        mNavItems.add(new NavItem("About", "Learn more about us", R.drawable.ic_info_outline_white_24dp));
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem menuItem) {
-        if (mDrawerToggle.onOptionsItemSelected(menuItem)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(menuItem);
-    }
-
-    @Override
-    public void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        mDrawerToggle.syncState();
-    }
-
-    /*  Navigation Drawer implementation related starts */
 }

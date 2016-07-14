@@ -49,11 +49,10 @@
                 android:textColor="#372c24" />
 
             <EditText
+                android:textColor="@color/blackOrange"
                 android:id="@+id/name_edit_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dip"
-                android:layout_marginBottom="20dip"
                 android:singleLine="true" />
 
             <!-- Surname -->
@@ -65,7 +64,23 @@
                 android:textColor="#372c24" />
 
             <EditText
+                android:textColor="@color/blackOrange"
                 android:id="@+id/surname_edit_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"/>
+
+            <!-- Surname -->
+
+            <TextView
+                android:text="@string/username_text_view"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#372c24" />
+
+            <EditText
+                android:textColor="@color/blackOrange"
+                android:id="@+id/username_edit_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"/>
@@ -78,10 +93,26 @@
                 android:textColor="#372c24" />
 
             <EditText
+                android:textColor="@color/blackOrange"
                 android:id="@+id/email_edit_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:singleLine="true"/>
+
+            <!-- MSISDN label -->
+            <TextView
+                android:text="@string/msisdn"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#372c24" />
+
+            <EditText
+                android:textColor="@color/blackOrange"
+                android:id="@+id/msisdn_edit_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
                 android:singleLine="true"/>
 
 
@@ -93,6 +124,7 @@
                 android:textColor="#372c24" />
 
             <EditText
+                android:textColor="@color/blackOrange"
                 android:id="@+id/password_edit_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -107,6 +139,7 @@
                 android:textColor="#372c24" />
 
             <EditText
+                android:textColor="@color/blackOrange"
                 android:id="@+id/password_repeat_edit_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -114,9 +147,10 @@
                 android:inputType="textPassword" />
 
             <Button
+                android:text="@string/register_button"
                 android:id="@+id/register_button"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"/>
+                android:layout_width="match_parent"/>
 
 
 

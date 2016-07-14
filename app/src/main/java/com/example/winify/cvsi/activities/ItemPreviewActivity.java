@@ -1,40 +1,49 @@
 package com.example.winify.cvsi.activities;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.example.winify.cvsi.BuyPost;
-import com.example.winify.cvsi.adapters.ListItemsAdapter;
+import android.view.ViewGroup;
 import com.example.winify.cvsi.R;
-import com.squareup.picasso.Picasso;
+import com.example.winify.cvsi.fragments.ViewBorrowProductDetailsFragment;
+import com.example.winify.cvsi.fragments.ViewSellBuyProductDetailsFragment;
 
 
-public class ItemPreviewActivity extends AppCompatActivity {
+public class ItemPreviewActivity extends BaseActivity {
+
+    private ViewGroup viewGroup;
+    public static Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details);
+        this.initBuilder();
         initToolbar();
 
-        if (getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
-            BuyPost buyPost = (BuyPost)getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
-
-            TextView titleTextView = (TextView) findViewById(R.id.title_tv);
-            TextView descriptionTextView = (TextView) findViewById(R.id.description_tv);
-            ImageView imageView = (ImageView) findViewById(R.id.image_view);
-
-            if (titleTextView != null && descriptionTextView != null ) {
-                titleTextView.setText(buyPost.title);
-                descriptionTextView.setText(buyPost.description);
-
-                Picasso.with(this).load(buyPost.image_url).into(imageView);
-            }
-        }
+        showBorrowProductDetailsFragment();
     }
+
+    public void showBuySellProductDetailsFragment() {
+        viewGroup = (ViewGroup) findViewById(R.id.fragment_place);
+        fragment = new ViewSellBuyProductDetailsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_place, fragment);
+        fragmentTransaction.commit();
+    }
+
+    public void showBorrowProductDetailsFragment() {
+        viewGroup = (ViewGroup) findViewById(R.id.fragment_place);
+        fragment = new ViewBorrowProductDetailsFragment();
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_place, fragment);
+        fragmentTransaction.commit();
+    }
+
 
     public void initToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

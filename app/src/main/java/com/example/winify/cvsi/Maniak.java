@@ -51,7 +51,7 @@ public class Maniak extends AppCompatActivity {
     @Subscribe
     public void onGetProductDTOEvent(ListDto<ProductTemplate> event) {
         Toast.makeText(Maniak.this, "ceva" + event.getList().get(0).getTitle(), Toast.LENGTH_SHORT).show();
-        listdto = event;
+         listdto = event;
 
         System.out.println();
     }
