@@ -44,8 +44,8 @@ public class ViewSellBuyProductDetailsFragment extends Fragment {
             ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
 
             if (titleTextView != null && descriptionTextView != null ) {
-                titleTextView.setText(buyPost.title);
-                descriptionTextView.setText(buyPost.description);
+                titleTextView.setText(buyPost.getTitle());
+                descriptionTextView.setText(buyPost.getDescription());
 
                 Picasso.with(getActivity()).load(buyPost.image_url).into(imageView);
             }

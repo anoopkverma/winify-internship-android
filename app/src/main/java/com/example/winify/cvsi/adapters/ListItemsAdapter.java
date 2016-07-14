@@ -33,6 +33,8 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
         private final CardView cardView;
 
         public final TextView mTitleTextView;
+        public final TextView mDateCreated;
+        public final TextView mPrice;
         public final TextView mDescriptionTextView;
         public final ImageView mImageView;
 
@@ -44,6 +46,9 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
             mTitleTextView = (TextView) v.findViewById(R.id.title_tv);
             mDescriptionTextView = (TextView) v.findViewById(R.id.description_tv);
             mImageView = (ImageView) v.findViewById(R.id.image_view);
+
+            mDateCreated = (TextView) v.findViewById(R.id.date_text_view);
+            mPrice = (TextView) v.findViewById(R.id.price_text_view);
         }
     }
 
@@ -62,11 +67,15 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
         return new ViewHolder(v);
     }
 
+
+
     @Override
     public void onBindViewHolder(ListItemsAdapter.ViewHolder viewHolder, final int position) {
 
 
-        viewHolder.mTitleTextView.setText(allPosts.get(position).title);
+        viewHolder.mTitleTextView.setText(allPosts.get(position).getTitle());
+//        viewHolder.mDateCreated.setText(allPosts.get(position).getCreatedDate().toString());
+        viewHolder.mPrice.setText(allPosts.get(position).getPrice().toString());
         Picasso.with(context).load(allPosts.get(position).image_url).into(viewHolder.mImageView);
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {

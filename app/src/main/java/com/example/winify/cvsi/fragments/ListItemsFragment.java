@@ -27,6 +27,7 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -48,6 +49,8 @@ public class ListItemsFragment extends Fragment {
     private static int SPAN_COUNT;
 
     protected List<BuyPost> allPosts;
+
+    protected ListDto<ProductTemplate> listDtoObject;
 
     private ProductController productController;
 
@@ -80,6 +83,14 @@ public class ListItemsFragment extends Fragment {
 //        event;
         for (int i = 0; i < allPosts.size(); i++) {
             allPosts.get(i).setTitle(event.getList().get(i).getTitle());
+            allPosts.get(i).setDescription(event.getList().get(i).getDescription());
+//            allPosts.get(i).setCreatedDate((Date)event.getList().get(i).getCreatedDate());
+            allPosts.get(i).setPrice(event.getList().get(i).getPrice());
+            allPosts.get(i).setBorrow(event.getList().get(i).getBorrow());
+            allPosts.get(i).setCategoryEnumList(event.getList().get(i).getCategoryEnumList());
+            allPosts.get(i).setCurrency(event.getList().get(i).getCurrency());
+//            allPosts.get(i).setLimitDate(event.getList().get(i).getLimitDate());
+//            allPosts.get(i).setUser(event.getList().get(i).getUser());
         }
 
         System.out.println();
@@ -140,9 +151,9 @@ public class ListItemsFragment extends Fragment {
         allPosts = new ArrayList<BuyPost>();
         for (int i = 0; i < DATASET_COUNT; i++) {
             BuyPost post = new BuyPost();
-            post.setTitle("Dress #" + i + " title");
-            post.setDescription("Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, ");
-            post.setImage(android_image_urls[i]);
+            post.setImage_url(android_image_urls[i]);
+            post.setTitle("title" + String.valueOf(i));
+            post.setPrice((long)i+100);
             allPosts.add(post);
         }
     }

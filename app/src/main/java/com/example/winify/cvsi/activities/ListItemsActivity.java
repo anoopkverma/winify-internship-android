@@ -36,7 +36,6 @@ public class ListItemsActivity extends BaseActivity {
         initMenu();
         initToolbar();
 
-
     }
 
     @Override

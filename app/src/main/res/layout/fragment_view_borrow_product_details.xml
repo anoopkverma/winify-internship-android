@@ -146,7 +146,7 @@
                         android:maxHeight="25dp"
                         android:text="@string/default_currency"
                         android:layout_weight="1"
-                        android:id="@+id/currency"
+                        android:id="@+id/currency_button"
                         android:layout_width="15dp"
                         android:layout_height="30dp" />
 

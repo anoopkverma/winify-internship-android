@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,10 +42,19 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
             TextView titleTextView = (TextView) view.findViewById(R.id.title_tv);
             TextView descriptionTextView = (TextView) view.findViewById(R.id.description_tv);
             ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
+            TextView startDateTV = (TextView) view.findViewById(R.id.starting_date);
+            TextView endDateTV = (TextView) view.findViewById(R.id.end_date);
+            TextView priceTV = (TextView) view.findViewById(R.id.price_tv);
+            Button currentyTypeButton = (Button) view.findViewById(R.id.currency_button);
+            Button borrowTypeButton = (Button) view.findViewById(R.id.button_type);
 
-            if (titleTextView != null && descriptionTextView != null ) {
-                titleTextView.setText(buyPost.title);
-                descriptionTextView.setText(buyPost.description);
+
+            if (titleTextView != null && descriptionTextView != null && priceTV != null) {
+                titleTextView.setText(buyPost.getTitle());
+                priceTV.setText(String.valueOf(buyPost.getPrice()));
+                currentyTypeButton.setText(buyPost.getCurrency().toString());
+                descriptionTextView.setText(buyPost.getDescription());
+//                borrowTypeButton.setText(buyPost.getBorrow().toString());
 
                 Picasso.with(getActivity()).load(buyPost.image_url).into(imageView);
             }
