@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by Artemie on 01.07.2016.
  */
-public class AutorizationClientRequest implements Serializable{
+public class AuthorizationClientRequest implements Serializable{
 
     private String email;
     private String password;
@@ -15,6 +15,16 @@ public class AutorizationClientRequest implements Serializable{
     private String name;
     private String surname;
     private Long createdDate;
+
+    public AuthorizationClientRequest(String email, String password, String phone, String userName, String name, String surname, Long createdDate) {
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.userName = userName;
+        this.name = name;
+        this.surname = surname;
+        this.createdDate = createdDate;
+    }
 
     public String getEmail() {
         return email;

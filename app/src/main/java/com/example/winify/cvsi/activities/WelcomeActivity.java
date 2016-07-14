@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.winify.cvsi.ProductController;
+import com.example.winify.cvsi.controllers.ProductController;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;

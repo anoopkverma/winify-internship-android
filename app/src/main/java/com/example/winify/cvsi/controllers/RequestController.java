@@ -1,4 +1,4 @@
-package com.example.winify.cvsi;
+package com.example.winify.cvsi.controllers;
 
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
