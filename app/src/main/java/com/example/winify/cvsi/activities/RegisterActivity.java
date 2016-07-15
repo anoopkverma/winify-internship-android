@@ -75,12 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-//    @Subscribe
-//    public void onPostUserEvent(AuthorizationClientRequest event) {
-//        Toast.makeText(RegisterActivity.this, "EventBusWorks", Toast.LENGTH_SHORT).show();
-//        new UserController().postUser(event);
-//    }
-
     public AuthorizationClientRequest getData() {
 
         return new AuthorizationClientRequest(

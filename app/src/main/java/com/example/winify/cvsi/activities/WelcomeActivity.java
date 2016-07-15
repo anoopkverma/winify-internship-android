@@ -36,11 +36,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @Subscribe
     public void onGetProductDTOEvent(ListDto<ProductTemplate> event) {
-        Toast.makeText(this, "ceva" + event.getList().get(0).getTitle(), Toast.LENGTH_SHORT).show();
-//        event;
-//        for (int i = 0; i < allPosts.size(); i++) {
-//            allPosts.get(i).setTitle(event.getList().get(i).getTitle());
-//        }
+
     }
 
     public void onSLoginButtonClicked(View view) {

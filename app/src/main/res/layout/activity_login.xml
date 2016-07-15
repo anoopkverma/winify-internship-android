@@ -19,39 +19,28 @@
         </LinearLayout>
         <!--  Header Ends -->
 
-        <!-- Footer Start -->
-        <LinearLayout android:id="@+id/footer"
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true">
 
-            <Button
-                android:id="@+id/forgot_password_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="@string/forgot_pass_text"
-                android:background="@color/blackOrange" />
-        </LinearLayout>
-        <!-- Footer Ends -->
 
         <!-- Login Form -->
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/login_area"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:padding="10dip"
             android:layout_below="@id/header">
 
             <!--  Email Label -->
-            <TextView android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/email_label"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
                 android:text="Email"/>
 
             <EditText
+                android:layout_below="@+id/email_label"
                 android:textColor="@color/blackOrange"
                 android:id="@+id/txtLoginEmail"
                 android:layout_width="fill_parent"
@@ -62,12 +51,16 @@
                 android:singleLine="true"/>
 
             <!--  Password Label -->
-            <TextView android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/pass_label"
+                android:layout_below="@+id/txtLoginEmail"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#372c24"
                 android:text="Password"/>
 
             <EditText
+                android:layout_below="@+id/pass_label"
                 android:textColor="@color/blackOrange"
                 android:id="@+id/txtLoginPassword"
                 android:layout_width="fill_parent"
@@ -77,14 +70,18 @@
                 android:inputType="textPassword" />
 
             <!-- Login button -->
-            <Button android:id="@+id/btnLogin"
+            <Button
+                android:layout_below="@+id/txtLoginPassword"
+                android:id="@+id/btnLogin"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
                 android:text="Login" />
 
             <!-- Link to Registration Screen -->
-            <TextView android:id="@+id/link_to_register"
+            <TextView
+                android:layout_below="@+id/btnLogin"
+                android:id="@+id/link_to_register"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dip"
@@ -94,7 +91,23 @@
                 android:textSize="20dip"
                 android:textColor="#0b84aa" />
 
-        </LinearLayout>
+            <LinearLayout
+                android:minHeight="250dp"
+                android:layout_below="@+id/link_to_register"
+                android:id="@+id/spaceLL"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+                <Button
+                    android:maxHeight="50dp"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/forgot_password_button"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forgot_pass_text"
+                    android:background="@color/blackOrange" />
+        </RelativeLayout>
         <!-- Login Form Ends -->
     </RelativeLayout>
 </ScrollView>
