@@ -33,11 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        Intent activityThatCalled = getIntent();
-
         intitializeClassComponents();
-        initializeToolBar();
         showForgotPasswordDialog();
     }
 
@@ -46,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         sPassword = (EditText) findViewById(R.id.txtLoginPassword);
         sLoginButton = (Button) findViewById(R.id.btnLogin);
         sRegisterLink = (TextView) findViewById(R.id.link_to_register);
-
-
         sLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,10 +54,6 @@ public class LoginActivity extends AppCompatActivity {
                 onRegisterLinkClicked();
             }
         });
-    }
-
-    public void onForgotPasswordButtonClicked() {
-
     }
 
     public void onForgotPasswordTextViewClicked() {
@@ -91,19 +81,6 @@ public class LoginActivity extends AppCompatActivity {
 
         getLoginIntent.putExtra("callingActivity", "LoginActivity");
         startActivityForResult(getLoginIntent, result);
-    }
-
-    public void initializeToolBar() {
-        Toolbar childToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(childToolbar);
-
-        // Get a support action bar corresponding to this toolbar
-        ActionBar actionBar = getSupportActionBar();
-
-        //Enable Up Button
-        if(actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
     }
 
     public void  showForgotPasswordDialog() {

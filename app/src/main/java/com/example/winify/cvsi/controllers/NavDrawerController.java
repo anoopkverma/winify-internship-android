@@ -26,7 +26,7 @@ public class NavDrawerController {
 
     private Drawer drawer;
     private AccountHeader headerResult;
-    
+
     public Drawer getDrawer() {
         return drawer;
     }

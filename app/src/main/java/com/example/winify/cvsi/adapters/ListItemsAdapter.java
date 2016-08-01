@@ -71,8 +71,6 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
 
     @Override
     public void onBindViewHolder(ListItemsAdapter.ViewHolder viewHolder, final int position) {
-
-
         viewHolder.mTitleTextView.setText(allPosts.get(position).getTitle());
 //        viewHolder.mDateCreated.setText(allPosts.get(position).getCreatedDate().toString());
         viewHolder.mPrice.setText(allPosts.get(position).getPrice().toString());

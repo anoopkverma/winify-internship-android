@@ -2,22 +2,16 @@ package com.example.winify.cvsi.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.controllers.NavDrawerController;
-import com.mikepenz.materialdrawer.AccountHeader;
-import com.mikepenz.materialdrawer.Drawer;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private static Drawer drawer;
-    private Bundle savendInstanceState1;
-    private AccountHeader headerResult;
+    private Bundle savedInstanceState;
     private NavDrawerController navC = new NavDrawerController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.savendInstanceState1 = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_base);
     }
@@ -32,8 +26,8 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-
     public void initNavDrawer() {
-        navC.initBuilder(this, R.drawable.nina, savendInstanceState1);
+        navC.initBuilder(this, R.drawable.nina, savedInstanceState);
     }
 }
+

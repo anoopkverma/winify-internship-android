@@ -22,20 +22,10 @@ public class ItemPreviewActivity extends ToolbarActivity {
         setContentView(R.layout.item_details);
         this.initNavDrawer();
         initToolbar();
-
-        showBorrowProductDetailsFragment();
+        showProductDetailsFragment();
     }
 
-    public void showBuySellProductDetailsFragment() {
-        viewGroup = (ViewGroup) findViewById(R.id.fragment_place);
-        fragment = new ViewSellBuyProductDetailsFragment();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_place, fragment);
-        fragmentTransaction.commit();
-    }
-
-    public void showBorrowProductDetailsFragment() {
+    public void showProductDetailsFragment() {
         viewGroup = (ViewGroup) findViewById(R.id.fragment_place);
         fragment = new ViewBorrowProductDetailsFragment();
         FragmentManager fragmentManager = getFragmentManager();
@@ -43,5 +33,4 @@ public class ItemPreviewActivity extends ToolbarActivity {
         fragmentTransaction.replace(R.id.fragment_place, fragment);
         fragmentTransaction.commit();
     }
-
 }

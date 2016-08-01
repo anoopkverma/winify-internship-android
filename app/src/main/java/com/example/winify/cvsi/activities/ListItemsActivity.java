@@ -5,9 +5,6 @@ import android.app.FragmentTransaction;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +14,7 @@ import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * This class stands as a base class, containing the Navigation Drawer and the Toolbar, with general elements
@@ -54,7 +48,6 @@ public class ListItemsActivity extends ToolbarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
-
         MenuItem menuItem = menu.findItem(R.id.action_menu);
         getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
         return true;

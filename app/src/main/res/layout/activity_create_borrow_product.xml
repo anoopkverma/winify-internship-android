@@ -115,6 +115,8 @@
                             android:hint="@string/prod_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
+
+
                     </ScrollView>
 
                 </LinearLayout>
@@ -131,6 +133,12 @@
         </android.support.design.widget.CoordinatorLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/aaa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_alignParentBottom="true"
