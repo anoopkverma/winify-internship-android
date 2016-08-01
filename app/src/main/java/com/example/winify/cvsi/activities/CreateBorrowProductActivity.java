@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 
-public class CreateBorrowProductActivity extends BaseActivity {
+public class CreateBorrowProductActivity extends ToolbarActivity {
 
     ImageView imageView;
     FloatingActionButton addImageFAB;
@@ -26,11 +26,10 @@ public class CreateBorrowProductActivity extends BaseActivity {
         setContentView(R.layout.activity_create_borrow_product);
         imageView = (ImageView) findViewById(R.id.image_view);
 
-        this.initBuilder();
+        this.initNavDrawer();
 //        this.setDrawerSelection(1);
 
         initSpinner();
-        this.initToolbar();
         initFloatingActionButtonAddImage();
     }
 

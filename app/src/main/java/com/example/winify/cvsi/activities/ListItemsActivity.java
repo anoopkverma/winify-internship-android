@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * This class stands as a base class, containing the Navigation Drawer and the Toolbar, with general elements
  */
-public class ListItemsActivity extends BaseActivity {
+public class ListItemsActivity extends ToolbarActivity {
 
     private static ViewGroup viewGroup;
     protected static Fragment fragment;
@@ -35,12 +35,11 @@ public class ListItemsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        this.initBuilder();
+        this.initNavDrawer();
         menu = (FloatingActionMenu) findViewById(R.id.menu);
         showListItemsFragment();
+        this.initToolbar();
         initMenu();
-        initToolbar();
-
     }
 
     @Override
@@ -90,12 +89,5 @@ public class ListItemsActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_place, fragment);
         fragmentTransaction.commit();
-    }
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
     }
 }

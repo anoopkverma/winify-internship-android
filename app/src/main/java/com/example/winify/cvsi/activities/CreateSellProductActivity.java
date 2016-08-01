@@ -15,7 +15,7 @@ import android.widget.Spinner;
 import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 
-public class CreateSellProductActivity extends BaseActivity {
+public class CreateSellProductActivity extends ToolbarActivity {
 
     ImageView imageView;
     FloatingActionButton addImageFAB;
@@ -26,7 +26,7 @@ public class CreateSellProductActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_sell_product);
-        this.initBuilder();
+        this.initNavDrawer();
         imageView = (ImageView) findViewById(R.id.image_view);
 
         this.initToolbar();

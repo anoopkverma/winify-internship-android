@@ -11,7 +11,7 @@ import com.example.winify.cvsi.fragments.ViewBorrowProductDetailsFragment;
 import com.example.winify.cvsi.fragments.ViewSellBuyProductDetailsFragment;
 
 
-public class ItemPreviewActivity extends BaseActivity {
+public class ItemPreviewActivity extends ToolbarActivity {
 
     private ViewGroup viewGroup;
     public static Fragment fragment;
@@ -20,7 +20,7 @@ public class ItemPreviewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details);
-        this.initBuilder();
+        this.initNavDrawer();
         initToolbar();
 
         showBorrowProductDetailsFragment();
@@ -42,14 +42,6 @@ public class ItemPreviewActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_place, fragment);
         fragmentTransaction.commit();
-    }
-
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }
