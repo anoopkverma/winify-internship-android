@@ -22,7 +22,7 @@ public class ProductController {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.3.191:8080/cvsi-server/")
+                .baseUrl("http://192.168.3.191:8080/dev/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -38,7 +38,7 @@ public class ProductController {
                 if (response.isSuccessful()) {
 
                     EventBus.getDefault().post(response.body());
-//                    Log.i("TAG", response.body().getList().get(0).getTitle());
+                    Log.i("TAG", response.body().getList().get(0).getTitle());
                 }
             }
 
