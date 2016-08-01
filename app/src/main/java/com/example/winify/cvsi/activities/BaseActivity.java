@@ -2,6 +2,7 @@ package com.example.winify.cvsi.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +31,10 @@ public class BaseActivity extends AppCompatActivity {
         this.savendInstanceState1 = savedInstanceState;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_super_base);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -86,5 +91,13 @@ public class BaseActivity extends AppCompatActivity {
                     }
                 })
                 .build();
+    }
+
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Create a Borrow product");
+        setSupportActionBar(toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

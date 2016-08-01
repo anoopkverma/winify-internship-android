@@ -28,13 +28,10 @@ public class CreateSellProductActivity extends BaseActivity {
         setContentView(R.layout.activity_create_sell_product);
         this.initBuilder();
         imageView = (ImageView) findViewById(R.id.image_view);
-        initToolbar();
-        initSpinner();
-        Intent applicationThatCalled = getIntent();
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
 
+        this.initToolbar();
+
+        initSpinner();
         initFloatingActionButtonAddImage();
     }
 
@@ -61,15 +58,6 @@ public class CreateSellProductActivity extends BaseActivity {
             imageView.setImageURI(imageUri);
 
         }
-    }
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        assert toolbar != null;
-        toolbar.setTitle("Create a Sell product");
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void initSpinner() {

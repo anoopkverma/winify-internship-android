@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.winify.cvsi.BuyPost;
+import com.example.winify.cvsi.activities.BaseActivity;
 import com.example.winify.cvsi.controllers.ProductController;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.SpacesItemDecoration;

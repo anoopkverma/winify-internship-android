@@ -29,16 +29,8 @@ public class CreateBorrowProductActivity extends BaseActivity {
         this.initBuilder();
 //        this.setDrawerSelection(1);
 
-        initToolbar();
         initSpinner();
-
-
-        
-        Intent getCallingActivity = getIntent();
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
-
+        this.initToolbar();
         initFloatingActionButtonAddImage();
     }
 
@@ -65,14 +57,6 @@ public class CreateBorrowProductActivity extends BaseActivity {
             imageView.setImageURI(imageUri);
 
         }
-    }
-
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Create a Borrow product");
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void initSpinner() {
