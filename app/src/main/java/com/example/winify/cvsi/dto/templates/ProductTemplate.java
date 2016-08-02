@@ -17,7 +17,7 @@ public class ProductTemplate implements Serializable {
     private String description;
     private CurrencyEnum currency;
     private Long price;
-    private Boolean isBorrow;
+    private Boolean borrow;
     private Long limitDate;
     private List<CategoryEnum> categoryEnumList;
     private String userName;
@@ -66,11 +66,11 @@ public class ProductTemplate implements Serializable {
     }
 
     public Boolean getBorrow() {
-        return isBorrow;
+        return borrow;
     }
 
     public void setBorrow(Boolean borrow) {
-        isBorrow = borrow;
+        this.borrow = borrow;
     }
 
     public Long getLimitDate() {

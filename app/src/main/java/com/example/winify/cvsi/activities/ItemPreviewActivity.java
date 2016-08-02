@@ -4,11 +4,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.ViewGroup;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.fragments.ViewBorrowProductDetailsFragment;
-import com.example.winify.cvsi.fragments.ViewSellBuyProductDetailsFragment;
 
 
 public class ItemPreviewActivity extends ToolbarActivity {

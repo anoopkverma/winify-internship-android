@@ -1,20 +1,31 @@
 package com.example.winify.cvsi.activities;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.app.Fragment;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.example.winify.cvsi.controllers.ProductController;
+import com.example.winify.cvsi.dto.ListDto;
+import com.example.winify.cvsi.dto.templates.ProductTemplate;
 import com.example.winify.cvsi.fragments.ListItemsFragment;
 import com.example.winify.cvsi.R;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
 import java.util.HashMap;
+
+import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
 
 /**
  * This class stands as a base class, containing the Navigation Drawer and the Toolbar, with general elements
@@ -29,10 +40,13 @@ public class ListItemsActivity extends ToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        showListItemsFragment();
+
         this.initNavDrawer();
         menu = (FloatingActionMenu) findViewById(R.id.menu);
-        showListItemsFragment();
+
         this.initToolbar();
+
         initMenu();
     }
 
@@ -44,6 +58,16 @@ public class ListItemsActivity extends ToolbarActivity {
             super.onBackPressed();
         }
     }
+
+//    @Override
+//    public void initNavDrawer() {
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitle("Create a Borrow product");
+//        setSupportActionBar(toolbar);
+//        assert getSupportActionBar() != null;
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+////        getNavC().getDrawer().getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

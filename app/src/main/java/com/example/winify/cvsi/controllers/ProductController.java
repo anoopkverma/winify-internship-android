@@ -1,6 +1,7 @@
 package com.example.winify.cvsi.controllers;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
@@ -22,7 +23,7 @@ public class ProductController {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.3.191:8080/dev/")
+                .baseUrl("http://192.168.3.191:8080/cvsi-server/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -39,6 +40,7 @@ public class ProductController {
 
                     EventBus.getDefault().post(response.body());
                     Log.i("TAG", response.body().getList().get(0).getTitle());
+//                    Toast.makeText(this, "rosiht", Toast.LENGTH_SHORT).show();
                 }
             }
 

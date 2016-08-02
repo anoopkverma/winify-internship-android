@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.winify.cvsi.BuyPost;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.activities.ItemPreviewActivity;
-import com.squareup.picasso.Picasso;
-
-import java.util.List;
+import com.example.winify.cvsi.dto.ListDto;
+import com.example.winify.cvsi.dto.templates.ProductTemplate;
 
 /**
  * Provide views to RecyclerView with data from mDataSet.
@@ -26,7 +24,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
     public static String ITEM_POST = "ITEM_POST";
 
     private final Context context;
-    private List<BuyPost> allPosts;
+    private ListDto<ProductTemplate> allPosts;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
@@ -53,7 +51,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
     }
 
 
-    public ListItemsAdapter(Context context, List<BuyPost> allPosts) {
+    public ListItemsAdapter(Context context, ListDto<ProductTemplate> allPosts) {
         this.context = context;
         this.allPosts = allPosts;
     }
@@ -71,16 +69,16 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
 
     @Override
     public void onBindViewHolder(ListItemsAdapter.ViewHolder viewHolder, final int position) {
-        viewHolder.mTitleTextView.setText(allPosts.get(position).getTitle());
+        viewHolder.mTitleTextView.setText(allPosts.getList().get(position).getTitle());
 //        viewHolder.mDateCreated.setText(allPosts.get(position).getCreatedDate().toString());
-        viewHolder.mPrice.setText(allPosts.get(position).getPrice().toString());
-        Picasso.with(context).load(allPosts.get(position).image_url).into(viewHolder.mImageView);
+        viewHolder.mPrice.setText(allPosts.getList().get(position).getPrice().toString());
+//        Picasso.with(context).load(allPosts.getList().get(position).image_url).into(viewHolder.mImageView);
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ItemPreviewActivity.class);
-                intent.putExtra(ITEM_POST,allPosts.get(position));
+                intent.putExtra(ITEM_POST,allPosts.getList().get(position));
                 context.startActivity(intent);
             }
         });
@@ -88,6 +86,6 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
 
     @Override
     public int getItemCount() {
-        return allPosts.size();
+        return allPosts.getList().size();
     }
 }

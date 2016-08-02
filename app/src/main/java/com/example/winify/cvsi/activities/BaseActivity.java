@@ -29,5 +29,9 @@ public class BaseActivity extends AppCompatActivity {
     public void initNavDrawer() {
         navC.initBuilder(this, R.drawable.nina, savedInstanceState);
     }
+
+    public NavDrawerController getNavC() {
+        return this.navC;
+    }
 }
 

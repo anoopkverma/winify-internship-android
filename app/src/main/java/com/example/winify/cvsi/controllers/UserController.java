@@ -27,7 +27,7 @@ public class UserController {
 
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.3.191:8080/cvsi-server/")
+                .baseUrl("http://192.168.3.191:8000/dev/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

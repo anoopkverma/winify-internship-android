@@ -1,13 +1,10 @@
 package com.example.winify.cvsi.controllers;
 
 import android.app.Activity;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.winify.cvsi.R;
-import com.example.winify.cvsi.activities.BaseActivity;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -51,6 +48,7 @@ public class NavDrawerController {
         PrimaryDrawerItem logout = new PrimaryDrawerItem().withIcon(GoogleMaterial.Icon.gmd_exit_to_app).withIdentifier(1).withName(R.string.drawer_item_logout);
 
         SecondaryDrawerItem item2 = (SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(2).withName(R.string.drawer_item_settings);
+
         drawer = new DrawerBuilder()
                 .withActivity(someActivity)
                 .withAccountHeader(headerResult)
@@ -77,4 +75,6 @@ public class NavDrawerController {
                 })
                 .build();
     }
+
+
 }
