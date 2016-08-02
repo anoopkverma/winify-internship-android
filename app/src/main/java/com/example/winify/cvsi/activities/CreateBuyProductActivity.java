@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
 
 public class CreateBuyProductActivity extends CreateProduct {
@@ -20,7 +21,8 @@ public class CreateBuyProductActivity extends CreateProduct {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_buy_product);
-        this.initNavDrawer();
+        this.nabDrawer = new NavigationDrawer(this);
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana");
         imageView = (ImageView) findViewById(R.id.image_view);
         this.initToolbar();
         initSpinner();

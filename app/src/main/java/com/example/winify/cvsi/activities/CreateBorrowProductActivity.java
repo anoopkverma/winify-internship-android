@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
 
 public class CreateBorrowProductActivity extends CreateProduct {
@@ -26,7 +27,8 @@ public class CreateBorrowProductActivity extends CreateProduct {
         setContentView(R.layout.activity_create_borrow_product);
         imageView = (ImageView) findViewById(R.id.image_view);
 
-        this.initNavDrawer();
+        this.nabDrawer = new NavigationDrawer(this);
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "ileana", "Cosinzeana");
 //        this.setDrawerSelection(1);
 
         initSpinner();

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.fragments.ViewBorrowProductDetailsFragment;
+import com.example.winify.cvsi.utils.NavigationDrawer;
 
 
 public class ItemPreviewActivity extends ToolbarActivity {
@@ -18,7 +19,8 @@ public class ItemPreviewActivity extends ToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details);
-        this.initNavDrawer();
+        this.nabDrawer = new NavigationDrawer(this);
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana");
         initToolbar();
         showProductDetailsFragment();
     }

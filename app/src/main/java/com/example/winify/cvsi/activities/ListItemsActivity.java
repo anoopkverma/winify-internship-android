@@ -19,6 +19,7 @@ import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
 import com.example.winify.cvsi.fragments.ListItemsFragment;
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -42,7 +43,8 @@ public class ListItemsActivity extends ToolbarActivity {
         setContentView(R.layout.activity_base);
         showListItemsFragment();
 
-        this.initNavDrawer();
+        nabDrawer = new NavigationDrawer(this);
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana");
         menu = (FloatingActionMenu) findViewById(R.id.menu);
 
         this.initToolbar();
@@ -59,15 +61,17 @@ public class ListItemsActivity extends ToolbarActivity {
         }
     }
 
-//    @Override
-//    public void initNavDrawer() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        toolbar.setTitle("Create a Borrow product");
-//        setSupportActionBar(toolbar);
-//        assert getSupportActionBar() != null;
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-////        getNavC().getDrawer().getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
-//    }
+    @Override
+    public void initToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Create a Borrow product");
+        setSupportActionBar(toolbar);
+        assert getSupportActionBar() != null;
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        if (nabDrawer.drawer != null) {
+//            nabDrawer.drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
+//        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
