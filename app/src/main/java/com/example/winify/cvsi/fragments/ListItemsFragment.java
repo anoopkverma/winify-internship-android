@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
+import com.example.winify.cvsi.activities.ListItemsActivity;
 import com.example.winify.cvsi.controllers.ProductController;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.SpacesItemDecoration;
@@ -57,7 +58,9 @@ public class ListItemsFragment extends Fragment {
                              Bundle savedInstanceState) {
         SPAN_COUNT = getSpanNr();
         this.view =  inflater.inflate(R.layout.fragment_list_items, container, false);
-        menu = (FloatingActionMenu) this.view.findViewById(R.id.menu);
+
+        this.menu = ((ListItemsActivity)this.getActivity()).getMenu();
+//        menu = (FloatingActionMenu) this.view.findViewById(R.id.menu);
 
         EventBus.getDefault().register(this);
         productController = new ProductController();
@@ -108,10 +111,11 @@ public class ListItemsFragment extends Fragment {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy > 0)
-                    menu.hideMenu(true);
+                if (dy > 0) {
+                    menu.hideMenuButton(true);
+                }
                 else if (dy < 0)
-                    menu.showMenu(true);
+                    menu.showMenuButton(true);
             }
         });
     }

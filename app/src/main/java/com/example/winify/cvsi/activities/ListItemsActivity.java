@@ -1,5 +1,6 @@
 package com.example.winify.cvsi.activities;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -37,25 +38,32 @@ public class ListItemsActivity extends TestActivity {
     private static ViewGroup viewGroup;
     protected static Fragment fragment;
     private FloatingActionMenu menu;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         showListItemsFragment();
+        initToolbar();
+        initNavDrawer(R.drawable.nina, savedInstanceState, "diana", "Ileana", this.toolbar);
+        menu = (FloatingActionMenu) findViewById(R.id.menu);
+        initFAMenu();
+    }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    public void initToolbar() {
+        this.toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Create a Borrow product");
         setSupportActionBar(toolbar);
+    }
+
+
+    public void initNavDrawer(int resource, Bundle instance, String name, String email, Toolbar toolbar) {
+        this.nabDrawer = new NavigationDrawer(this);
+        this.nabDrawer.buildDrawer(this, resource, instance, name, email, toolbar);
         assert getSupportActionBar() != null;
-
-        nabDrawer = new NavigationDrawer(this);
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", toolbar);
-        menu = (FloatingActionMenu) findViewById(R.id.menu);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         nabDrawer.drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
-        initMenu();
     }
 
     @Override
@@ -75,7 +83,7 @@ public class ListItemsActivity extends TestActivity {
         return true;
     }
 
-    public void initMenu() {
+    public void initFAMenu() {
         menu = (FloatingActionMenu) findViewById(R.id.menu);
 
         HashMap<FloatingActionButton, Class> fabMapList = new HashMap<FloatingActionButton, Class>();
@@ -104,5 +112,9 @@ public class ListItemsActivity extends TestActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_place, fragment);
         fragmentTransaction.commit();
+    }
+
+    public FloatingActionMenu getMenu() {
+        return this.menu;
     }
 }
