@@ -20,7 +20,7 @@ public class ItemPreviewActivity extends ToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_details);
         this.nabDrawer = new NavigationDrawer(this);
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana");
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
         initToolbar();
         showProductDetailsFragment();
     }

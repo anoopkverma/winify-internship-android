@@ -21,11 +21,6 @@
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.WelcomeActivity">
 
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -107,12 +102,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ListItemsActivity"
+            android:name=".activities.TestActivity"
             android:label="Fancy App"
             android:theme="@style/AppTheme" />
         <activity android:name=".TestBaseActivity" />
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.ToolbarActivity" />
+        <activity android:name=".activities.ListItemsActivity"></activity>
     </application>
 
 </manifest>

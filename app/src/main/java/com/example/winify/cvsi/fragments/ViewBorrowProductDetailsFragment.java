@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
 
@@ -19,7 +20,7 @@ import com.example.winify.cvsi.dto.templates.ProductTemplate;
  */
 public class ViewBorrowProductDetailsFragment extends Fragment {
 
-    ProductTemplate prod;
+    AbstractProductTemplate prod;
     TextView titleTextView;
     TextView descriptionTextView;
     ImageView imageView;
@@ -44,7 +45,7 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_view_sell_buy_product, container, false);
 
         if (getActivity().getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
-            prod = (ProductTemplate)getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
+            prod = (AbstractProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
             if (prod != null ) {
                 if (prod.getBorrow()) {
@@ -83,7 +84,7 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
 
     public void getTheExtra(View view) {
         if (getActivity().getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
-            prod = (ProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
+            prod = (AbstractProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
             TextView titleTextView = (TextView) view.findViewById(R.id.title_tv);
             TextView descriptionTextView = (TextView) view.findViewById(R.id.description_tv);

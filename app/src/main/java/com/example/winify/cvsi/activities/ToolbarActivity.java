@@ -6,8 +6,10 @@ import com.example.winify.cvsi.R;
 
 public class ToolbarActivity extends BaseActivity {
 
+    public Toolbar toolbar;
+
     public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Create a Borrow product");
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;

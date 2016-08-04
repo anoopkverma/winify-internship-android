@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.activities.ItemPreviewActivity;
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
@@ -24,7 +25,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
     public static String ITEM_POST = "ITEM_POST";
 
     private final Context context;
-    private ListDto<ProductTemplate> allPosts;
+    private ListDto<AbstractProductTemplate> allPosts;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView textView;
@@ -51,7 +52,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
     }
 
 
-    public ListItemsAdapter(Context context, ListDto<ProductTemplate> allPosts) {
+    public ListItemsAdapter(Context context, ListDto<AbstractProductTemplate> allPosts) {
         this.context = context;
         this.allPosts = allPosts;
     }
@@ -70,8 +71,8 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
     @Override
     public void onBindViewHolder(ListItemsAdapter.ViewHolder viewHolder, final int position) {
         viewHolder.mTitleTextView.setText(allPosts.getList().get(position).getTitle());
-//        viewHolder.mDateCreated.setText(allPosts.get(position).getCreatedDate().toString());
-        viewHolder.mPrice.setText(allPosts.getList().get(position).getPrice().toString());
+        viewHolder.mDateCreated.setText(String.valueOf(allPosts.getList().get(position).getCreatedDate().toString()));
+        viewHolder.mPrice.setText(String.valueOf(allPosts.getList().get(position).getPrice()));
 //        Picasso.with(context).load(allPosts.getList().get(position).image_url).into(viewHolder.mImageView);
 
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -86,6 +87,10 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
 
     @Override
     public int getItemCount() {
-        return allPosts.getList().size();
+        int temp = 0;
+        if (allPosts.getList() != null) {
+            temp = allPosts.getList().size();
+        }
+        return temp;
     }
 }

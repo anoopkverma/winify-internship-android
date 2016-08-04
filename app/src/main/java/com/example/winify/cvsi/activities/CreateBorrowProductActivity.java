@@ -26,9 +26,8 @@ public class CreateBorrowProductActivity extends CreateProduct {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_borrow_product);
         imageView = (ImageView) findViewById(R.id.image_view);
-
         this.nabDrawer = new NavigationDrawer(this);
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "ileana", "Cosinzeana");
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
 //        this.setDrawerSelection(1);
 
         initSpinner();

@@ -22,6 +22,7 @@ import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.mikepenz.materialdrawer.Drawer;
 
 import java.util.HashMap;
 
@@ -31,7 +32,7 @@ import de.greenrobot.event.Subscribe;
 /**
  * This class stands as a base class, containing the Navigation Drawer and the Toolbar, with general elements
  */
-public class ListItemsActivity extends ToolbarActivity {
+public class ListItemsActivity extends TestActivity {
 
     private static ViewGroup viewGroup;
     protected static Fragment fragment;
@@ -43,12 +44,17 @@ public class ListItemsActivity extends ToolbarActivity {
         setContentView(R.layout.activity_base);
         showListItemsFragment();
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Create a Borrow product");
+        setSupportActionBar(toolbar);
+        assert getSupportActionBar() != null;
+
         nabDrawer = new NavigationDrawer(this);
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana");
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", toolbar);
         menu = (FloatingActionMenu) findViewById(R.id.menu);
 
-        this.initToolbar();
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        nabDrawer.drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
         initMenu();
     }
 
@@ -59,18 +65,6 @@ public class ListItemsActivity extends ToolbarActivity {
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public void initToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Create a Borrow product");
-        setSupportActionBar(toolbar);
-        assert getSupportActionBar() != null;
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//        if (nabDrawer.drawer != null) {
-//            nabDrawer.drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);
-//        }
     }
 
     @Override

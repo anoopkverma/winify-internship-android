@@ -23,7 +23,7 @@ public class CreateSellProductActivity extends CreateProduct {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_sell_product);
         this.nabDrawer = new NavigationDrawer(this);
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana");
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
         imageView = (ImageView) findViewById(R.id.image_view);
         this.initToolbar();
         initSpinner();

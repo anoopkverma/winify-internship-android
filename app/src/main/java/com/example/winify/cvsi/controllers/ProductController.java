@@ -37,7 +37,6 @@ public class ProductController {
             @Override
             public void onResponse(Call<ListDto<ProductTemplate>> call, Response<ListDto<ProductTemplate>> response) {
                 if (response.isSuccessful()) {
-
                     EventBus.getDefault().post(response.body());
                     Log.i("TAG", response.body().getList().get(0).getTitle());
 //                    Toast.makeText(this, "rosiht", Toast.LENGTH_SHORT).show();

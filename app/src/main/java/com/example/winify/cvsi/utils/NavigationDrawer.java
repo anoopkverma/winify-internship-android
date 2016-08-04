@@ -2,6 +2,7 @@ package com.example.winify.cvsi.utils;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -45,17 +46,17 @@ public class NavigationDrawer {
         this.item2 = (SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(2).withName(R.string.drawer_item_settings);
     }
 
-    public void buildDrawer(Activity activity, int resourceId, Bundle savendInstanceState1, String name, String email) {
+    public void buildDrawer(Activity activity, int resourceId, Bundle savendInstanceState1, String name, String email, Toolbar toolbar) {
         initDrawerItems(activity);
         addAccountHeader(activity,resourceId, savendInstanceState1, name, email );
-        setDrawerProperties(activity);
+        setDrawerProperties(activity, toolbar);
     }
 
-    public void setDrawerProperties(Activity activity) {
+    public void setDrawerProperties(Activity activity, Toolbar toolbar) {
         drawer = new DrawerBuilder()
                 .withActivity(activity)
                 .withAccountHeader(headerResult)
-//                .withToolbar(toolbar)
+                .withToolbar(toolbar)
                 .addDrawerItems(
                         home,
                         new DividerDrawerItem(),

@@ -1,115 +1,131 @@
 package com.example.winify.cvsi.dto.templates;
 
 
+import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.model.enums.CategoryEnum;
 import com.example.winify.cvsi.model.enums.CurrencyEnum;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Artemie on 01.07.2016.
  */
 // Clasa template pentru un item din lista de producte
-public class ProductTemplate implements Serializable {
-    private Long id;
-    private String title;
-    private String description;
-    private CurrencyEnum currency;
-    private Long price;
-    private Boolean borrow;
-    private Long limitDate;
-    private List<CategoryEnum> categoryEnumList;
-    private String userName;
+public class ProductTemplate extends AbstractProductTemplate {
 
-    private Long createdDate;
-    private Long updatedDate;
-
+    @Override
     public Long getId() {
         return id;
     }
 
+    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
 
+    @Override
     public void setTitle(String title) {
         this.title = title;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
+    @Override
     public void setDescription(String description) {
         this.description = description;
     }
 
+    @Override
     public CurrencyEnum getCurrency() {
         return currency;
     }
 
+    @Override
     public void setCurrency(CurrencyEnum currency) {
         this.currency = currency;
     }
 
+    @Override
     public Long getPrice() {
         return price;
     }
 
+    @Override
     public void setPrice(Long price) {
         this.price = price;
     }
 
+    @Override
     public Boolean getBorrow() {
         return borrow;
     }
 
+    @Override
     public void setBorrow(Boolean borrow) {
         this.borrow = borrow;
     }
 
+    @Override
     public Long getLimitDate() {
         return limitDate;
     }
 
+    @Override
     public void setLimitDate(Long limitDate) {
         this.limitDate = limitDate;
     }
 
+    @Override
     public List<CategoryEnum> getCategoryEnumList() {
         return categoryEnumList;
     }
 
+    @Override
     public void setCategoryEnumList(List<CategoryEnum> categoryEnumList) {
         this.categoryEnumList = categoryEnumList;
     }
 
+    @Override
     public Long getCreatedDate() {
         return createdDate;
     }
 
+    @Override
     public void setCreatedDate(Long createdDate) {
         this.createdDate = createdDate;
     }
 
+    @Override
     public Long getUpdatedDate() {
         return updatedDate;
     }
 
+    @Override
     public void setUpdatedDate(Long updatedDate) {
         this.updatedDate = updatedDate;
     }
 
+    @Override
     public String getUserName() {
         return userName;
     }
 
+    @Override
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    @Override
+    public boolean isNil() {
+        return false;
+    }
 }
+

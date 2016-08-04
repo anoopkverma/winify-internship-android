@@ -12,13 +12,16 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.controllers.ProductController;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.SpacesItemDecoration;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
+import com.example.winify.cvsi.utils.ListDtoFactory;
 import com.github.clans.fab.FloatingActionMenu;
 
 import de.greenrobot.event.EventBus;
@@ -39,10 +42,11 @@ public class ListItemsFragment extends Fragment {
     private static final int DATASET_COUNT = 2;
     private static int SPAN_COUNT;
 
-    protected ListDto<ProductTemplate> allPosts;
+    protected ListDto<AbstractProductTemplate> allPosts;
+
+    ListDtoFactory factory;
 
     protected ListDto<ProductTemplate> listDtoObject;
-
     private ProductController productController;
 
     private View view;
@@ -55,7 +59,6 @@ public class ListItemsFragment extends Fragment {
         this.view =  inflater.inflate(R.layout.fragment_list_items, container, false);
         menu = (FloatingActionMenu) this.view.findViewById(R.id.menu);
 
-
         EventBus.getDefault().register(this);
         productController = new ProductController();
         productController.getProductDTO();
@@ -66,18 +69,22 @@ public class ListItemsFragment extends Fragment {
     }
 
     @Subscribe
-    public void onGetProductDTOEvent(ListDto<ProductTemplate> event) {
-        for (int i = 0; i < allPosts.getList().size(); i++) {
-            allPosts.getList().get(i).setTitle(event.getList().get(i).getTitle());
-            allPosts.getList().get(i).setDescription(event.getList().get(i).getDescription());
-//            allPosts.getList().get(i).setCreatedDate((Date)event.getList().get(i).getCreatedDate());
-            allPosts.getList().get(i).setPrice(event.getList().get(i).getPrice());
-            allPosts.getList().get(i).setBorrow(event.getList().get(i).getBorrow());
-            allPosts.getList().get(i).setCategoryEnumList(event.getList().get(i).getCategoryEnumList());
-            allPosts.getList().get(i).setCurrency(event.getList().get(i).getCurrency());
-            allPosts.getList().get(i).setLimitDate(event.getList().get(i).getLimitDate());
-            allPosts.getList().get(i).setUserName(event.getList().get(i).getUserName());
-        }
+    public void onGetProductDTOEvent(ListDto<AbstractProductTemplate> event) {
+
+        this.allPosts = ListDtoFactory.getProduct(event);
+
+        Toast.makeText(getActivity(), allPosts.getList().get(0).getTitle() + "shit", Toast.LENGTH_SHORT).show();
+//        for (int i = 0; i < event.getList().size(); i++) {
+//            allPosts.getList().get(i).setTitle(event.getList().get(i).getTitle());
+//            allPosts.getList().get(i).setDescription(event.getList().get(i).getDescription());
+////            allPosts.getList().get(i).setCreatedDate((Date)event.getList().get(i).getCreatedDate());
+//            allPosts.getList().get(i).setPrice(event.getList().get(i).getPrice());
+//            allPosts.getList().get(i).setBorrow(event.getList().get(i).getBorrow());
+//            allPosts.getList().get(i).setCategoryEnumList(event.getList().get(i).getCategoryEnumList());
+//            allPosts.getList().get(i).setCurrency(event.getList().get(i).getCurrency());
+//            allPosts.getList().get(i).setLimitDate(event.getList().get(i).getLimitDate());
+//            allPosts.getList().get(i).setUserName(event.getList().get(i).getUserName());
+//        }
         setmRecyclerViewLayoutManager(view);
     }
 
@@ -97,7 +104,19 @@ public class ListItemsFragment extends Fragment {
         int scrollPosition = 0;
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(scrollPosition);
+
+        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                if (dy > 0)
+                    menu.hideMenu(true);
+                else if (dy < 0)
+                    menu.showMenu(true);
+            }
+        });
     }
+
+
 
     public void checkMenuExpanded(View layout, final FloatingActionMenu menu) {
         layout.setOnTouchListener(new View.OnTouchListener() {
