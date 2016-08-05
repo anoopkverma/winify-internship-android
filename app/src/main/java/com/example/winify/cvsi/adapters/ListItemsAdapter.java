@@ -87,10 +87,6 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
 
     @Override
     public int getItemCount() {
-        int temp = 0;
-        if (allPosts.getList() != null) {
-            temp = allPosts.getList().size();
-        }
-        return temp;
+        return allPosts.getList() != null ? allPosts.getList().size() : 0;
     }
 }

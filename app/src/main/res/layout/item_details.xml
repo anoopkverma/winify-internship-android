@@ -22,7 +22,7 @@
         android:layout_height="match_parent">
 
         <fragment
-            android:name="com.example.winify.cvsi.fragments.ListItemsFragment"
+            android:name="com.example.winify.cvsi.fragments.ViewBorrowProductDetailsFragment"
             android:id="@+id/fragment_place"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

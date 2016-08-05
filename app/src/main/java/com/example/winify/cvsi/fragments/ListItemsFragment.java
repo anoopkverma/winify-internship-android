@@ -21,7 +21,6 @@ import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.SpacesItemDecoration;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
 import com.example.winify.cvsi.dto.ListDto;
-import com.example.winify.cvsi.dto.templates.ProductTemplate;
 import com.example.winify.cvsi.utils.ListDtoFactory;
 import com.github.clans.fab.FloatingActionMenu;
 
@@ -34,22 +33,11 @@ import de.greenrobot.event.Subscribe;
 public class ListItemsFragment extends Fragment {
 
     private FloatingActionMenu menu;
-
-
     protected RecyclerView mRecyclerView;
-    protected ListItemsAdapter mAdapter;
     protected StaggeredGridLayoutManager mLayoutManager;
-
-    private static final int DATASET_COUNT = 2;
     private static int SPAN_COUNT;
-
     protected ListDto<AbstractProductTemplate> allPosts;
-
-    ListDtoFactory factory;
-
-    protected ListDto<ProductTemplate> listDtoObject;
     private ProductController productController;
-
     private View view;
     public ListItemsFragment() { }
 
@@ -59,7 +47,7 @@ public class ListItemsFragment extends Fragment {
         SPAN_COUNT = getSpanNr();
         this.view =  inflater.inflate(R.layout.fragment_list_items, container, false);
 
-        this.menu = ((ListItemsActivity)this.getActivity()).getMenu();
+        this.menu = ((ListItemsActivity)this.getActivity()).getFloatingActionMenu();
 //        menu = (FloatingActionMenu) this.view.findViewById(R.id.menu);
 
         EventBus.getDefault().register(this);
@@ -77,17 +65,6 @@ public class ListItemsFragment extends Fragment {
         this.allPosts = ListDtoFactory.getProduct(event);
 
         Toast.makeText(getActivity(), allPosts.getList().get(0).getTitle() + "shit", Toast.LENGTH_SHORT).show();
-//        for (int i = 0; i < event.getList().size(); i++) {
-//            allPosts.getList().get(i).setTitle(event.getList().get(i).getTitle());
-//            allPosts.getList().get(i).setDescription(event.getList().get(i).getDescription());
-////            allPosts.getList().get(i).setCreatedDate((Date)event.getList().get(i).getCreatedDate());
-//            allPosts.getList().get(i).setPrice(event.getList().get(i).getPrice());
-//            allPosts.getList().get(i).setBorrow(event.getList().get(i).getBorrow());
-//            allPosts.getList().get(i).setCategoryEnumList(event.getList().get(i).getCategoryEnumList());
-//            allPosts.getList().get(i).setCurrency(event.getList().get(i).getCurrency());
-//            allPosts.getList().get(i).setLimitDate(event.getList().get(i).getLimitDate());
-//            allPosts.getList().get(i).setUserName(event.getList().get(i).getUserName());
-//        }
         setmRecyclerViewLayoutManager(view);
     }
 
@@ -96,11 +73,9 @@ public class ListItemsFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         Log.i("Banana", "o mers");
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL));
-        SpacesItemDecoration decoration = new SpacesItemDecoration(1);
-        mRecyclerView.addItemDecoration(decoration);
+        mRecyclerView.addItemDecoration(new SpacesItemDecoration(1));
 
-        mAdapter = new ListItemsAdapter(getActivity(), allPosts);
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(new ListItemsAdapter(getActivity(), allPosts));
 
         mLayoutManager = new StaggeredGridLayoutManager(SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -119,8 +94,6 @@ public class ListItemsFragment extends Fragment {
             }
         });
     }
-
-
 
     public void checkMenuExpanded(View layout, final FloatingActionMenu menu) {
         layout.setOnTouchListener(new View.OnTouchListener() {
