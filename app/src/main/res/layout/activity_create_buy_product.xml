@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_width="match_parent"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/White"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -14,40 +16,39 @@
 
         <include layout="@layout/toolbar" />
 
-
     </LinearLayout>
     <!--  Header Ends -->
 
-
     <ScrollView
-        android:layout_below="@id/header"
+        android:layout_above="@+id/footer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/White"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header">
 
-        <android.support.design.widget.CoordinatorLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:theme="@style/toolbarTheme"
+            <android.support.design.widget.CoordinatorLayout
+                android:id="@+id/coo"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:id="@+id/image_place"
+                    android:theme="@style/toolbarTheme"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:orientation="vertical"
+                        android:id="@+id/image_place"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
+
 
                         <ImageView
                             android:background="@color/blackOrange"
@@ -58,79 +59,82 @@
                             android:id="@+id/image_view" />
 
                     </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:paddingRight="5dp"
-                    android:paddingLeft="5dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
                     <LinearLayout
-                        android:weightSum="5"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">>
-
-                        <EditText
-                            android:layout_weight="4"
-                            android:id="@+id/prod_title_editText"
-                            android:hint="@string/product_title"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:weightSum="7"
-                        android:orientation="horizontal"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <Spinner
-                            android:background="@color/roseRed"
-                            android:id="@+id/currency_spinner"
-                            android:minWidth="100dp"
-                            android:theme="@style/spinnerTheme"
-                            android:layout_weight="2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="30dp" />
-
-                        <EditText
-                            android:backgroundTint="@color/roseRed"
-                            android:paddingRight="0dp"
-                            android:layout_weight="6"
-                            android:id="@+id/prod_price_editText"
-                            android:hint="@string/prod_price"
+                        <LinearLayout
+                            android:weightSum="5"
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
+                            android:layout_height="wrap_content">
 
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                            <EditText
+                                android:layout_weight="4"
+                                android:id="@+id/prod_title_editText"
+                                android:hint="@string/product_title"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:weightSum="7"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <Spinner
+                                android:background="@color/roseRed"
+                                android:id="@+id/currency_spinner"
+                                android:minWidth="100dp"
+                                android:theme="@style/spinnerTheme"
+                                android:layout_weight="2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp" />
+
+                            <EditText
+                                android:backgroundTint="@color/roseRed"
+                                android:paddingRight="0dp"
+                                android:layout_weight="6"
+                                android:id="@+id/prod_price_editText"
+                                android:hint="@string/prod_price"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+
                         <EditText
                             android:id="@+id/prod_description_editText"
                             android:hint="@string/prod_description"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
-                    </ScrollView>
 
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/fab_add_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_anchor="@id/image_place"
-                app:layout_anchorGravity="bottom|right|end"
-                android:src="@drawable/ic_add_a_photo_white_24dp" />
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/fab_add_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_anchor="@id/image_place"
+                    app:layout_anchorGravity="bottom|right|end"
+                    android:src="@drawable/ic_add_a_photo_white_24dp" />
 
-        </android.support.design.widget.CoordinatorLayout>
+            </android.support.design.widget.CoordinatorLayout>
+
+
+        </RelativeLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_alignParentBottom="true"
