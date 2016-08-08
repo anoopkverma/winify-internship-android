@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ViewSellBuyProductDetailsFragment">
+    tools:context=".activities.ItemPreviewActivity">
 
     <RelativeLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +24,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:id="@+id/image_place"
+                    android:id="@+id/image_placebs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -32,13 +32,13 @@
                         android:adjustViewBounds="true"
                         android:layout_width="match_parent"
                         android:layout_height="250dp"
-                        android:id="@+id/image_view" />
+                        android:id="@+id/image_viewbs" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@id/title_place"
-                    android:layout_below="@+id/image_place"
+                    android:id="@+id/title_placebs"
+                    android:layout_below="@+id/image_placebs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="7">
@@ -46,7 +46,7 @@
                     <TextView
                         android:textColor="@color/roseRed"
                         android:layout_weight="4"
-                        android:id="@+id/title_tv"
+                        android:id="@+id/title_tvbs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="article title"
@@ -55,24 +55,24 @@
 
                     <TextView
                         android:layout_weight="1"
-                        android:id="@+id/space_between"
+                        android:id="@+id/space_betweenbs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_weight="2"
                         android:text="date"
-                        android:id="@+id/date"
+                        android:id="@+id/datebs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
 
                 <RelativeLayout
-                    android:layout_below="@+id/title_place"
+                    android:layout_below="@+id/title_placebs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:id="@+id/description_tv"
+                        android:id="@+id/description_tvbs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/description_text_view"
@@ -84,8 +84,8 @@
                     android:paddingTop="8dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:id="@id/title_place"
-                    android:layout_below="@+id/image_place"
+                    android:id="@id/title_placebs"
+                    android:layout_below="@id/title_placebs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="7">
@@ -94,7 +94,7 @@
                         android:textColor="@color/darkerBlue"
                         android:text="\@username"
                         android:layout_weight="4"
-                        android:id="@+id/username_tv"
+                        android:id="@+id/username_tvbs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
@@ -107,7 +107,7 @@
                         android:maxHeight="25dp"
                         android:text="@string/default_currency"
                         android:layout_weight="1"
-                        android:id="@+id/currency"
+                        android:id="@+id/currencybs"
                         android:layout_width="15dp"
                         android:layout_height="30dp" />
 
@@ -115,12 +115,11 @@
                         android:paddingLeft="5dp"
                         android:textColor="@color/darkerBlue"
                         android:layout_weight="2"
-                        android:text="price"
-                        android:id="@+id/price_tv"
+                        android:text="pricebs"
+                        android:id="@+id/price_tvbs"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
-
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>

@@ -71,8 +71,6 @@
                         android:layout_height="30dp"/>
                 </LinearLayout>
 
-
-
                 <LinearLayout
                     android:id="@+id/date_place"
                     android:paddingTop="8dp"
@@ -155,7 +153,7 @@
                         android:textColor="@color/darkerBlue"
                         android:layout_weight="2"
                         android:text="price"
-                        android:id="@+id/price_tv"
+                        android:id="@+id/price_text_v"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content" />
                 </LinearLayout>

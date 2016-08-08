@@ -50,39 +50,42 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
             if (prod != null ) {
                 if (prod.getBorrow()) {
                     view = inflater.inflate(R.layout.fragment_view_borrow_product_details, container, false);
-                    getTheExtra(view);
+                    getTheExtraBorrow(view);
+                } else {
+                    getTheExtraSellBuy(view);
                 }
             }
         }
 
-        getTheExtra(view);
+
         return view;
     }
 
-//    public void initUI(View view) {
-//        this.titleTextView = (TextView) view.findViewById(R.id.title_tv);
-//        this.descriptionTextView = (TextView) view.findViewById(R.id.description_tv);
-//        this.imageView = (ImageView) view.findViewById(R.id.image_view);
-//        this.startDateTV = (TextView) view.findViewById(R.id.starting_date);
-//        this.endDateTV = (TextView) view.findViewById(R.id.end_date);
-//        this.priceTV = (TextView) view.findViewById(R.id.price_tv);
-//        this.currentyTypeButton = (Button) view.findViewById(R.id.currency_button);
-//        this.borrowTypeButton = (Button) view.findViewById(R.id.button_type);
-//    }
-//
-//    public void getTheExtra(View view) {
-//        initUI(view);
-//        if (titleTextView != null && descriptionTextView != null && priceTV != null && buyPost != null) {
-//            titleTextView.setText(buyPost.getTitle());
-//            priceTV.setText(String.valueOf(buyPost.getPrice()));
-//            currentyTypeButton.setText(buyPost.getCurrency().toString());
-//            descriptionTextView.setText(buyPost.getDescription());
-////                borrowTypeButton.setText(buyPost.getBorrow().toString());
-//            Picasso.with(getActivity()).load(buyPost.image_url).into(imageView);
-//        }
-//    }
+    public void getTheExtraSellBuy(View view) {
+        if (getActivity().getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
+            prod = (AbstractProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
-    public void getTheExtra(View view) {
+            TextView titleTextView = (TextView) view.findViewById(R.id.title_tvbs);
+            TextView descriptionTextView = (TextView) view.findViewById(R.id.description_tvbs);
+            ImageView imageView = (ImageView) view.findViewById(R.id.image_viewbs);
+            TextView startDateTV = (TextView) view.findViewById(R.id.datebs);
+            TextView priceTV = (TextView) view.findViewById(R.id.price_tvbs);
+            Button currentyTypeButton = (Button) view.findViewById(R.id.currencybs);
+            TextView userName = (TextView) view.findViewById(R.id.username_tvbs);
+            if (titleTextView != null && descriptionTextView != null && priceTV != null) {
+                titleTextView.setText(prod.getTitle());
+                descriptionTextView.setText(prod.getDescription());
+                startDateTV.setText(prod.getCreatedDate().toString());
+                priceTV.setText(String.valueOf(prod.getPrice()));
+                currentyTypeButton.setText(prod.getCurrency().toString());
+                userName.setText(prod.getUserName());
+//                borrowTypeButton.setText(prod.getCategoryEnumList());
+//                Picasso.with(getActivity()).load(prod.image_url).into(imageView);
+            }
+        }
+    }
+
+    public void getTheExtraBorrow(View view) {
         if (getActivity().getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
             prod = (AbstractProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
@@ -91,14 +94,21 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
             ImageView imageView = (ImageView) view.findViewById(R.id.image_view);
             TextView startDateTV = (TextView) view.findViewById(R.id.starting_date);
             TextView endDateTV = (TextView) view.findViewById(R.id.end_date);
-            TextView priceTV = (TextView) view.findViewById(R.id.price_tv);
+            TextView priceTV = (TextView) view.findViewById(R.id.price_text_v);
             Button currentyTypeButton = (Button) view.findViewById(R.id.currency_button);
             Button borrowTypeButton = (Button) view.findViewById(R.id.button_type);
+            TextView userName = (TextView) view.findViewById(R.id.username_tv);
             if (titleTextView != null && descriptionTextView != null && priceTV != null) {
                 titleTextView.setText(prod.getTitle());
-                priceTV.setText(String.valueOf(prod.getPrice()));
-//                currentyTypeButton.setText(buyPost.getCurrency().toString());
                 descriptionTextView.setText(prod.getDescription());
+                if (prod.getLimitDate() != null && prod.getCreatedDate() != null) {
+                    startDateTV.setText(prod.getCreatedDate().toString());
+                    endDateTV.setText(prod.getLimitDate().toString());
+                }
+                priceTV.setText(String.valueOf(prod.getPrice()));
+                currentyTypeButton.setText(prod.getCurrency().toString());
+                userName.setText(prod.getUserName());
+//                borrowTypeButton.setText(prod.getCategoryEnumList());
 //                Picasso.with(getActivity()).load(prod.image_url).into(imageView);
             }
         }
