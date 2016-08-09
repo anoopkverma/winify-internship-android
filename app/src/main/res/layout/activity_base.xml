@@ -31,15 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <fragment
-                android:name="com.example.winify.cvsi.fragments.ListItemsFragment"
-                android:id="@+id/fragment_place"
+            <android.support.v7.widget.RecyclerView
+                android:layout_below="@id/header"
+                android:background="@color/White"
+                android:theme="@style/toolbarTheme"
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:layout="@layout/fragment_list_items" />
+                android:layout_height="match_parent">
+
+            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
-
 
     </RelativeLayout>
 

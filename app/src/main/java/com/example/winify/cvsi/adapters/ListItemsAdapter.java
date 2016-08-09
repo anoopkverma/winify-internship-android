@@ -80,6 +80,7 @@ public class ListItemsAdapter extends RecyclerView.Adapter<ListItemsAdapter.View
             public void onClick(View v) {
                 Intent intent = new Intent(context, ItemPreviewActivity.class);
                 intent.putExtra(ITEM_POST,allPosts.getList().get(position));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
