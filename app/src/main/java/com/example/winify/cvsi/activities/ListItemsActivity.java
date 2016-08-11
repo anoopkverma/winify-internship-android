@@ -108,44 +108,33 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.list_items_menu, menu);
-//        MenuItem menuItem = menu.findItem(R.id.action_search_field);
-//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-//        searchView.setOnQueryTextListener(this);
-
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_items_menu, menu);
-        final MenuItem menuItem = menu.findItem(R.id.action_search_field);
+        MenuItem menuItem = menu.findItem(R.id.action_search_field);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
         searchView.setOnQueryTextListener(this);
-
-
-
-//        menuItem = menu.findItem(R.id.action_menu);
-//        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
+        menuItem = menu.findItem(R.id.action_menu);
+        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
         return true;
     }
 
 
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.action_buy:
-//                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
-//                Log.i("tearch", "buy");
-//                return true;
-//            case R.id.action_sell:
-//                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
-//                Log.i("tearch", "sell");
-//                return true;
-//            case R.id.action_borrow:
-//                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
-//                Log.i("tearch", "borrow");
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_buy:
+                onFilteredByCategory("BUY");
+                return true;
+            case R.id.action_sell:
+                onFilteredByCategory("SELL");
+                return true;
+            case R.id.action_borrow:
+                onFilteredByCategory("BORROW");
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Subscribe
     public void onGetProductDTOEvent(ListDto<AbstractProductTemplate> event) {
@@ -217,6 +206,29 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
             final String text = post.getTitle().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(post);
+            }
+        }
+        return filteredModelList;
+    }
+
+    public void onFilteredByCategory(String query) {
+        final List<AbstractProductTemplate> filteredModelList = filterByCategory(allPosts.getList(), query);
+        mAdaper.animateTo(filteredModelList);
+        mRecyclerView.scrollToPosition(0);
+    }
+
+    public List<AbstractProductTemplate> filterByCategory(List<AbstractProductTemplate> posts, String query) {
+        query = query.toLowerCase();
+
+        final List<AbstractProductTemplate> filteredModelList = new ArrayList<>();
+        for (AbstractProductTemplate post : posts) {
+            final List<String> text = new ArrayList<>();
+            for (int i = 0; i < post.getCategories().size(); i++) {
+                text.add(String.valueOf(post.getCategories().toArray()[i]).toLowerCase());
+
+                if (text.get(i).contains(query)) {
+                    filteredModelList.add(post);
+                }
             }
         }
         return filteredModelList;

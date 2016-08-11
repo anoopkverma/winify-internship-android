@@ -6,12 +6,23 @@ import com.example.winify.cvsi.model.enums.CategoryEnum;
 import com.example.winify.cvsi.model.enums.CurrencyEnum;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Artemie on 01.07.2016.
  */
 // Clasa template pentru un item din lista de producte
 public class ProductTemplate extends AbstractProductTemplate {
+
+    @Override
+    public Set<CategoryEnum> getCategories() {
+        return categories;
+    }
+
+    @Override
+    public void setCategories(Set<CategoryEnum> categories) {
+        this.categories = categories;
+    }
 
     @Override
     public Long getId() {
@@ -64,16 +75,6 @@ public class ProductTemplate extends AbstractProductTemplate {
     }
 
     @Override
-    public Boolean getBorrow() {
-        return borrow;
-    }
-
-    @Override
-    public void setBorrow(Boolean borrow) {
-        this.borrow = borrow;
-    }
-
-    @Override
     public Long getLimitDate() {
         return limitDate;
     }
@@ -83,15 +84,6 @@ public class ProductTemplate extends AbstractProductTemplate {
         this.limitDate = limitDate;
     }
 
-    @Override
-    public List<CategoryEnum> getCategoryEnumList() {
-        return categoryEnumList;
-    }
-
-    @Override
-    public void setCategoryEnumList(List<CategoryEnum> categoryEnumList) {
-        this.categoryEnumList = categoryEnumList;
-    }
 
     @Override
     public Long getCreatedDate() {
@@ -128,4 +120,6 @@ public class ProductTemplate extends AbstractProductTemplate {
         return false;
     }
 }
+
+
 

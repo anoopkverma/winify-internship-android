@@ -5,6 +5,7 @@ import com.example.winify.cvsi.model.enums.CurrencyEnum;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by diana on 8/4/16.
@@ -16,56 +17,103 @@ public abstract class AbstractProductTemplate implements Serializable {
     protected String description;
     protected CurrencyEnum currency;
     protected Long price;
-    protected Boolean borrow;
+    protected Boolean isBorrow;
     protected Long limitDate;
-    protected List<CategoryEnum> categoryEnumList;
+    protected Set<CategoryEnum> categories;
     protected String userName;
     protected Long createdDate;
     protected Long updatedDate;
 
-    public abstract Long getId();
+    public Long getId() {
+        return id;
+    }
 
-    public abstract void setId(Long id);
 
-    public abstract String getTitle();
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public abstract void setTitle(String title);
+    public String getTitle() {
+        return title;
+    }
 
-    public abstract String getDescription();
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-    public abstract void setDescription(String description);
+    public String getDescription() {
+        return description;
+    }
 
-    public abstract CurrencyEnum getCurrency();
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public abstract void setCurrency(CurrencyEnum currency);
+    public CurrencyEnum getCurrency() {
+        return currency;
+    }
 
-    public abstract Long getPrice();
+    public void setCurrency(CurrencyEnum currency) {
+        this.currency = currency;
+    }
 
-    public abstract void setPrice(Long price);
+    public Long getPrice() {
+        return price;
+    }
 
-    public abstract Boolean getBorrow();
+    public void setPrice(Long price) {
+        this.price = price;
+    }
 
-    public abstract void setBorrow(Boolean borrow);
+    public Boolean getBorrow() {
+        return isBorrow;
+    }
 
-    public abstract Long getLimitDate();
+    public void setBorrow(Boolean borrow) {
+        isBorrow = borrow;
+    }
 
-    public abstract void setLimitDate(Long limitDate);
+    public Long getLimitDate() {
+        return limitDate;
+    }
 
-    public abstract List<CategoryEnum> getCategoryEnumList();
+    public void setLimitDate(Long limitDate) {
+        this.limitDate = limitDate;
+    }
 
-    public abstract void setCategoryEnumList(List<CategoryEnum> categoryEnumList);
+    public Set<CategoryEnum> getCategories() {
+        return categories;
+    }
 
-    public abstract Long getCreatedDate();
+    public void setCategories(Set<CategoryEnum> categories) {
+        this.categories = categories;
+    }
 
-    public abstract void setCreatedDate(Long createdDate);
+    public String getUserName() {
+        return userName;
+    }
 
-    public abstract Long getUpdatedDate();
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-    public abstract void setUpdatedDate(Long updatedDate);
+    public Long getCreatedDate() {
+        return createdDate;
+    }
 
-    public abstract String getUserName();
+    public void setCreatedDate(Long createdDate) {
+        this.createdDate = createdDate;
+    }
 
-    public abstract void setUserName(String userName);
+    public Long getUpdatedDate() {
+        return updatedDate;
+    }
 
-    public abstract boolean isNil();
+    public void setUpdatedDate(Long updatedDate) {
+        this.updatedDate = updatedDate;
+    }
+
+    public boolean isNil() {
+        return false;
+    }
 }

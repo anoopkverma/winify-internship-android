@@ -14,7 +14,7 @@ public class ListDtoFactory {
         ListDto<AbstractProductTemplate> dtoObj = new ListDto<>();
         for (int i = 0; i < prod.getList().size(); i++) {
             if(prod.getList().get(i).getBorrow() == null || prod.getList().get(i).getTitle() == null || prod.getList().get(i).getCurrency() == null ||
-                    prod.getList().get(i).getCategoryEnumList() == null || prod.getList().get(i).getCreatedDate() == null ||
+                    prod.getList().get(i).getCategories() == null || prod.getList().get(i).getCreatedDate() == null ||
                     prod.getList().get(i).getDescription() == null || prod.getList().get(i).getId() == null || prod.getList().get(i).getLimitDate() == null ||
                     prod.getList().get(i).getPrice() == null || prod.getList().get(i).getUpdatedDate() == null) {
 

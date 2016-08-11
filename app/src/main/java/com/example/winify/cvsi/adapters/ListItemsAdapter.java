@@ -10,16 +10,10 @@ import android.view.ViewGroup;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.activities.ItemPreviewActivity;
-import com.example.winify.cvsi.dto.ListDto;
-import com.example.winify.cvsi.dto.templates.ProductTemplate;
-import com.example.winify.cvsi.utils.ListDtoFactory;
 import com.example.winify.cvsi.utils.PostsViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import de.greenrobot.event.Subscribe;
-
 
 /**
  * Provide views to RecyclerView with data from mDataSet.

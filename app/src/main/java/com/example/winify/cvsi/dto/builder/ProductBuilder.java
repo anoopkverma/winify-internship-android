@@ -1,10 +1,13 @@
 package com.example.winify.cvsi.dto.builder;
 
 
+import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
+import com.example.winify.cvsi.dto.templates.NullProductTemplate;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
 import com.example.winify.cvsi.model.Product;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,38 +15,33 @@ import java.util.List;
  */
 public class ProductBuilder {
 
-    public ProductTemplate getProductTemplate(Product product) {
-        ProductTemplate productTemplate = new ProductTemplate();
-        productTemplate.setId(product.getId());
-        productTemplate.setTitle(product.getTitle());
-        productTemplate.setDescription(product.getDescription());
-        productTemplate.setCurrency(product.getCurrency());
-        productTemplate.setPrice(product.getPrice());
-        productTemplate.setBorrow(product.getIsBorrow());
-        productTemplate.setLimitDate(product.getLimitDate().getTime());
-        productTemplate.setCategoryEnumList(product.getCategoryEnumList());
-        productTemplate.setCreatedDate(product.getCreatedDate().getTime());
-        productTemplate.setUpdatedDate(product.getUpdatedDate().getTime());
-        return productTemplate;
-    }
-
-    public List<ProductTemplate> getProductTemplateList(List<Product> productList) {
-        List<ProductTemplate> productTemplateList = new ArrayList<ProductTemplate>();
-
-        for (Product product : productList) {
-            ProductTemplate productTemplate = new ProductTemplate();
-            productTemplate.setId(product.getId());
-            productTemplate.setTitle(product.getTitle());
-            productTemplate.setDescription(product.getDescription());
-            productTemplate.setCurrency(product.getCurrency());
-            productTemplate.setPrice(product.getPrice());
-            productTemplate.setBorrow(product.getIsBorrow());
-            productTemplate.setLimitDate(product.getLimitDate().getTime());
-            productTemplate.setCategoryEnumList(product.getCategoryEnumList());
-            productTemplate.setCreatedDate(product.getCreatedDate().getTime());
-            productTemplate.setUpdatedDate(product.getUpdatedDate().getTime());
-            productTemplateList.add(productTemplate);
-        }
-        return productTemplateList;
-    }
+//    public AbstractProductTemplate getProduct(AbstractProductTemplate productCreateClientRequest) {
+//        AbstractProductTemplate product = new NullProductTemplate();
+//        product.setTitle(productCreateClientRequest.getTitle());
+//        product.setDescription(productCreateClientRequest.getDescription());
+//        product.setPrice(productCreateClientRequest.getPrice());
+//        product.setCurrency(productCreateClientRequest.getCurrency());
+//        product.setBorrow(productCreateClientRequest.getBorrow());
+//        product.setCreatedDate(productCreateClientRequest.getCreatedDate() == null ? new Date(new Date().getTime() - (1000L * 60)) : new Date(productCreateClientRequest.getCreatedDate()));
+//        product.setLimitDate(productCreateClientRequest.getLimitDate() == null ? null : new Date(productCreateClientRequest.getLimitDate()));
+//        product.setUpdatedDate(productCreateClientRequest.getUpdatedDate() == null ? null : new Date(productCreateClientRequest.getUpdatedDate()));
+//        product.setCategories(productCreateClientRequest.getCategories());
+//        return product;
+//    }
+//
+//    public AbstractProductTemplate getProductTemplate(Product product) {
+//        AbstractProductTemplate productTemplateResponse = new AbstractProductTemplate();
+//        productTemplateResponse.setId(product.getId());
+//        productTemplateResponse.setTitle(product.getTitle());
+//        productTemplateResponse.setDescription(product.getDescription());
+//        productTemplateResponse.setCurrency(product.getCurrency());
+//        productTemplateResponse.setPrice(product.getPrice());
+//        productTemplateResponse.setBorrow(product.getBorrow());
+//        productTemplateResponse.setLimitDate(product.getLimitDate() == null ? null : product.getLimitDate().getTime());
+//        productTemplateResponse.setCategories(product.getCategories());
+//        productTemplateResponse.setCreatedDate(product.getCreatedDate().getTime());
+//        productTemplateResponse.setUpdatedDate(product.getUpdatedDate() == null ? null : product.getUpdatedDate().getTime());
+//        productTemplateResponse.setUserName(product.getUser().getUsername());
+//        return productTemplateResponse;
+//    }
 }

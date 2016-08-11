@@ -7,7 +7,9 @@ import com.example.winify.cvsi.model.enums.CategoryEnum;
 import com.example.winify.cvsi.model.enums.CurrencyEnum;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by diana on 8/4/16.
@@ -15,14 +17,15 @@ import java.util.List;
 public class NullProductTemplate extends AbstractProductTemplate {
 
     public NullProductTemplate(AbstractProductTemplate prod) {
+
         this.id = prod.getId();
         this.title = prod.getTitle();
         this.description = prod.getDescription();
         this.currency = prod.getCurrency();
         this.price = prod.getPrice();
-        this.borrow = prod.getBorrow();
+        this.isBorrow = prod.getBorrow();
         this.limitDate = prod.getLimitDate();
-        this.categoryEnumList = prod.getCategoryEnumList();
+        this.categories = prod.getCategories();
         this.userName = prod.getUserName();
         this.createdDate = prod.getCreatedDate();
         this.updatedDate = prod.getUpdatedDate();
@@ -84,17 +87,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
     }
 
     @Override
-    public Boolean getBorrow() {
-        Log.e("NullProductTemplate","getBorrow() returns null.");
-        return this.borrow == null ? false : this.borrow;
-    }
-
-    @Override
-    public void setBorrow(Boolean borrow) {
-        this.borrow = borrow;
-    }
-
-    @Override
     public Long getLimitDate() {
         Log.e("NullProductTemplate","getLimitDate() returns null.");
         return this.limitDate == null ? (long) 0 : this.limitDate;
@@ -103,19 +95,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
     @Override
     public void setLimitDate(Long limitDate) {
         this.limitDate = limitDate;
-    }
-
-    @Override
-    public List<CategoryEnum> getCategoryEnumList() {
-        Log.e("NullProductTemplate","getCategoryEnumList() returns null.");
-        List<CategoryEnum> categ = new ArrayList<CategoryEnum>();
-        categ.add(CategoryEnum.BORROW);
-        return this.categoryEnumList == null ? categ : this.categoryEnumList;
-    }
-
-    @Override
-    public void setCategoryEnumList(List<CategoryEnum> categoryEnumList) {
-        this.categoryEnumList = categoryEnumList;
     }
 
     @Override
@@ -149,6 +128,16 @@ public class NullProductTemplate extends AbstractProductTemplate {
     @Override
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    @Override
+    public Set<CategoryEnum> getCategories() {
+        return categories == null ? new HashSet<CategoryEnum>() : this.categories;
+    }
+
+    @Override
+    public void setCategories(Set<CategoryEnum> categories) {
+        this.categories = categories;
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Artemie on 25.06.2016.
@@ -18,14 +19,14 @@ public class Product implements Serializable {
     private String description;
     private Long price;
     private CurrencyEnum currency;
-    private Boolean isBorrow;
+    private Boolean Borrow;
     private Boolean isArchived;
     private Date createdDate;
     private Date limitDate;
     private Date updatedDate;
-    private List<CategoryEnum> categoryEnumList = new ArrayList<CategoryEnum>();
     private List<Image> imageList = new ArrayList<Image>();
     private User user;
+    private Set<CategoryEnum> categories;
 
     public Product() {
     }
@@ -102,12 +103,12 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public List<CategoryEnum> getCategoryEnumList() {
-        return categoryEnumList;
+    public Set<CategoryEnum> getCategories() {
+        return categories;
     }
 
-    public void setCategoryEnumList(List<CategoryEnum> categoryEnumList) {
-        this.categoryEnumList = categoryEnumList;
+    public void setCategories(Set<CategoryEnum> categories) {
+        this.categories = categories;
     }
 
     public CurrencyEnum getCurrency() {
@@ -118,12 +119,12 @@ public class Product implements Serializable {
         this.currency = currency;
     }
 
-    public Boolean getIsBorrow() {
-        return isBorrow;
+    public Boolean getBorrow() {
+        return Borrow;
     }
 
-    public void setIsBorrow(Boolean isBorrow) {
-        this.isBorrow = isBorrow;
+    public void setBorrow(Boolean isBorrow) {
+        this.Borrow = isBorrow;
     }
 
     public Boolean getArchived() {
@@ -133,4 +134,6 @@ public class Product implements Serializable {
     public void setArchived(Boolean archived) {
         isArchived = archived;
     }
+
+
 }
