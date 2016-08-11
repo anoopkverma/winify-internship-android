@@ -1,23 +1,24 @@
 package com.example.winify.cvsi.activities;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-
+import android.accounts.AbstractAccountAuthenticator;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import com.example.winify.cvsi.SpacesItemDecoration;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
@@ -29,7 +30,10 @@ import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.logging.Filter;
 
 import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
@@ -37,16 +41,16 @@ import de.greenrobot.event.Subscribe;
 /**
  * This class stands as a base class, containing the Navigation Drawer and the Toolbar, with general elements
  */
-public class ListItemsActivity extends TestActivity {
+public class ListItemsActivity extends TestActivity implements SearchView.OnQueryTextListener {
 
     private static ViewGroup viewGroup;
-    protected static Fragment fragment;
     private FloatingActionMenu floatingActionMenu;
     private Toolbar toolbar;
     protected ListDto<AbstractProductTemplate> allPosts;
     private ProductController productController;
     private View view;
     protected RecyclerView mRecyclerView;
+    private ListItemsAdapter mAdaper;
     protected StaggeredGridLayoutManager mLayoutManager;
 
 
@@ -55,13 +59,11 @@ public class ListItemsActivity extends TestActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         view = this.findViewById(android.R.id.content).getRootView();
-
 //        showListItemsFragment();
         initToolbar();
         initNavDrawer(R.drawable.nina, savedInstanceState, "diana", "Ileana", this.toolbar);
         floatingActionMenu = (FloatingActionMenu) findViewById(R.id.menu);
         initFAMenu();
-
         EventBus.getDefault().register(this);
         productController = new ProductController();
         productController.getProductDTO();
@@ -105,50 +107,62 @@ public class ListItemsActivity extends TestActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menuu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menuu);
-        MenuItem menuItem = menuu.findItem(R.id.action_menu);
-        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
+    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.list_items_menu, menu);
+//        MenuItem menuItem = menu.findItem(R.id.action_search_field);
+//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+//        searchView.setOnQueryTextListener(this);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.list_items_menu, menu);
+        final MenuItem menuItem = menu.findItem(R.id.action_search_field);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+        searchView.setOnQueryTextListener(this);
+
+
+
+//        menuItem = menu.findItem(R.id.action_menu);
+//        getMenuInflater().inflate(R.menu.sub_menu, menuItem.getSubMenu());
         return true;
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
-                Log.i("tearch", "tearch");
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_buy:
+//                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
+//                Log.i("tearch", "buy");
+//                return true;
+//            case R.id.action_sell:
+//                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
+//                Log.i("tearch", "sell");
+//                return true;
+//            case R.id.action_borrow:
+//                Toast.makeText(ListItemsActivity.this, "ussy", Toast.LENGTH_SHORT).show();
+//                Log.i("tearch", "borrow");
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 
     @Subscribe
     public void onGetProductDTOEvent(ListDto<AbstractProductTemplate> event) {
-
         this.allPosts = ListDtoFactory.getProduct(event);
-
-        Toast.makeText(ListItemsActivity.this, allPosts.getList().get(0).getTitle() + "shit", Toast.LENGTH_SHORT).show();
         setmRecyclerViewLayoutManager(view);
     }
 
     public void setmRecyclerViewLayoutManager(View view) {
-
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        Log.i("Banana", "o mers");
         mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(getSpanNr(), StaggeredGridLayoutManager.VERTICAL));
         mRecyclerView.addItemDecoration(new SpacesItemDecoration(1));
-
-        mRecyclerView.setAdapter(new ListItemsAdapter(getApplicationContext(), allPosts));
-
+        mAdaper = new ListItemsAdapter(getApplicationContext(), allPosts.getList());
+        mRecyclerView.setAdapter(mAdaper);
         mLayoutManager = new StaggeredGridLayoutManager(getSpanNr(), StaggeredGridLayoutManager.VERTICAL);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        int scrollPosition = 0;
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
-
+        mRecyclerView.scrollToPosition(0);
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
@@ -163,12 +177,10 @@ public class ListItemsActivity extends TestActivity {
 
     public void initFAMenu() {
         floatingActionMenu = (FloatingActionMenu) findViewById(R.id.menu);
-
         HashMap<FloatingActionButton, Class> fabMapList = new HashMap<FloatingActionButton, Class>();
         fabMapList.put((FloatingActionButton) findViewById(R.id.fab1), CreateBorrowProductActivity.class);
         fabMapList.put((FloatingActionButton) findViewById(R.id.fab2), CreateBuyProductActivity.class);
         fabMapList.put((FloatingActionButton) findViewById(R.id.fab3), CreateSellProductActivity.class);
-
         for (HashMap.Entry<FloatingActionButton, Class> entry : fabMapList.entrySet()) {
             onMenuButtonClicked(entry.getKey(), entry.getValue());
         }
@@ -183,5 +195,30 @@ public class ListItemsActivity extends TestActivity {
         });
     }
 
+    @Override
+    public boolean onQueryTextChange(String query) {
+        final List<AbstractProductTemplate> filteredModelList = filter(allPosts.getList(), query);
+        mAdaper.animateTo(filteredModelList);
+        mRecyclerView.scrollToPosition(0);
+        return true;
+    }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+
+    private List<AbstractProductTemplate> filter(List<AbstractProductTemplate> posts, String query) {
+        query = query.toLowerCase();
+
+        final List<AbstractProductTemplate> filteredModelList = new ArrayList<>();
+        for (AbstractProductTemplate post : posts) {
+            final String text = post.getTitle().toLowerCase();
+            if (text.contains(query)) {
+                filteredModelList.add(post);
+            }
+        }
+        return filteredModelList;
+    }
 }

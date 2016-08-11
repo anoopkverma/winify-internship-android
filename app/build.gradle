@@ -44,6 +44,7 @@ dependencies {
     compile 'com.mikepenz:google-material-typeface:2.2.0.2.original@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
     compile 'com.github.sundeepk:compact-calendar-view:1.8.8'
+    compile 'com.lapism:searchview:3.4.1'
 }
 
 

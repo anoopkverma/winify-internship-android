@@ -20,7 +20,6 @@
         <activity
             android:name=".activities.LoginActivity"
             android:parentActivityName=".activities.WelcomeActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -108,7 +107,8 @@
         <activity android:name=".TestBaseActivity" />
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.ToolbarActivity" />
-        <activity android:name=".activities.ListItemsActivity"></activity>
+        <activity android:name=".activities.ListItemsActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,10 +1,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_items_menu"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="example.gmariotti.it.test21.ToolbarActivity">
 
     <item
-        android:id="@+id/action_search"
+        android:id="@+id/action_search_field"
         android:icon="@drawable/ic_search_white_24dp"
         app:actionViewClass="android.support.v7.widget.SearchView"
         android:title="Search"
