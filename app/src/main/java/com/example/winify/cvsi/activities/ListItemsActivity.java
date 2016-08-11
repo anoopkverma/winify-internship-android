@@ -59,7 +59,6 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         view = this.findViewById(android.R.id.content).getRootView();
-//        showListItemsFragment();
         initToolbar();
         initNavDrawer(R.drawable.nina, savedInstanceState, "diana", "Ileana", this.toolbar);
         floatingActionMenu = (FloatingActionMenu) findViewById(R.id.menu);
@@ -71,7 +70,7 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
 
     public void initToolbar() {
         this.toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Create a Borrow product");
+        toolbar.setTitle("Search");
         setSupportActionBar(toolbar);
     }
 

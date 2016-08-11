@@ -2,10 +2,6 @@ package com.example.winify.cvsi.interfaces;
 
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
-import com.example.winify.cvsi.model.enums.CategoryEnum;
-import com.example.winify.cvsi.model.enums.CurrencyEnum;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

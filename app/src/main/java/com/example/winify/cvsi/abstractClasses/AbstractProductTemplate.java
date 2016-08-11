@@ -17,7 +17,7 @@ public abstract class AbstractProductTemplate implements Serializable {
     protected String description;
     protected CurrencyEnum currency;
     protected Long price;
-    protected Boolean isBorrow;
+    protected Boolean borrow;
     protected Long limitDate;
     protected Set<CategoryEnum> categories;
     protected String userName;
@@ -66,11 +66,11 @@ public abstract class AbstractProductTemplate implements Serializable {
     }
 
     public Boolean getBorrow() {
-        return isBorrow;
+        return borrow;
     }
 
     public void setBorrow(Boolean borrow) {
-        isBorrow = borrow;
+        borrow = borrow;
     }
 
     public Long getLimitDate() {

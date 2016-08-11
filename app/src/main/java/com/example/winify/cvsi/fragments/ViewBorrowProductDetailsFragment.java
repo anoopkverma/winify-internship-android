@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
+import com.example.winify.cvsi.dto.templates.NullProductTemplate;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
 
 /**
@@ -45,7 +46,7 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_view_sell_buy_product, container, false);
 
         if (getActivity().getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
-            prod = (AbstractProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
+            prod = (NullProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
             if (prod != null ) {
                 if (prod.getBorrow()) {

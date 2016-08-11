@@ -23,7 +23,7 @@ public class NullProductTemplate extends AbstractProductTemplate {
         this.description = prod.getDescription();
         this.currency = prod.getCurrency();
         this.price = prod.getPrice();
-        this.isBorrow = prod.getBorrow();
+        this.borrow = prod.getBorrow();
         this.limitDate = prod.getLimitDate();
         this.categories = prod.getCategories();
         this.userName = prod.getUserName();
@@ -140,6 +140,10 @@ public class NullProductTemplate extends AbstractProductTemplate {
         this.categories = categories;
     }
 
+    @Override
+    public Boolean getBorrow() {
+        return this.borrow == null ? false : this.borrow;
+    }
     @Override
     public boolean isNil() {
         return true;
