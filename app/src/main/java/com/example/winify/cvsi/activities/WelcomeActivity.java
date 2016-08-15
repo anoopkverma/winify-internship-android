@@ -22,31 +22,17 @@ public class WelcomeActivity extends AppCompatActivity {
     private static Button sItemsListButton;
     private ProductController productController;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         sloginButton = (Button) findViewById(R.id.go_to_login_button);
         sItemsListButton = (Button) findViewById(R.id.go_to_list_view_button);
-
-        productController = new ProductController();
-        EventBus.getDefault().register(this);
-        productController.getProductDTO();
-
-    }
-
-    @Subscribe
-    public void onGetProductDTOEvent(ListDto<ProductTemplate> event) {
-        Toast.makeText(getApplicationContext(), event.getList().get(0).getTitle(), Toast.LENGTH_SHORT).show();
-
     }
 
     public void onSLoginButtonClicked(View view) {
-
         Intent getLoginIntent = new Intent(this, LoginActivity.class) ;
         final int result = 1;
-
         getLoginIntent.putExtra("callingActivity", "WelcomeActivity");
         startActivityForResult(getLoginIntent, result);
     }
@@ -54,7 +40,6 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onSItemsListButtonClicked(View view) {
         Intent getLoginIntent = new Intent(this, ListItemsActivity.class) ;
         final int result = 1;
-
         getLoginIntent.putExtra("callingActivity", "ListItemsActivity");
         startActivityForResult(getLoginIntent, result);
     }

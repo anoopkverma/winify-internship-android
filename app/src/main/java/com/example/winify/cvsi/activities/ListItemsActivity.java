@@ -151,6 +151,10 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(0);
+        onRecyclerScrolled();
+    }
+
+    public void onRecyclerScrolled() {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){

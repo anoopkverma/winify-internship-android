@@ -8,9 +8,9 @@ public class ToolbarActivity extends BaseActivity {
 
     public Toolbar toolbar;
 
-    public void initToolbar() {
+    public void initToolbar(String title) {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Create a Borrow product");
+        toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

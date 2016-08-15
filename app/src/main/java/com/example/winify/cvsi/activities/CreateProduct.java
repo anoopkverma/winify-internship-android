@@ -43,7 +43,6 @@ public class CreateProduct extends ToolbarActivity {
         if(resultCode == RESULT_OK && requestCode ==  PICK_IMAGE) {
             imageUri = data.getData();
             imageView.setImageURI(imageUri);
-
         }
     }
 

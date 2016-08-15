@@ -25,7 +25,7 @@ public class CreateSellProductActivity extends CreateProduct {
         this.nabDrawer = new NavigationDrawer(this);
         nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
         imageView = (ImageView) findViewById(R.id.image_view);
-        this.initToolbar();
+        this.initToolbar("Create sell product");
         initSpinner();
         initFloatingActionButtonAddImage();
     }

@@ -38,6 +38,7 @@ public class CreateBorrowProductActivity extends CreateProduct {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_borrow_product);
+        this.initToolbar("Create a borrow product");
         imageView = (ImageView) findViewById(R.id.image_view);
         this.nabDrawer = new NavigationDrawer(this);
         nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
@@ -48,6 +49,7 @@ public class CreateBorrowProductActivity extends CreateProduct {
         fragment = new CalendarFragment();
         initRadioGroup(this.findViewById(android.R.id.content));
     }
+
 
     public void initRadioGroup(final View view){
         radioGroup = (RadioGroup) view.findViewById(R.id.radioButtonGroup);
@@ -61,7 +63,6 @@ public class CreateBorrowProductActivity extends CreateProduct {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("CreateBorrowProduct", "Radio button Borrow was clicked.");
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out);;
                 scrollView.setVisibility(View.VISIBLE);
