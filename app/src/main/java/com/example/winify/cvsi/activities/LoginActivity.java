@@ -11,7 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.controllers.UserController;
 import com.example.winify.cvsi.fragments.ForgotPasswordDialogFragment;
+import com.example.winify.cvsi.model.User;
 
 /**
  * Created by diana on 6/21/16.
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private static Button sLoginButton;
     private static TextView sRegisterLink;
     private static Button sForgotPassButton;
+    private UserController userController;
 
     static final int FORGOT_PASSWORD_DIALOG = 0;
 
@@ -32,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         intitializeClassComponents();
         showForgotPasswordDialog();
+        userController = new UserController();
+        userController.login();
     }
 
     public void intitializeClassComponents() {

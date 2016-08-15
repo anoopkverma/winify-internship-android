@@ -45,6 +45,9 @@ dependencies {
     compile 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
     compile 'com.github.sundeepk:compact-calendar-view:1.8.8'
     compile 'com.lapism:searchview:3.4.1'
+    // https://mvnrepository.com/artifact/com.github.leonardoxh/AsyncOkHttpClient
+    compile group: 'com.github.leonardoxh', name: 'AsyncOkHttpClient', version: '1.1'
+
 }
 
 

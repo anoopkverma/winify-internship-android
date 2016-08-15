@@ -1,26 +1,18 @@
 package com.example.winify.cvsi.activities;
 
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.example.winify.cvsi.controllers.ProductController;
 import com.example.winify.cvsi.R;
-import com.example.winify.cvsi.dto.ListDto;
-import com.example.winify.cvsi.dto.templates.ProductTemplate;
-
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
 
 public class WelcomeActivity extends AppCompatActivity {
 
     private static Button sloginButton;
     private static Button sItemsListButton;
-    private ProductController productController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

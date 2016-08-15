@@ -129,4 +129,5 @@ public class User implements Serializable {
     public void setOnline(Boolean online) {
         isOnline = online;
     }
+
 }
