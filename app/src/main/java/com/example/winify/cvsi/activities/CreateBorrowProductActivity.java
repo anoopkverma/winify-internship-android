@@ -56,7 +56,6 @@ public class CreateBorrowProductActivity extends CreateProduct {
         initRadioGroup(this.findViewById(android.R.id.content));
     }
 
-
     public void initRadioGroup(final View view){
         radioGroup = (RadioGroup) view.findViewById(R.id.radioButtonGroup);
         rbBorrow = (RadioButton) view.findViewById(R.id.borrow_radio_button);

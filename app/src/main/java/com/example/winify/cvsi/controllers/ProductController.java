@@ -50,7 +50,7 @@ public class ProductController {
 
                         // Request customization: add request headers
                         Request.Builder requestBuilder = original.newBuilder()
-                                .header("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdnNpc2VydmVyQGdtYWlsLmNvbSIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTQ3MTQzNzcxNDIyMywiZXhwIjoxNDcyMDQyNTE0fQ.EwXNbylRtSza0v9-pvbr0CKBH7ZLtFI2IWuOy8KcsdUXjQl0Q49qLdwEjzTBi4g-jJ1QyvynPEL-xRDOHRTRgA")
+                                .header("X-Auth-Token", authToken)
                                 .method(original.method(), original.body());
 
                         Request request = requestBuilder.build();
