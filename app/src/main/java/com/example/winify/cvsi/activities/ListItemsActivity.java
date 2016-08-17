@@ -23,6 +23,7 @@ import com.example.winify.cvsi.SpacesItemDecoration;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
 import com.example.winify.cvsi.controllers.ProductController;
+import com.example.winify.cvsi.controllers.SessionManager;
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.utils.ListDtoFactory;
@@ -52,6 +53,7 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
     protected RecyclerView mRecyclerView;
     private ListItemsAdapter mAdaper;
     protected StaggeredGridLayoutManager mLayoutManager;
+    private SessionManager sessionManager;
 
 
     @Override
@@ -64,7 +66,7 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
         floatingActionMenu = (FloatingActionMenu) findViewById(R.id.menu);
         initFAMenu();
         EventBus.getDefault().register(this);
-        productController = new ProductController();
+        productController = new ProductController(this.getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
         productController.getProductDTO();
     }
 

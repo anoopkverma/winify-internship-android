@@ -194,7 +194,7 @@
             android:background="@drawable/rose_red"
             android:layout_marginLeft="1px"
             android:text="Create"
-            android:id="@+id/create_product_button"
+            android:id="@+id/create_borrow_product_button"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp" />

@@ -5,22 +5,35 @@ import com.example.winify.cvsi.model.enums.CategoryEnum;
 import com.example.winify.cvsi.model.enums.CurrencyEnum;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Artemie on 07.07.2016.
  */
 public class ProductCreateClientRequest implements Serializable {
-    private String title;
-    private String description;
-    private CurrencyEnum currency;
-    private Long price;
-    private Boolean isBorrow;
-    private Long limitDate;
-    private List<CategoryEnum> categoryEnumList;
 
-    private Long createdDate;
-    private Long updatedDate;
+    private String title;
+    private String description = "new product 0";
+    private CurrencyEnum currency = CurrencyEnum.EUR;
+    private Long price = null;
+    private Boolean borrow = true;
+    private Long limitDate = null ;
+    private List<CategoryEnum> categoryEnumList = new ArrayList<CategoryEnum>();
+    private Long createdDate = null;
+    private Long updatedDate = null;
+
+    public ProductCreateClientRequest() {
+        title = "product_new0";
+        description = "new product 0";
+        currency = CurrencyEnum.EUR;
+        price = null;
+        borrow = true;
+        limitDate = null ;
+        categoryEnumList.add(CategoryEnum.BORROW);
+        createdDate = null;
+        updatedDate = null;
+    }
 
     public String getTitle() {
         return title;
@@ -55,11 +68,11 @@ public class ProductCreateClientRequest implements Serializable {
     }
 
     public Boolean getBorrow() {
-        return isBorrow;
+        return this.borrow;
     }
 
     public void setBorrow(Boolean borrow) {
-        isBorrow = borrow;
+        borrow = borrow;
     }
 
     public Long getLimitDate() {

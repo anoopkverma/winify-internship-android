@@ -82,8 +82,8 @@ public class LoginActivity extends AppCompatActivity {
         LoginUserModel userModel = new LoginUserModel();
         userModel.setEmail(mEmail.getText().toString());
         userModel.setPassword(sPassword.getText().toString());
-        userController = new UserController();
-        userController.login(userModel, this.getApplicationContext());
+        userController = new UserController(this.getApplicationContext());
+        userController.login(userModel);
     }
 
     public void getMainActivity() {

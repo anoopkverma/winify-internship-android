@@ -5,11 +5,10 @@ import android.util.Log;
 
 import com.example.winify.cvsi.dto.error.ServerResponseStatus;
 import com.example.winify.cvsi.dto.templates.request.AuthorizationClientRequest;
-import com.example.winify.cvsi.interfaces.IUser;
+import com.example.winify.cvsi.interfaces.IRetrofit;
 import com.example.winify.cvsi.model.LoginUserModel;
 import com.example.winify.cvsi.model.ResponseUser;
-import com.example.winify.cvsi.model.TemporaryUser;
-import com.example.winify.cvsi.model.User;;
+;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -26,12 +25,14 @@ import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
 public class UserController {
 
     private Retrofit retrofit;
-    private IUser iUser;
+    private IRetrofit iUser;
     private OkHttpClient okHttpClient;
     private String BASE_URL = "http://192.168.3.191:8080/cvsi-server/";
     private ResponseUser responseUser;
+    protected Context context;
 
-    public UserController() {
+    public UserController(Context context) {
+        this.context = context;
         this.okHttpClient = new OkHttpClient.Builder()
                 .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(BODY))
                 .build();
@@ -40,10 +41,10 @@ public class UserController {
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        this.iUser = retrofit.create(IUser.class);
+        this.iUser = retrofit.create(IRetrofit.class);
     }
 
-    public void login(LoginUserModel user, final Context context){
+    public void login(LoginUserModel user){
         iUser.log(user).enqueue(new Callback<ResponseUser>() {
             @Override
             public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
@@ -73,7 +74,7 @@ public class UserController {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        IUser retrofitTest = retrofit.create(IUser.class);
+        IRetrofit retrofitTest = retrofit.create(IRetrofit.class);
 
         Call<ServerResponseStatus> call = retrofitTest.postUser(event);
         call.enqueue(new Callback<ServerResponseStatus>() {

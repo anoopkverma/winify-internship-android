@@ -22,6 +22,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.controllers.ProductController;
+import com.example.winify.cvsi.controllers.SessionManager;
+import com.example.winify.cvsi.dto.templates.request.ProductCreateClientRequest;
 import com.example.winify.cvsi.fragments.CalendarFragment;
 import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
@@ -31,8 +34,11 @@ public class CreateBorrowProductActivity extends CreateProduct {
     private RadioGroup radioGroup;
     private RadioButton rbBorrow;
     private RadioButton rbLend;
+    private Button create_borrow_prod_btn;
     private static Fragment fragment;
     private LinearLayout scrollView;
+    private ProductController productController;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,14 @@ public class CreateBorrowProductActivity extends CreateProduct {
         radioGroup = (RadioGroup) view.findViewById(R.id.radioButtonGroup);
         rbBorrow = (RadioButton) view.findViewById(R.id.borrow_radio_button);
         rbLend = (RadioButton) view.findViewById(R.id.lend_radio_button);
+        create_borrow_prod_btn = (Button) view.findViewById(R.id.create_borrow_product_button);
+        productController = new ProductController(this.getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
+        create_borrow_prod_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                productController.createProduct(new ProductCreateClientRequest());
+            }
+        });
         onRbClick(rbBorrow);
         onRbClick(rbLend);
     }

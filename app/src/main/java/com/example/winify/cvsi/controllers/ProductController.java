@@ -1,50 +1,99 @@
 package com.example.winify.cvsi.controllers;
 
+import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.winify.cvsi.dto.ListDto;
+import com.example.winify.cvsi.dto.error.ServerResponseStatus;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
-import com.example.winify.cvsi.interfaces.IRetrofitTest;
+import com.example.winify.cvsi.dto.templates.request.AuthorizationClientRequest;
+import com.example.winify.cvsi.dto.templates.request.ProductCreateClientRequest;
+import com.example.winify.cvsi.interfaces.IRetrofit;
+import com.example.winify.cvsi.model.ResponseUser;
+
+import java.io.IOException;
 
 import de.greenrobot.event.EventBus;
+import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static okhttp3.logging.HttpLoggingInterceptor.Level.BODY;
+
 /**
  * Created by diana on 7/13/16.
  */
 public class ProductController {
 
-    public void getProductDTO() {
+    private Retrofit retrofit;
+    private IRetrofit iRetrofit;
+    private OkHttpClient okHttpClient;
+    private String BASE_URL = "http://192.168.3.191:8080/cvsi-server/";
+    private SessionManager sessionManager;
+    private Context context;
 
+    public ProductController(Context _context, final String authToken) {
+        this.context = _context;
+        this.sessionManager = new SessionManager(this.context);
+        this.okHttpClient = new OkHttpClient.Builder()
+                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(BODY))
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public okhttp3.Response intercept(Chain chain) throws IOException {
+                        Request original = chain.request();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.3.191:8080/cvsi-server/")
+                        // Request customization: add request headers
+                        Request.Builder requestBuilder = original.newBuilder()
+                                .header("X-Auth-Token", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjdnNpc2VydmVyQGdtYWlsLmNvbSIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTQ3MTQzNzcxNDIyMywiZXhwIjoxNDcyMDQyNTE0fQ.EwXNbylRtSza0v9-pvbr0CKBH7ZLtFI2IWuOy8KcsdUXjQl0Q49qLdwEjzTBi4g-jJ1QyvynPEL-xRDOHRTRgA")
+                                .method(original.method(), original.body());
+
+                        Request request = requestBuilder.build();
+                        return chain.proceed(request);
+                    }
+                })
+                .build();
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.iRetrofit = retrofit.create(IRetrofit.class);
+    }
 
+    public void getProductDTO() {
 
-        IRetrofitTest retrofitTest = retrofit.create(IRetrofitTest.class);
-
-        Call<ListDto<ProductTemplate>> productList = retrofitTest.getAllProducts((long) 0);
-
-
+        Call<ListDto<ProductTemplate>> productList = iRetrofit.getAllProducts((long) 0);
         productList.enqueue(new Callback<ListDto<ProductTemplate>>() {
             @Override
             public void onResponse(Call<ListDto<ProductTemplate>> call, Response<ListDto<ProductTemplate>> response) {
                 if (response.isSuccessful()) {
                     EventBus.getDefault().post(response.body());
                     Log.i("TAG", response.body().getList().get(0).getTitle());
-//                    Toast.makeText(this, "rosiht", Toast.LENGTH_SHORT).show();
                 }
+            }
+            @Override
+            public void onFailure(Call<ListDto<ProductTemplate>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void createProduct(ProductCreateClientRequest event) {
+        Call<ServerResponseStatus> call = iRetrofit.postProduct(event);
+        call.enqueue(new Callback<ServerResponseStatus>() {
+            @Override
+            public void onResponse(Call<ServerResponseStatus> call, Response<ServerResponseStatus> response) {
+
             }
 
             @Override
-            public void onFailure(Call<ListDto<ProductTemplate>> call, Throwable t) {
+            public void onFailure(Call<ServerResponseStatus> call, Throwable t) {
 
             }
         });

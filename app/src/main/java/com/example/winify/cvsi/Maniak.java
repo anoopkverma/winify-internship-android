@@ -1,26 +1,22 @@
 package com.example.winify.cvsi;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.winify.cvsi.controllers.ProductController;
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.error.ServerResponseStatus;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
 import com.example.winify.cvsi.dto.templates.request.AuthorizationClientRequest;
-import com.example.winify.cvsi.interfaces.IUser;
+import com.example.winify.cvsi.interfaces.IRetrofit;
 
 
 import java.util.Date;
 
-import de.greenrobot.event.EventBus;
-import de.greenrobot.event.Subscribe;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,10 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Maniak extends AppCompatActivity {
 
     public static ListDto<ProductTemplate> listdto = new ListDto<ProductTemplate>();
-    private ProductController productController;
     TextView textView;
-    Button button;
-    boolean i = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +40,7 @@ public class Maniak extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        IUser retrofitTest = retrofit.create(IUser.class);
+        IRetrofit retrofitTest = retrofit.create(IRetrofit.class);
 
 //        retrofitTest.postUser(new AuthorizationClientRequest(
 //                "email@gmail.ru",
@@ -77,8 +70,6 @@ public class Maniak extends AppCompatActivity {
 
             }
         });
-//
-
     }
 
 
