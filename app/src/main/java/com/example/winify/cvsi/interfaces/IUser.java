@@ -2,6 +2,9 @@ package com.example.winify.cvsi.interfaces;
 
 import com.example.winify.cvsi.dto.error.ServerResponseStatus;
 import com.example.winify.cvsi.dto.templates.request.AuthorizationClientRequest;
+import com.example.winify.cvsi.model.LoginUserModel;
+import com.example.winify.cvsi.model.ResponseUser;
+import com.example.winify.cvsi.model.TemporaryUser;
 import com.example.winify.cvsi.model.User;
 
 import retrofit2.Call;
@@ -16,5 +19,5 @@ public interface IUser {
     Call<ServerResponseStatus> postUser(@Body AuthorizationClientRequest user);
 
     @POST("login")
-    Call<User> login(@Body User user);
+    Call<ResponseUser> log(@Body LoginUserModel user);
 }

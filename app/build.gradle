@@ -29,8 +29,6 @@ dependencies {
     compile('com.mikepenz:materialdrawer:5.3.4@aar') {
         transitive = true
     }
-    compile 'com.squareup.okhttp3:okhttp:3.4.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:design:23.4.0'
@@ -45,9 +43,12 @@ dependencies {
     compile 'com.mikepenz:fontawesome-typeface:4.6.0.2@aar'
     compile 'com.github.sundeepk:compact-calendar-view:1.8.8'
     compile 'com.lapism:searchview:3.4.1'
-    // https://mvnrepository.com/artifact/com.github.leonardoxh/AsyncOkHttpClient
-    compile group: 'com.github.leonardoxh', name: 'AsyncOkHttpClient', version: '1.1'
-
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.1'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.5.1'
+    compile 'com.fasterxml.jackson.core:jackson-core:2.5.1'
+    compile 'com.squareup.okhttp3:okhttp:3.3.1'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile 'com.squareup.okio:okio:1.6.0'
 }
 
 

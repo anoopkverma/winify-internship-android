@@ -2,37 +2,46 @@ package com.example.winify.cvsi.activities;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.controllers.SessionManager;
+import com.example.winify.cvsi.controllers.UserController;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private static Button sloginButton;
-    private static Button sItemsListButton;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
-        sloginButton = (Button) findViewById(R.id.go_to_login_button);
-        sItemsListButton = (Button) findViewById(R.id.go_to_list_view_button);
+        sessionManager = new SessionManager(getApplicationContext());
+        if (sessionManager.getToken() != null) {
+            getMainActivity();
+
+        } else {
+            getLoginActivity();
+        }
     }
 
-    public void onSLoginButtonClicked(View view) {
-        Intent getLoginIntent = new Intent(this, LoginActivity.class) ;
+    public void getMainActivity() {
+        Log.i("TAG", sessionManager.getToken());
+        Intent getListItemsIntent = new Intent(this, ListItemsActivity.class);
         final int result = 1;
-        getLoginIntent.putExtra("callingActivity", "WelcomeActivity");
-        startActivityForResult(getLoginIntent, result);
+        getListItemsIntent.putExtra("callingActivity", "SplashWelcomeActivity");
+        startActivityForResult(getListItemsIntent, result);
     }
 
-    public void onSItemsListButtonClicked(View view) {
-        Intent getLoginIntent = new Intent(this, ListItemsActivity.class) ;
+    public void getLoginActivity() {
+        Intent getListItemsIntent = new Intent(this, LoginActivity.class);
         final int result = 1;
-        getLoginIntent.putExtra("callingActivity", "ListItemsActivity");
-        startActivityForResult(getLoginIntent, result);
+        getListItemsIntent.putExtra("callingActivity", "SplashWelcomeActivity");
+        startActivityForResult(getListItemsIntent, result);
     }
 }
