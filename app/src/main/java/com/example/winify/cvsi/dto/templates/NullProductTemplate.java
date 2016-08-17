@@ -33,7 +33,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public Long getId() {
-        Log.e("NullProductTemplate","getId() returns null.");
         return (long) 0;
     }
 
@@ -44,7 +43,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public String getTitle() {
-        Log.e("NullProductTemplate","getTitle() returns null.");
         return  this.title == null ? "Title" : this.title;
     }
 
@@ -55,7 +53,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public String getDescription() {
-        Log.e("NullProductTemplate","getDescription() returns null.");
         return  this.description == null ? "Title" : this.description;
     }
 
@@ -66,7 +63,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public CurrencyEnum getCurrency() {
-        Log.e("NullProductTemplate","getCurrency() returns null.");
         return  this.currency == null ? CurrencyEnum.EUR : this.currency;
     }
 
@@ -77,7 +73,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public Long getPrice() {
-        Log.e("NullProductTemplate","getPrice() returns null.");
         return  this.price == null ? (long) 0 : this.price;
     }
 
@@ -88,7 +83,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public Long getLimitDate() {
-        Log.e("NullProductTemplate","getLimitDate() returns null.");
         return this.limitDate == null ? (long) 0 : this.limitDate;
     }
 
@@ -99,7 +93,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public Long getCreatedDate() {
-        Log.e("NullProductTemplate","getCreatedDate() returns null.");
         return this.createdDate == null ? (long) 0 : this.createdDate;
     }
 
@@ -110,7 +103,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public Long getUpdatedDate() {
-        Log.e("NullProductTemplate","getUpdatedDate() returns null.");
         return this.updatedDate == null ? (long) 0 : this.updatedDate;
     }
 
@@ -121,7 +113,6 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public String getUserName() {
-        Log.e("NullProductTemplate","getUserName() returns null.");
         return this.userName == null ? "username" : this.userName;
     }
 

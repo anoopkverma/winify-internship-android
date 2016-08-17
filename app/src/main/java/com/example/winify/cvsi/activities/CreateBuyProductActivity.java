@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.controllers.ProductController;
+import com.example.winify.cvsi.controllers.SessionManager;
 import com.example.winify.cvsi.utils.NavigationDrawer;
 import com.github.clans.fab.FloatingActionButton;
 
@@ -27,5 +29,8 @@ public class CreateBuyProductActivity extends CreateProduct {
         this.initToolbar("Create buy product");
         initSpinner();
         initFloatingActionButtonAddImage();
+        ProductController productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
+        productController.getProductDefaultImage("1");
+//        imageView.setImageResource(productController);
     }
 }

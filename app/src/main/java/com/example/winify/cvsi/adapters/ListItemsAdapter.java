@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.activities.ItemPreviewActivity;
+import com.example.winify.cvsi.controllers.ProductController;
+import com.example.winify.cvsi.controllers.SessionManager;
 import com.example.winify.cvsi.utils.PostsViewHolder;
 
 import java.util.ArrayList;
@@ -41,7 +44,9 @@ public class ListItemsAdapter extends RecyclerView.Adapter<PostsViewHolder> {
     @Override
     public void onBindViewHolder(PostsViewHolder viewHolder, final int position) {
         final AbstractProductTemplate temp = allPosts.get(position);
-        viewHolder.bind(temp);
+        viewHolder.bind(temp, context);
+//        ProductController.getImage(viewHolder.mImageView.getContext(), new SessionManager(viewHolder.mImageView.getContext()).getToken(), "http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg", viewHolder.mImageView);
+//        Glide.with(context).load("http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg").into(viewHolder.mImageView);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

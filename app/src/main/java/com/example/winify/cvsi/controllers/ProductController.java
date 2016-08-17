@@ -1,8 +1,16 @@
 package com.example.winify.cvsi.controllers;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.util.Log;
+import android.widget.ImageView;
 
+import com.bumptech.glide.BitmapTypeRequest;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaderFactory;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.winify.cvsi.dto.ListDto;
 import com.example.winify.cvsi.dto.error.ServerResponseStatus;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
@@ -17,6 +25,8 @@ import de.greenrobot.event.EventBus;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +47,7 @@ public class ProductController {
     private String BASE_URL = "http://192.168.3.191:8080/cvsi-server/";
     private SessionManager sessionManager;
     private Context context;
+    private String imagePath;
 
     public ProductController(Context _context, final String authToken) {
         this.context = _context;
@@ -97,5 +108,27 @@ public class ProductController {
 
             }
         });
+    }
+
+    public void getProductDefaultImage(String productId) {
+        Call<ResponseBody> call = iRetrofit.getProductImage(productId);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public static void getImage(Context context, final String authToken, String url, ImageView imageView) {
+        GlideUrl glideUrl = new GlideUrl(url, new LazyHeaders.Builder()
+                .addHeader("X-Auth-Token", authToken)
+                .build());
+        Glide.with(context).load(glideUrl).asBitmap().into(imageView);
     }
 }

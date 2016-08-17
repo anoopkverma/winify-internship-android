@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
@@ -69,6 +70,7 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
             TextView titleTextView = (TextView) view.findViewById(R.id.title_tvbs);
             TextView descriptionTextView = (TextView) view.findViewById(R.id.description_tvbs);
             ImageView imageView = (ImageView) view.findViewById(R.id.image_viewbs);
+            Glide.with(getActivity()).load("http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg").into(imageView);
             TextView startDateTV = (TextView) view.findViewById(R.id.datebs);
             TextView priceTV = (TextView) view.findViewById(R.id.price_tvbs);
             Button currentyTypeButton = (Button) view.findViewById(R.id.currencybs);
