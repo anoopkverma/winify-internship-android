@@ -110,12 +110,13 @@ public class ProductController {
         });
     }
 
-    public void getProductDefaultImage(String productId) {
+    public void getProductDefaultImage(String productId, final String authToken, final String url, final ImageView imageView) {
         Call<ResponseBody> call = iRetrofit.getProductImage(productId);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
+                getImage(context, authToken, url, imageView);
+                Log.w("tagg", response.body().toString());
             }
 
             @Override

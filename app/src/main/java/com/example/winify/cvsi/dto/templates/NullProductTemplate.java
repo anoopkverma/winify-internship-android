@@ -33,7 +33,7 @@ public class NullProductTemplate extends AbstractProductTemplate {
 
     @Override
     public Long getId() {
-        return (long) 0;
+        return this.id ;
     }
 
     @Override

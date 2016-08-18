@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.activities.ItemPreviewActivity;
@@ -43,12 +46,6 @@ public class PostsViewHolder extends RecyclerView.ViewHolder{
         mTitleTextView.setText(temp.getTitle());
         mDateCreated.setText(temp.getCreatedDate().toString());
         mPrice.setText(String.valueOf(temp.getPrice()));
-//        Picasso.with(context).load("http://192.168.3.191:8080/cvsi-server/1/image/default").into(mImageView);
-//        Picasso.with(context).load("http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg").into(mImageView);
-
-        ProductController productController = new ProductController(context, new SessionManager(context).getToken());
-        productController.getProductDefaultImage("1");
-        productController.getImage(context, new SessionManager(context).getToken(),"http://192.168.3.191:8080/cvsi-server/1/image/default",mImageView);
-//        Glide.with(getActivity()).load("http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg").into(imageView);
+        Picasso.with(context).load("http://192.168.3.191:8080/cvsi-server/product/" + temp.getId().toString() + "/image/default").placeholder(context.getResources().getDrawable(R.drawable.gnu_logo)).error(context.getResources().getDrawable(R.drawable.gnu_logo)).into(mImageView);
     }
 }

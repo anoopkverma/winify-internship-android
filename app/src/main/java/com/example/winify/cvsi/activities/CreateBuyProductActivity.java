@@ -29,8 +29,5 @@ public class CreateBuyProductActivity extends CreateProduct {
         this.initToolbar("Create buy product");
         initSpinner();
         initFloatingActionButtonAddImage();
-        ProductController productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
-        productController.getProductDefaultImage("1");
-//        imageView.setImageResource(productController);
     }
 }

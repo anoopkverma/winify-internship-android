@@ -33,6 +33,7 @@
             android:layout_height="wrap_content" >
 
             <ImageView
+                android:src="@drawable/gnu_logo"
                 android:layout_above="@+id/description_tv"
                 android:adjustViewBounds="true"
                 android:layout_width="match_parent"

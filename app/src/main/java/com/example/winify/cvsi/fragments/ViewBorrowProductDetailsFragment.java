@@ -16,6 +16,7 @@ import com.example.winify.cvsi.abstractClasses.AbstractProductTemplate;
 import com.example.winify.cvsi.adapters.ListItemsAdapter;
 import com.example.winify.cvsi.dto.templates.NullProductTemplate;
 import com.example.winify.cvsi.dto.templates.ProductTemplate;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,7 +48,7 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_view_sell_buy_product, container, false);
 
         if (getActivity().getIntent().hasExtra(ListItemsAdapter.ITEM_POST)) {
-            prod = (NullProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
+            prod = (AbstractProductTemplate) getActivity().getIntent().getSerializableExtra(ListItemsAdapter.ITEM_POST);
 
             if (prod != null ) {
                 if (prod.getBorrow()) {
@@ -70,7 +71,7 @@ public class ViewBorrowProductDetailsFragment extends Fragment {
             TextView titleTextView = (TextView) view.findViewById(R.id.title_tvbs);
             TextView descriptionTextView = (TextView) view.findViewById(R.id.description_tvbs);
             ImageView imageView = (ImageView) view.findViewById(R.id.image_viewbs);
-            Glide.with(getActivity()).load("http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg").into(imageView);
+            Picasso.with(getActivity()).load("http://192.168.3.191:8080/cvsi-server/product/" + prod.getId().toString() + "/image/default").into(imageView);
             TextView startDateTV = (TextView) view.findViewById(R.id.datebs);
             TextView priceTV = (TextView) view.findViewById(R.id.price_tvbs);
             Button currentyTypeButton = (Button) view.findViewById(R.id.currencybs);

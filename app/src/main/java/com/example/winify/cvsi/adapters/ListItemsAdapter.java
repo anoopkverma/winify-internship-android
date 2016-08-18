@@ -25,10 +25,8 @@ public class ListItemsAdapter extends RecyclerView.Adapter<PostsViewHolder> {
 
     private static final String TAG = "ListItemsAdapter";
     public static String ITEM_POST = "ITEM_POST";
-
     private final Context context;
     private List<AbstractProductTemplate> allPosts;
-
     public ListItemsAdapter(Context context, List<AbstractProductTemplate> _allPosts) {
         this.context = context;
         this.allPosts = new ArrayList<>(_allPosts);
@@ -45,8 +43,6 @@ public class ListItemsAdapter extends RecyclerView.Adapter<PostsViewHolder> {
     public void onBindViewHolder(PostsViewHolder viewHolder, final int position) {
         final AbstractProductTemplate temp = allPosts.get(position);
         viewHolder.bind(temp, context);
-//        ProductController.getImage(viewHolder.mImageView.getContext(), new SessionManager(viewHolder.mImageView.getContext()).getToken(), "http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg", viewHolder.mImageView);
-//        Glide.with(context).load("http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg").into(viewHolder.mImageView);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
