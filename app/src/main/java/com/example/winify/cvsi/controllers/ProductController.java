@@ -3,6 +3,7 @@ package com.example.winify.cvsi.controllers;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -19,10 +20,13 @@ import com.example.winify.cvsi.dto.templates.request.ProductCreateClientRequest;
 import com.example.winify.cvsi.interfaces.IRetrofit;
 import com.example.winify.cvsi.model.ResponseUser;
 
+import java.io.File;
 import java.io.IOException;
 
 import de.greenrobot.event.EventBus;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -44,7 +48,7 @@ public class ProductController {
     private Retrofit retrofit;
     private IRetrofit iRetrofit;
     private OkHttpClient okHttpClient;
-    private String BASE_URL = "http://192.168.1.115:8080/cvsi-server/";
+    private String BASE_URL = "http://192.168.3.191:8080/cvsi-server/";
     private SessionManager sessionManager;
     private Context context;
     private String imagePath;
@@ -62,8 +66,6 @@ public class ProductController {
                     @Override
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request original = chain.request();
-
-                        // Request customization: add request headers
                         Request.Builder requestBuilder = original.newBuilder()
                                 .header("X-Auth-Token", authToken)
                                 .method(original.method(), original.body());
@@ -137,18 +139,24 @@ public class ProductController {
         Glide.with(context).load(glideUrl).asBitmap().into(imageView);
     }
 
-//    public void postImage() {
-//        retrofit2.Call<okhttp3.ResponseBody> req = iRetrofit.postImage(body, name);
-//        req.enqueue(new Callback<ResponseBody>() {
-//            @Override
-//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                // Do Something
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
-//    }
+    public void postImage(String filePath, Uri uri) {
+        File file = new File(filePath);
+
+        RequestBody reqFile = RequestBody.create(MediaType.parse(context.getContentResolver().getType(uri)), file);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), reqFile);
+        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
+
+        retrofit2.Call<okhttp3.ResponseBody> req = iRetrofit.postImg(body);
+        req.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                // Do Something
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+    }
 }

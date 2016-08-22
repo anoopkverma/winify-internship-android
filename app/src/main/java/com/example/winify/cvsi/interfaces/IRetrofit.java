@@ -33,7 +33,7 @@ public interface IRetrofit {
 
     @Multipart
     @POST("user/image")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part file
+    Call<ResponseBody> postImg(@Part MultipartBody.Part image
 //            , @Part("name") RequestBody name
     );
 

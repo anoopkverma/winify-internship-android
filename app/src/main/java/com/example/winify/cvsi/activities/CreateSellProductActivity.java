@@ -1,6 +1,7 @@
 package com.example.winify.cvsi.activities;
 
 import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,11 +53,14 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
     private String fPath;
     private View view;
     private Context context;
+    private Uri uri;
+    private ProductController productController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_sell_product);
+        productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
         this.context = getApplicationContext();
         this.nabDrawer = new NavigationDrawer(this);
         nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
@@ -67,15 +72,12 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
         cancelButton = (Button) findViewById(R.id.cancel_prod_creation_button_sell);
         createButton = (Button) findViewById(R.id.create_product_button_sell);
         cancelButton.setOnClickListener(this);
-
         createButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
         view = v;
-
         int id = v.getId();
         switch (id){
             case R.id.cancel_prod_creation_button_sell:
@@ -89,7 +91,7 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
                 }
                 break;
             case R.id.create_product_button_sell:
-                retrofitGetMagic(fPath);
+                productController.postImage(fPath, uri);
                 break;
         }
     }
@@ -97,10 +99,9 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            this.fPath = getFilePath(selectedImage);
+            this.uri = data.getData();
+            this.fPath = getFilePath(uri);
         }
     }
 
@@ -117,29 +118,6 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
         return picturePath;
     }
 
-    public void retrofitGetMagic(String filePath) {
-
-        ProductController productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
-        IRetrofit service = productController.getiRetrofit();
-        File file = new File(filePath);
-
-        RequestBody reqFile = RequestBody.create(MediaType.parse("image/jpeg"), file);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("file", file.getName(), reqFile);
-        RequestBody name = RequestBody.create(MediaType.parse("text/plain"), "upload_test");
-
-        retrofit2.Call<okhttp3.ResponseBody> req = service.postImage(body);
-        req.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                // Do Something
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }
 
     private boolean checkPermission(){
         int result = ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);

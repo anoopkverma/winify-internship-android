@@ -146,7 +146,7 @@
         <Button
             android:text="Cancel"
             android:background="@drawable/rose_red"
-            android:id="@+id/cancel_prod_creation_button"
+            android:id="@+id/cancel_prod_creation_button_buy"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
@@ -155,7 +155,7 @@
             android:background="@drawable/rose_red"
             android:layout_marginLeft="1px"
             android:text="Create"
-            android:id="@+id/create_product_button"
+            android:id="@+id/create_product_button_buy"
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
