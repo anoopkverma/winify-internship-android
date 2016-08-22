@@ -3,6 +3,8 @@
     package="com.example.winify.cvsi">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +12,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.WelcomeActivity"
+        <activity
+            android:name=".activities.WelcomeActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -108,8 +111,8 @@
         <activity android:name=".TestBaseActivity" />
         <activity android:name=".activities.BaseActivity" />
         <activity android:name=".activities.ToolbarActivity" />
-        <activity android:name=".activities.ListItemsActivity">
-        </activity>
+        <activity android:name=".activities.ListItemsActivity"></activity>
+        <activity android:name=".activities.RuntimePermissionsActivity"></activity>
     </application>
 
 </manifest>

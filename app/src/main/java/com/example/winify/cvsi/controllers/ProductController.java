@@ -44,10 +44,14 @@ public class ProductController {
     private Retrofit retrofit;
     private IRetrofit iRetrofit;
     private OkHttpClient okHttpClient;
-    private String BASE_URL = "http://192.168.3.191:8080/cvsi-server/";
+    private String BASE_URL = "http://192.168.1.115:8080/cvsi-server/";
     private SessionManager sessionManager;
     private Context context;
     private String imagePath;
+
+    public IRetrofit getiRetrofit() {
+        return  this.iRetrofit;
+    }
 
     public ProductController(Context _context, final String authToken) {
         this.context = _context;
@@ -132,4 +136,19 @@ public class ProductController {
                 .build());
         Glide.with(context).load(glideUrl).asBitmap().into(imageView);
     }
+
+//    public void postImage() {
+//        retrofit2.Call<okhttp3.ResponseBody> req = iRetrofit.postImage(body, name);
+//        req.enqueue(new Callback<ResponseBody>() {
+//            @Override
+//            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+//                // Do Something
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseBody> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+//    }
 }

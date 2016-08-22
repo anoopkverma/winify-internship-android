@@ -20,6 +20,7 @@ public class CreateProduct extends ToolbarActivity {
     ImageView imageView;
     FloatingActionButton addImageFAB;
     private static final int PICK_IMAGE = 100;
+    private static final int REQUEST_PERMISSIONS = 20;
     Uri imageUri;
 
     public void initFloatingActionButtonAddImage() {
