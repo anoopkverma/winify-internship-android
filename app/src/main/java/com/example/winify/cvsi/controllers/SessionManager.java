@@ -16,9 +16,8 @@ public class SessionManager {
     public final static String TOKEN = "TOKEN";
     public final static String CACHE = "CACHE";
     private final static String USER = "USER";
-    Context context;
-    SharedPreferences sharedPreferences;
-
+    private Context context;
+    private SharedPreferences sharedPreferences;
 
     public SessionManager(Context context) {
         this.context = context;

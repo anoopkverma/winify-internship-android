@@ -117,7 +117,7 @@
                 </LinearLayout>
 
                 <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/fab_add_image"
+                    android:id="@+id/fab_add_image_buy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_anchor="@id/image_place"

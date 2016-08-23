@@ -32,24 +32,26 @@ public class CreateBuyProductActivity extends CreateProduct implements View.OnCl
     private static final int PERMISSION_REQUEST_CODE = 100;
     private String fPath;
     private Uri uri;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_buy_product);
         intial();
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
-
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState,
+                this.toolbar);
     }
 
     public void intial() {
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add_image_buy);
+        floatingActionButton.setOnClickListener(this);
         this.context = getApplicationContext();
-        productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
+        productController = new ProductController(getApplicationContext());
         this.nabDrawer = new NavigationDrawer(this);
         imageView = (ImageView) findViewById(R.id.image_view);
         this.initToolbar("Create sell product");
         initSpinner();
-        initFloatingActionButtonAddImage();
         cancelButton = (Button) findViewById(R.id.cancel_prod_creation_button_buy);
         createButton = (Button) findViewById(R.id.create_product_button_buy);
         cancelButton.setOnClickListener(this);
@@ -61,7 +63,7 @@ public class CreateBuyProductActivity extends CreateProduct implements View.OnCl
         view = v;
         int id = v.getId();
         switch (id){
-            case R.id.cancel_prod_creation_button_buy:
+            case R.id.fab_add_image_buy:
                 if (checkPermission(context)) {
                     Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(i, RESULT_LOAD_IMAGE);
@@ -72,7 +74,11 @@ public class CreateBuyProductActivity extends CreateProduct implements View.OnCl
                 }
                 break;
             case R.id.create_product_button_buy:
-                productController.postImage(fPath, uri);
+                if (fPath != null && uri != null) {
+                    productController.postImage(fPath, uri);
+                } else {
+                    Snackbar.make(view,"Please select an image, then create the product..",Snackbar.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -91,17 +97,12 @@ public class CreateBuyProductActivity extends CreateProduct implements View.OnCl
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     Snackbar.make(view,"Permission Granted, Now you can access location data.",Snackbar.LENGTH_LONG).show();
-
                 } else {
-
                     Snackbar.make(view,"Permission Denied, You cannot access location data.",Snackbar.LENGTH_LONG).show();
-
                 }
                 break;
         }
     }
-
-
 }
+

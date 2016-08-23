@@ -7,19 +7,16 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.winify.cvsi.R;
-import com.github.clans.fab.FloatingActionButton;
 
 /**
  * Created by diana on 8/1/16.
@@ -27,24 +24,8 @@ import com.github.clans.fab.FloatingActionButton;
 public class CreateProduct extends ToolbarActivity {
 
     ImageView imageView;
-    FloatingActionButton addImageFAB;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
-
-    public void initFloatingActionButtonAddImage() {
-        addImageFAB = (FloatingActionButton) findViewById(R.id.fab_add_image);
-        addImageFAB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openGallery();
-            }
-        });
-    }
-
-    public void openGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, PICK_IMAGE);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

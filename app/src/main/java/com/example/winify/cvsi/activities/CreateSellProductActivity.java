@@ -12,8 +12,8 @@ import android.widget.ImageView;
 
 import com.example.winify.cvsi.R;
 import com.example.winify.cvsi.controllers.ProductController;
-import com.example.winify.cvsi.controllers.SessionManager;
 import com.example.winify.cvsi.utils.NavigationDrawer;
+import com.github.clans.fab.FloatingActionButton;
 
 public class CreateSellProductActivity extends CreateProduct implements View.OnClickListener{
 
@@ -26,23 +26,26 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
     private Context context;
     private Uri uri;
     private ProductController productController;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_sell_product);
         initializeComponents();
-        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState, "diana", "Cosinzeana", this.toolbar);
+        nabDrawer.buildDrawer(this, R.drawable.nina, savedInstanceState,
+                this.toolbar);
     }
 
     public void initializeComponents() {
-        productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.fab_add_image_sell);
+        floatingActionButton.setOnClickListener(this);
+        productController = new ProductController(getApplicationContext());
         this.context = getApplicationContext();
         this.nabDrawer = new NavigationDrawer(this);
         imageView = (ImageView) findViewById(R.id.image_view);
         this.initToolbar("Create sell product");
         initSpinner();
-        initFloatingActionButtonAddImage();
         cancelButton = (Button) findViewById(R.id.cancel_prod_creation_button_sell);
         createButton = (Button) findViewById(R.id.create_product_button_sell);
         cancelButton.setOnClickListener(this);
@@ -54,7 +57,7 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
         view = v;
         int id = v.getId();
         switch (id){
-            case R.id.cancel_prod_creation_button_sell:
+            case R.id.fab_add_image_sell:
                 if (checkPermission(context)) {
                     Intent i = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(i, RESULT_LOAD_IMAGE);
@@ -65,7 +68,11 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
                 }
                 break;
             case R.id.create_product_button_sell:
-                productController.postImage(fPath, uri);
+                if (fPath != null && uri != null) {
+                    productController.postImage(fPath, uri);
+                } else {
+                    Snackbar.make(view,"Please select an image, then create the product..",Snackbar.LENGTH_LONG).show();
+                }
                 break;
         }
     }
@@ -84,13 +91,9 @@ public class CreateSellProductActivity extends CreateProduct implements View.OnC
         switch (requestCode) {
             case PERMISSION_REQUEST_CODE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     Snackbar.make(view,"Permission Granted, Now you can access location data.",Snackbar.LENGTH_LONG).show();
-
                 } else {
-
                     Snackbar.make(view,"Permission Denied, You cannot access location data.",Snackbar.LENGTH_LONG).show();
-
                 }
                 break;
         }

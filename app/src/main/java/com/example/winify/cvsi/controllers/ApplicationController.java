@@ -13,7 +13,7 @@ public class ApplicationController extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        productController = new ProductController(getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
+        productController = new ProductController(getApplicationContext());
     }
     public ProductController getProductController() {
         return productController;

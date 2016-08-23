@@ -62,11 +62,11 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
         setContentView(R.layout.activity_base);
         view = this.findViewById(android.R.id.content).getRootView();
         initToolbar();
-        initNavDrawer(R.drawable.nina, savedInstanceState, "diana", "Ileana", this.toolbar);
+        initNavDrawer(R.drawable.nina, savedInstanceState, this.toolbar);
         floatingActionMenu = (FloatingActionMenu) findViewById(R.id.menu);
         initFAMenu();
         EventBus.getDefault().register(this);
-        productController = new ProductController(this.getApplicationContext(), new SessionManager(getApplicationContext()).getToken());
+        productController = new ProductController(this.getApplicationContext());
         productController.getProductDTO();
     }
 
@@ -77,9 +77,9 @@ public class ListItemsActivity extends TestActivity implements SearchView.OnQuer
     }
 
 
-    public void initNavDrawer(int resource, Bundle instance, String name, String email, Toolbar toolbar) {
+    public void initNavDrawer(int resource, Bundle instance, Toolbar toolbar) {
         this.nabDrawer = new NavigationDrawer(this);
-        this.nabDrawer.buildDrawer(this, resource, instance, name, email, toolbar);
+        this.nabDrawer.buildDrawer(this, resource, instance, toolbar);
         assert getSupportActionBar() != null;
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         nabDrawer.drawer.getActionBarDrawerToggle().setDrawerIndicatorEnabled(true);

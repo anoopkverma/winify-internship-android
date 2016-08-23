@@ -66,7 +66,7 @@ public class ProductController {
         return  this.iRetrofit;
     }
 
-    public ProductController(Context _context, final String authToken) {
+    public ProductController(final Context _context) {
         this.context = _context;
         this.sessionManager = new SessionManager(this.context);
         this.okHttpClient = new OkHttpClient.Builder()
@@ -76,7 +76,7 @@ public class ProductController {
                     public okhttp3.Response intercept(Chain chain) throws IOException {
                         Request original = chain.request();
                         Request.Builder requestBuilder = original.newBuilder()
-                                .header("X-Auth-Token", authToken)
+                                .header("X-Auth-Token", new SessionManager(_context).getToken())
                                 .method(original.method(), original.body());
 
                         Request request = requestBuilder.build();

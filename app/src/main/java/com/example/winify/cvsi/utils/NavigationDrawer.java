@@ -1,12 +1,16 @@
 package com.example.winify.cvsi.utils;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.winify.cvsi.R;
+import com.example.winify.cvsi.activities.ListItemsActivity;
+import com.example.winify.cvsi.controllers.SessionManager;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -31,10 +35,12 @@ public class NavigationDrawer {
     private PrimaryDrawerItem logout;
     private SecondaryDrawerItem item2;
     private AccountHeader headerResult;
+    private SessionManager sessionManager;
 
 
 
     public NavigationDrawer(Activity activity) {
+        this.sessionManager = new SessionManager(activity.getApplicationContext());
         new DrawerBuilder().withActivity(activity).build();
     }
 
@@ -46,9 +52,18 @@ public class NavigationDrawer {
         this.item2 = (SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(2).withName(R.string.drawer_item_settings);
     }
 
-    public void buildDrawer(Activity activity, int resourceId, Bundle savendInstanceState1, String name, String email, Toolbar toolbar) {
+    // TODO - make each of the nav-drawer optinos functionable
+
+//    public void onSettingsOptionChoose() {
+//        Intent getListItemsIntent = new Intent(this, ListItemsActivity.class);
+//        final int result = 1;
+//        getListItemsIntent.putExtra("callingActivity", "LoginActivity");
+//        startActivityForResult(getListItemsIntent, result);
+//    }
+
+    public void buildDrawer(Activity activity, int resourceId, Bundle savendInstanceState1, Toolbar toolbar) {
         initDrawerItems(activity);
-        addAccountHeader(activity,resourceId, savendInstanceState1, name, email );
+        addAccountHeader(activity,resourceId, savendInstanceState1, sessionManager.getUser().getName(), sessionManager.getUser().getEmail() );
         setDrawerProperties(activity, toolbar);
     }
 
