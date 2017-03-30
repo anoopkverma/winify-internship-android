@@ -52,15 +52,6 @@ public class NavigationDrawer {
         this.item2 = (SecondaryDrawerItem) new SecondaryDrawerItem().withIdentifier(2).withName(R.string.drawer_item_settings);
     }
 
-    // TODO - make each of the nav-drawer optinos functionable
-
-//    public void onSettingsOptionChoose() {
-//        Intent getListItemsIntent = new Intent(this, ListItemsActivity.class);
-//        final int result = 1;
-//        getListItemsIntent.putExtra("callingActivity", "LoginActivity");
-//        startActivityForResult(getListItemsIntent, result);
-//    }
-
     public void buildDrawer(Activity activity, int resourceId, Bundle savendInstanceState1, Toolbar toolbar) {
         initDrawerItems(activity);
         addAccountHeader(activity,resourceId, savendInstanceState1, sessionManager.getUser().getName(), sessionManager.getUser().getEmail() );
@@ -87,8 +78,6 @@ public class NavigationDrawer {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        // do something with the clicked item :D
-//                        Toast.makeText(getContext(), "oand" + String.valueOf(position), Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 })
@@ -106,13 +95,7 @@ public class NavigationDrawer {
                 )
                 .withSavedInstance(savendInstanceState1)
                 .build();
-
     }
-
-//    public void updateProfileInfo(String email, String name) {
-//        headerResu
-//        headerResult.getActiveProfile().withEmail(email);
-//    }
 
     public Drawer getDrawer() {
         return this.drawer;
